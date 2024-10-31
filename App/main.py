@@ -24,6 +24,13 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.setWindowIcon(QIcon("Task-Management-App\App\creative app icon for a task manager app.png"))
         self.setupUi(self)
         
+
+        # Set up the scroll area
+        self.scrollAreaContent = QWidget()  # Create a new QWidget to hold the layout
+        self.scrollAreaLayout = QVBoxLayout()  # Create a vertical layout
+        self.scrollAreaContent.setLayout(self.scrollAreaLayout)  # Set the layout to the content widget
+        self.scrollArea_tasks.setWidget(self.scrollAreaContent)  # Set the content widget to the scroll area
+
         #Function calls
         self.Handle_pushButton_addTask()
         self.Handle_UI()
@@ -51,33 +58,24 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)
 
+
     def add_task_widget(self):
+        # Create a new card (QGroupBox)
+        card = QGroupBox()
+        card.setTitle("Task Title")
+        card.setStyleSheet("QGroupBox { background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px; padding: 10px; }")
+        card.setMinimumSize(250, 100)
 
-        
-        #### TO DO ###
-        # Be able to add the custom widget "taskWidget" -which can be seen in Qt Designer-, to the scrollable area which represents the tasks
-        # Create an instance of the custom widget "taskWidget", not sure if this is right
-        addTaskWidget = TASK_WIDGET_CLASS()
+        # Add content to the card
+        layout = QVBoxLayout()
+        label = QLabel("Task Description")
+        label.setFont(QFont("Arial", 10))
+        layout.addWidget(label)
+        card.setLayout(layout)
 
+        # Add the card to the scroll area's layout
+        self.scrollArea_tasks.widget().layout().addWidget(card)
 
-        ###############THE FOLLOWING IS AN EXAMPLE ONLY NOT A PROGRAM FEATURE#####################
-        self.widget = QWidget()        # Widget that contains the collection of Vertical Box
-        self.vbox = QVBoxLayout()      # The Vertical Box that contains the Horizontal Boxes of  labels and buttons
-
-        for i in range(1,3):
-            object = QLabel("TextLabel")
-            self.vbox.addWidget(object)
-
-        self.widget.setLayout(self.vbox)
-
-        #Scroll Area Properties
-        self.scrollArea_tasks.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.scrollArea_tasks.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea_tasks.setWidgetResizable(True)
-        self.scrollArea_tasks.setWidget(self.widget)
-        #########################################################################################
-
-        return
 
 
         
