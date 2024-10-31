@@ -21,6 +21,7 @@ class mainApp(QMainWindow, FORM_CLASS):
     def __init__(self, parent=None):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
+        self.setWindowIcon(QIcon("Task-Management-App\App\creative app icon for a task manager app.png"))
         self.setupUi(self)
         
         #Function calls

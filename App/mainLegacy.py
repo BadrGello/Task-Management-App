@@ -25,6 +25,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
 def main():
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("Task-Management-App\App\creative app icon for a task manager app.png"))
     window = mainApp() #An instance of the class mainApp
     window.show()
     app.exec_() #Infinite loop
