@@ -8,20 +8,22 @@ from os import path
 # Constants
 mainWindowFileName = "mainWindow.ui"
 taskWidgetFileName = "taskWidget.ui"
+addTaskWindowFileName = "AddWindow.ui"
 
 # Import UI files
 FORM_CLASS, _ = loadUiType(path.join(path.dirname(__file__), mainWindowFileName))
 TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFileName))
+ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
 
 #When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window" 
 #and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
 
 class mainApp(QMainWindow, FORM_CLASS):
     #Constructor
-    def __init__(self, parent=None):
-        super(mainApp, self).__init__(parent)
+    def __init__(self):
+        super(mainApp, self).__init__()
         QMainWindow.__init__(self)
-        self.setWindowIcon(QIcon("Task-Management-App\App\creative app icon for a task manager app.png"))
+        # self.setWindowIcon(QIcon('Task-Management-App\App\App_icon.png'))
         self.setupUi(self)
         
 
@@ -39,6 +41,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         #Variables
         self.searchBarText = ""
+        self.addWin = None #For the add task window
+        self.taskList = dict()
 
     #Handles adding new tasks
     def Handle_pushButton_addTask(self):
@@ -60,24 +64,46 @@ class mainApp(QMainWindow, FORM_CLASS):
 
 
     def add_task_widget(self):
+
+        if self.addWin is None:
+            self.addWin = addWindow()
+     
+        self.addWin.show()
+
+
+
+
+
+
+
+
+
         # Create a new card (QGroupBox)
-        card = QGroupBox()
-        card.setTitle("Task Title")
-        card.setStyleSheet("QGroupBox { background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px; padding: 10px; }")
-        card.setMinimumSize(250, 100)
+        # card = self.taskGroupBox
+        # card = QGroupBox()
+        # card.setTitle("Task Title")
+        # # card.setStyleSheet("QGroupBox { background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px; padding: 10px; }")
+        # card.setMinimumSize(250, 100)
 
-        # Add content to the card
-        layout = QVBoxLayout()
-        label = QLabel("Task Description")
-        label.setFont(QFont("Arial", 10))
-        layout.addWidget(label)
-        card.setLayout(layout)
+        # task_widget = TASK_WIDGET_CLASS()
 
-        # Add the card to the scroll area's layout
-        self.scrollArea_tasks.widget().layout().addWidget(card)
+        # # Add content to the card
+        # layout = QVBoxLayout()
+        # label = QLabel("Task Description")
+        # label.setFont(QFont("Arial", 10))
+        # layout.addWidget(label)
+        # card.setLayout(layout)
+
+        # # Add the card to the scroll area's layout
+        # self.scrollArea_tasks.widget().layout().addWidget(task_widget)
 
 
-
+class addWindow(QDialog, ADD_TASK_CLASS):
+    #Constructor
+    def __init__(self):
+        super(addWindow, self).__init__()
+        QDialog.__init__(self)
+        self.setupUi(self)
         
     
 
