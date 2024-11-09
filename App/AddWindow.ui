@@ -285,39 +285,11 @@
     <attribute name="title">
      <string>Event</string>
     </attribute>
-    <widget class="QLineEdit" name="EventTagInput">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>10</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A tag should have no spaces. &lt;/p&gt;&lt;p&gt;Press enter to add tag&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="whatsThis">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tags are optional feature for categorizing events/tasks&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="inputMask">
-      <string/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>Insert a Tag</string>
-     </property>
-     <property name="clearButtonEnabled">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="EventDateLabel">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>140</y>
+       <x>350</x>
+       <y>90</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -329,8 +301,8 @@
     <widget class="QDateTimeEdit" name="EventDate">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>140</y>
+       <x>390</x>
+       <y>90</y>
        <width>151</width>
        <height>31</height>
       </rect>
@@ -352,8 +324,8 @@
     <widget class="QComboBox" name="EventRepeatValue">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>180</y>
+       <x>410</x>
+       <y>130</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -411,44 +383,6 @@
      </property>
      <property name="placeholderText">
       <string>Description</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="EventPriorityValue">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>50</y>
-       <width>111</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Priority is useful for filtering</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>High Priority</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Moderate Priority</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Low Priority</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QListWidget" name="EventTags">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>50</y>
-       <width>151</width>
-       <height>71</height>
-      </rect>
      </property>
     </widget>
     <widget class="QDialogButtonBox" name="EventDialogButtonBox">

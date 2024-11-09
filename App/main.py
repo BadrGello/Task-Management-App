@@ -23,17 +23,13 @@ class mainApp(QMainWindow, FORM_CLASS):
     def __init__(self, parent=None):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
-        # self.setWindowIcon(QIcon('Task-Management-App\App\App_icon.png'))
         self.setupUi(self)
         
-
-        # Set up the scroll area
-        self.scrollAreaContent = QWidget()  # Create a new QWidget to hold the layout
-        self.scrollAreaLayout = QVBoxLayout()  # Create a vertical layout
-        self.scrollAreaContent.setLayout(self.scrollAreaLayout)  # Set the layout to the content widget
-        self.scrollArea_tasks.setWidget(self.scrollAreaContent)  # Set the content widget to the scroll area
+        # Icons
         self.pushButton_sort1.setIcon(QIcon('App\sort.png'))
         self.pushButton_sort1.setIconSize(QSize(24,24))
+        self.setWindowIcon(QIcon('App\App_icon.png'))
+
         #Function calls
         self.Handle_UI()
         self.Handle_searchBar()
@@ -67,9 +63,9 @@ class mainApp(QMainWindow, FORM_CLASS):
         print(self.searchBarText)
 
     def Handle_add_window(self):
-        if self.addWin is None:
-            self.addWin = addWindow(self)
-
+        # if self.addWin is None:
+        #     self.addWin = addWindow(self)
+        self.addWin = addWindow(self)
         self.addWin.show()
 
 
@@ -77,7 +73,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         self.addTask = addTask(self)
         if (self.tasksGroupBox == None):
-            self.tasksGroupBox = QGroupBox('Tasks and Events')
+            self.tasksGroupBox = QGroupBox('Tasks')
         if(self.tasksForm == None):
             self.tasksForm= QFormLayout()
         self.tasksGroupBox.setLayout(self.tasksForm)
@@ -104,8 +100,8 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         self.mainWindow = parent
 
         #Connecting signals
-        self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
-        self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
+        # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
+        # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
 
         self.TaskDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
         self.TaskDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
