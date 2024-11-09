@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>AddWindow</class>
  <widget class="QDialog" name="AddWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>634</width>
-    <height>328</height>
+    <width>643</width>
+    <height>332</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +18,18 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>643</width>
+    <height>332</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>643</width>
+    <height>332</height>
+   </size>
   </property>
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
@@ -33,9 +48,27 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>611</width>
+     <width>621</width>
      <height>311</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
    </property>
    <property name="accessibleName">
     <string>task</string>
@@ -50,6 +83,12 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="taskTab">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="cursor">
      <cursorShape>ArrowCursor</cursorShape>
     </property>
@@ -212,19 +251,6 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="TaskCancelButton">
-     <property name="geometry">
-      <rect>
-       <x>520</x>
-       <y>240</y>
-       <width>71</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
     <widget class="QListWidget" name="TaskTags">
      <property name="geometry">
       <rect>
@@ -235,21 +261,27 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="TaskAddButton">
+    <widget class="QDialogButtonBox" name="TaskDialogButtonBox">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>410</x>
        <y>240</y>
-       <width>71</width>
-       <height>28</height>
+       <width>193</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Add</string>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </widget>
    <widget class="QWidget" name="eventTab">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <attribute name="title">
      <string>Event</string>
     </attribute>
@@ -315,32 +347,6 @@
      </property>
      <property name="calendarPopup">
       <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="EventAddButton">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>240</y>
-       <width>71</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Add</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="EventCancelButton">
-     <property name="geometry">
-      <rect>
-       <x>520</x>
-       <y>240</y>
-       <width>71</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
      </property>
     </widget>
     <widget class="QComboBox" name="EventRepeatValue">
@@ -443,6 +449,19 @@
        <width>151</width>
        <height>71</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="EventDialogButtonBox">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>240</y>
+       <width>193</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </widget>

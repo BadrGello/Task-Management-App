@@ -20,8 +20,8 @@ ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFi
 
 class mainApp(QMainWindow, FORM_CLASS):
     #Constructor
-    def __init__(self):
-        super(mainApp, self).__init__()
+    def __init__(self, parent=None):
+        super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         # self.setWindowIcon(QIcon('Task-Management-App\App\App_icon.png'))
         self.setupUi(self)
@@ -34,24 +34,27 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollArea_tasks.setWidget(self.scrollAreaContent)  # Set the content widget to the scroll area
 
         #Function calls
-        self.Handle_pushButton_addTask()
         self.Handle_UI()
         self.Handle_searchBar()
-        self.Handle_pushButton_searchTask()
+        
+        #Connecting signals (buttons, etc) to slots (functions)
+            #Handles adding new tasks
+        self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
+            #When the search bar button is clicked, it goes to the function "Handle_searchBar"
+        self.pushButton_searchTask.clicked.connect(self.Handle_searchBar) 
 
         #Variables
         self.searchBarText = ""
-        self.addWin = None #For the add task window
-        self.taskList = dict()
+        
+        #ScrollArea Task Widgets
+        self.addTaskList = []
+        self.addTask = None
+        self.tasksGroupBox = None
+        self.tasksForm  = None
+        # self.taskList = dict()
 
-    #Handles adding new tasks
-    def Handle_pushButton_addTask(self):
-        self.pushButton_addTask.clicked.connect(self.add_task_widget) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
-
-    #When the search bar button is clicked, it goes to the function "Handle_searchBar"
-    def Handle_pushButton_searchTask(self):
-        self.pushButton_searchTask.clicked.connect(self.Handle_searchBar) 
-
+        #Add Window
+        self.addWin = None
 
 
     def Handle_UI(self):
@@ -62,50 +65,68 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)
 
-
-    def add_task_widget(self):
-
+    def Handle_add_window(self):
         if self.addWin is None:
-            self.addWin = addWindow()
-     
+            self.addWin = addWindow(self)
+
         self.addWin.show()
 
 
+    def add_task_widget(self):
 
+        self.addTask = addTask(self)
+        if (self.tasksGroupBox == None):
+            self.tasksGroupBox = QGroupBox('Tasks and Events')
+        if(self.tasksForm == None):
+            self.tasksForm= QFormLayout()
+        self.tasksGroupBox.setLayout(self.tasksForm)
+        
+        
+        self.addTaskList.append(addTask(self))
 
+        for task in self.addTaskList:
+            self.tasksForm.addRow(task)
 
-
-
-
-
-        # Create a new card (QGroupBox)
-        # card = self.taskGroupBox
-        # card = QGroupBox()
-        # card.setTitle("Task Title")
-        # # card.setStyleSheet("QGroupBox { background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px; padding: 10px; }")
-        # card.setMinimumSize(250, 100)
-
-        # task_widget = TASK_WIDGET_CLASS()
-
-        # # Add content to the card
-        # layout = QVBoxLayout()
-        # label = QLabel("Task Description")
-        # label.setFont(QFont("Arial", 10))
-        # layout.addWidget(label)
-        # card.setLayout(layout)
-
-        # # Add the card to the scroll area's layout
-        # self.scrollArea_tasks.widget().layout().addWidget(task_widget)
-
+       
+        self.scrollArea_tasks.setWidget(self.tasksGroupBox)
+        self.scrollArea_tasks.setWidgetResizable(True)
 
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
-    def __init__(self):
-        super(addWindow, self).__init__()
+    def __init__(self, parent=None):
+        super(addWindow, self).__init__(parent)
         QDialog.__init__(self)
         self.setupUi(self)
-        
+
+        #The parent is the main window, SO IT'S IMPORTANT TO: pass self when initiating addWindow -> addWindow(self)
+        self.mainWindow = parent
+
+        #Connecting signals
+        self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
+        self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
+
+        self.TaskDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
+        self.TaskDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
+
+    def Handle_ok_clicked(self):
+        self.mainWindow.add_task_widget()
+        self.close()
     
+    def Handle_cancel_clicked(self):
+        self.close()
+
+        
+     
+        
+
+class addTask(QWidget, TASK_WIDGET_CLASS):
+    #Constructor
+    def __init__(self, parent=None):
+        super(addTask, self).__init__(parent)
+        QWidget.__init__(self)
+        self.setupUi(self)
+
+       
 
 def main():
     app = QApplication(sys.argv)
