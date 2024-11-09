@@ -32,7 +32,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollAreaLayout = QVBoxLayout()  # Create a vertical layout
         self.scrollAreaContent.setLayout(self.scrollAreaLayout)  # Set the layout to the content widget
         self.scrollArea_tasks.setWidget(self.scrollAreaContent)  # Set the content widget to the scroll area
-
+        self.pushButton_sort1.setIcon(QIcon('App\sort.png'))
+        self.pushButton_sort1.setIconSize(QSize(24,24))
         #Function calls
         self.Handle_UI()
         self.Handle_searchBar()
@@ -90,6 +91,7 @@ class mainApp(QMainWindow, FORM_CLASS):
        
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
+    
 
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
