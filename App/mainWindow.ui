@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1116</width>
+    <width>1114</width>
     <height>636</height>
    </rect>
   </property>
@@ -35,35 +35,6 @@ rgb(241, 255, 231)</string>
         <string>Tasks and Events</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="scrollArea_tasks">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollArea_tasks_content">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>1072</width>
-             <height>452</height>
-            </rect>
-           </property>
-          </widget>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox_addAndSearch">
           <property name="sizePolicy">
@@ -157,6 +128,35 @@ rgb(241, 255, 231)</string>
           </layout>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QScrollArea" name="scrollArea_tasks">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollArea_tasks_content">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1062</width>
+             <height>439</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_calender">
@@ -192,7 +192,7 @@ rgb(241, 255, 231)</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1116</width>
+     <width>1114</width>
      <height>26</height>
     </rect>
    </property>
