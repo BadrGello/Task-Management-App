@@ -9,11 +9,13 @@ from os import path
 mainWindowFileName = "mainWindow.ui"
 taskWidgetFileName = "taskWidget.ui"
 addTaskWindowFileName = "AddWindow.ui"
+settingsWindowFilName = "SettingWindow.ui"
 
 # Import UI files
 FORM_CLASS, _ = loadUiType(path.join(path.dirname(__file__), mainWindowFileName))
 TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFileName))
 ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
+SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
 #When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window" 
 #and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
@@ -39,6 +41,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
             #When the search bar button is clicked, it goes to the function "Handle_searchBar"
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar) 
+        self.actionPreferences.triggered.connect(self.Handle_settings)
 
         #Variables
         self.searchBarText = ""
@@ -87,7 +90,11 @@ class mainApp(QMainWindow, FORM_CLASS):
        
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
-    
+
+    def Handle_settings(self):
+        self.Settings= settingWindow(self)
+        self.Settings.show()
+
 
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
@@ -113,9 +120,14 @@ class addWindow(QDialog, ADD_TASK_CLASS):
     def Handle_cancel_clicked(self):
         self.close()
 
-        
-     
-        
+class settingWindow(QMainWindow, SETTING_CLASS):
+    #Constructor
+    def __init__(self, parent=None):
+        super(settingWindow, self).__init__(parent)
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+
+        self.mainWindow = parent
 
 class addTask(QWidget, TASK_WIDGET_CLASS):
     #Constructor
