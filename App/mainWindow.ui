@@ -28,7 +28,7 @@
 rgb(241, 255, 231)</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_tasks">
        <attribute name="title">
@@ -151,7 +151,7 @@ rgb(241, 255, 231)</string>
              <x>0</x>
              <y>0</y>
              <width>1062</width>
-             <height>440</height>
+             <height>439</height>
             </rect>
            </property>
           </widget>
@@ -182,6 +182,249 @@ rgb(241, 255, 231)</string>
        <attribute name="title">
         <string>Insights and Analytics</string>
        </attribute>
+       <widget class="QGroupBox" name="myDay_data">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>491</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>My Day</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <widget class="QProgressBar" name="completion_bar">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>40</y>
+           <width>261</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="copmletion_label">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>40</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Completion Percentage:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="done">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>80</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Total Tasks Done:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="left">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>120</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tasks Left:</string>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="doneNum">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>80</y>
+           <width>64</width>
+           <height>23</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="leftNum">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>120</y>
+           <width>64</width>
+           <height>23</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="Line" name="analytics_tab_Vdivider">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>10</y>
+          <width>20</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="prev_month">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>10</y>
+          <width>491</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Previous Month</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <widget class="QProgressBar" name="completion_bar_2">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>40</y>
+           <width>261</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="copmletion_label_2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>40</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Completion Percentage:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="done_2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>80</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Total Tasks Done:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="left_2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>120</y>
+           <width>151</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tasks Left:</string>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="doneNum_2">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>80</y>
+           <width>64</width>
+           <height>23</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="leftNum_2">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>120</y>
+           <width>64</width>
+           <height>23</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="myDay_data_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>200</y>
+          <width>1061</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Charts</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <widget class="QLabel" name="chart1_2">
+         <property name="geometry">
+          <rect>
+           <x>570</x>
+           <y>10</y>
+           <width>401</width>
+           <height>311</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Chart generated from data</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="chart1_3">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>10</y>
+           <width>401</width>
+           <height>311</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Chart generated from data</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -193,7 +436,7 @@ rgb(241, 255, 231)</string>
      <x>0</x>
      <y>0</y>
      <width>1114</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
