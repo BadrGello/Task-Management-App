@@ -17,7 +17,7 @@ TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFi
 ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
 SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
-#When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window" 
+#When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window"
 #and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
 
 class mainApp(QMainWindow, FORM_CLASS):
@@ -40,8 +40,11 @@ class mainApp(QMainWindow, FORM_CLASS):
             #Handles adding new tasks
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
             #When the search bar button is clicked, it goes to the function "Handle_searchBar"
-        self.pushButton_searchTask.clicked.connect(self.Handle_searchBar) 
+        self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
+
+        # Handle ComboBox changes
+        self.comboBox_techniques.currentTextChanged.connect(self.update_textbox)
 
         #Variables
         self.searchBarText = ""
@@ -59,6 +62,47 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     def Handle_UI(self):
         self.setWindowTitle("Taskyyy")
+
+    def update_textbox(self, text):
+        descriptions = {
+        "Pomodoro Technique": """
+            <h1 style="font-family: Arial; font-weight: bold; text-align: center;font-size: 32px;">
+                <u>Pomodoro Technique</u>
+            </h1>
+            <p style="font-family: Arial; font-size: 32px;">
+                <b>How it works:</b> This technique involves working in focused 25-minute intervals, followed by a 5-minute break. 
+                After four Pomodoros, take a longer 15-20 minute break.
+            </p>
+        """,
+        "52-17 Technique": """
+            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
+                <u>52-17 Technique</u>
+            </h1>
+            <p style="font-family: Arial; font-size: 32px;">
+                <b>How it works:</b> Study for 52 minutes, then take a 17-minute break.
+                This cycle can be repeated multiple times throughout the day.
+            </p>
+        """,
+        "The 45-15 Method": """
+            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
+                <u>The 45-15 Method</u>
+            </h1>
+            <p style="font-family: Arial; font-size: 32px;">
+                <b>How it works:</b> Study for 45 minutes, then take a 15-minute break.
+                This cycle can be repeated throughout the day.
+            </p>
+        """,
+        "Your Own Time Blocking": """
+            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
+                <u>Your Own Time Blocking</u>
+            </h1>
+            <p style="font-family: Arial; font-size: 32px;">
+                <b>How it works:</b> Divide your study time into specific blocks, allocating a certain amount of time to each subject or task.
+            </p>
+        """
+    }
+        formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
+        self.TextBrowser_display.setText(formatted_text)
 
     #Prints what's in the search bar, the function is called when the button is pressed
     def Handle_searchBar(self):
@@ -87,7 +131,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         for task in self.addTaskList:
             self.tasksForm.addRow(task)
 
-       
+
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
 
@@ -136,7 +180,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         QWidget.__init__(self)
         self.setupUi(self)
 
-       
+
 
 def main():
     app = QApplication(sys.argv)

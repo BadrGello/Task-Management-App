@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1114</width>
+    <width>1115</width>
     <height>637</height>
    </rect>
   </property>
@@ -20,15 +20,15 @@
    <string>Task Managment</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
      <widget class="QTabWidget" name="tabWidget_mainTabs">
       <property name="styleSheet">
        <string notr="true">q
 rgb(241, 255, 231)</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_tasks">
        <attribute name="title">
@@ -150,8 +150,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1062</width>
-             <height>439</height>
+             <width>1071</width>
+             <height>453</height>
             </rect>
            </property>
           </widget>
@@ -177,6 +177,250 @@ rgb(241, 255, 231)</string>
        <attribute name="title">
         <string>Study Techniques</string>
        </attribute>
+       <widget class="QComboBox" name="comboBox_techniques">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>30</y>
+          <width>251</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="editable">
+         <bool>false</bool>
+        </property>
+        <property name="currentText">
+         <string/>
+        </property>
+        <property name="currentIndex">
+         <number>-1</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>Your Own Time Blocking</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pomodoro Technique</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>52-17 Technique</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>The 45-15 Method</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="copmletion_label_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Choose your technique:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_study">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>30</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#pushButton_study {
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+}
+#pushButton_study:hover {
+	background-color: rgb(0, 85, 255);
+    color: white;
+    font-size: 14px;
+
+}</string>
+        </property>
+        <property name="text">
+         <string>START</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>19</x>
+          <y>79</y>
+          <width>551</width>
+          <height>401</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QTextBrowser" name="TextBrowser_display">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="pushButton_study_2">
+        <property name="geometry">
+         <rect>
+          <x>930</x>
+          <y>380</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#pushButton_study_2 {
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+}
+#pushButton_study_2:hover {
+	background-color: rgb(0, 85, 255);
+    color: white;
+    font-size: 14px;
+
+}</string>
+        </property>
+        <property name="text">
+         <string>STOP</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_study_3">
+        <property name="geometry">
+         <rect>
+          <x>750</x>
+          <y>380</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#pushButton_study_3 {
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+}
+#pushButton_study_3:hover {
+	background-color: rgb(0, 85, 255);
+    color: white;
+    font-size: 14px;
+
+}</string>
+        </property>
+        <property name="text">
+         <string>RESET</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="copmletion_label_4">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>250</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Your Progress:</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="completion_bar_3">
+        <property name="geometry">
+         <rect>
+          <x>800</x>
+          <y>250</y>
+          <width>261</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="copmletion_label_5">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>70</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TIMER:</string>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="doneNum_3">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>60</y>
+          <width>211</width>
+          <height>61</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="copmletion_label_6">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>170</y>
+          <width>51</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_2">
+        <property name="geometry">
+         <rect>
+          <x>850</x>
+          <y>170</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Studying&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <zorder>copmletion_label_3</zorder>
+       <zorder>pushButton_study</zorder>
+       <zorder>verticalLayoutWidget</zorder>
+       <zorder>pushButton_study_2</zorder>
+       <zorder>pushButton_study_3</zorder>
+       <zorder>copmletion_label_4</zorder>
+       <zorder>completion_bar_3</zorder>
+       <zorder>copmletion_label_5</zorder>
+       <zorder>doneNum_3</zorder>
+       <zorder>copmletion_label_6</zorder>
+       <zorder>textBrowser_2</zorder>
+       <zorder>comboBox_techniques</zorder>
       </widget>
       <widget class="QWidget" name="tab_insights">
        <attribute name="title">
@@ -200,14 +444,14 @@ rgb(241, 255, 231)</string>
         <widget class="QProgressBar" name="completion_bar">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>190</x>
            <y>40</y>
            <width>261</width>
            <height>23</height>
           </rect>
          </property>
          <property name="value">
-          <number>24</number>
+          <number>0</number>
          </property>
         </widget>
         <widget class="QLabel" name="copmletion_label">
@@ -252,7 +496,7 @@ rgb(241, 255, 231)</string>
         <widget class="QLCDNumber" name="doneNum">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>190</x>
            <y>80</y>
            <width>64</width>
            <height>23</height>
@@ -262,7 +506,7 @@ rgb(241, 255, 231)</string>
         <widget class="QLCDNumber" name="leftNum">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>190</x>
            <y>120</y>
            <width>64</width>
            <height>23</height>
@@ -301,14 +545,14 @@ rgb(241, 255, 231)</string>
         <widget class="QProgressBar" name="completion_bar_2">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>180</x>
            <y>40</y>
            <width>261</width>
            <height>23</height>
           </rect>
          </property>
          <property name="value">
-          <number>24</number>
+          <number>0</number>
          </property>
         </widget>
         <widget class="QLabel" name="copmletion_label_2">
@@ -353,7 +597,7 @@ rgb(241, 255, 231)</string>
         <widget class="QLCDNumber" name="doneNum_2">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>180</x>
            <y>80</y>
            <width>64</width>
            <height>23</height>
@@ -363,7 +607,7 @@ rgb(241, 255, 231)</string>
         <widget class="QLCDNumber" name="leftNum_2">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>180</x>
            <y>120</y>
            <width>64</width>
            <height>23</height>
@@ -435,8 +679,8 @@ rgb(241, 255, 231)</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1114</width>
-     <height>21</height>
+     <width>1115</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
