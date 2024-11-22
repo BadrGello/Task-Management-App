@@ -185,6 +185,13 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 def main():
     app = QApplication(sys.argv)
     window = mainApp() #An instance of the class mainApp
+
+    
+    #Applying Style Sheet EXAMPLE ONLY
+    stream = QFile('App\MailSy.qss')
+    stream.open(QIODevice.ReadOnly)
+    app.setStyleSheet(QTextStream(stream).readAll())
+
     window.show()
     app.exec_() #Infinite loop
 
