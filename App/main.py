@@ -17,6 +17,11 @@ TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFi
 ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
 SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
+#When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window"
+
+#and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
+
+
 class mainApp(QMainWindow, FORM_CLASS):
     # Constructor
     def __init__(self, parent=None):
@@ -33,8 +38,14 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Handle_UI()
         self.Handle_searchBar()
         
+        #Connecting signals (buttons, etc) to slots (functions)
+
+        #Handles adding new tasks
+        self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
+
+        #When the search bar button is clicked, it goes to the function "Handle_searchBar"
+
         # Connecting signals
-        self.pushButton_addTask.clicked.connect(self.Handle_add_window)
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
 
@@ -50,6 +61,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.addTask = None
         self.tasksGroupBox = None
         self.tasksForm = None
+        # self.taskList = dict()
 
         # Add Window
         self.addWin = None
@@ -166,6 +178,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         print(self.searchBarText)
 
     def Handle_add_window(self):
+        # if self.addWin is None:
+        #     self.addWin = addWindow(self)
         self.addWin = addWindow(self)
         self.addWin.show()
 
@@ -190,11 +204,16 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Settings.show()
 
 class addWindow(QDialog, ADD_TASK_CLASS):
+    #Constructor
     def __init__(self, parent=None):
         super(addWindow, self).__init__(parent)
         QDialog.__init__(self)
         self.setupUi(self)
+        #The parent is the main window, SO IT'S IMPORTANT TO: pass self when initiating addWindow -> addWindow(self)
         self.mainWindow = parent
+        #Connecting signals
+        # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
+        # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
         self.TaskDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
         self.TaskDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
 
@@ -213,6 +232,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         self.mainWindow = parent
 
 class addTask(QWidget, TASK_WIDGET_CLASS):
+    #Constructor
     def __init__(self, parent=None):
         super(addTask, self).__init__(parent)
         QWidget.__init__(self)
@@ -229,7 +249,7 @@ def main():
     app.setStyleSheet(QTextStream(stream).readAll())
 
     window.show()
-    app.exec_()
+    app.exec_()#Infinite loop
 
 if __name__ == '__main__':
     main()
