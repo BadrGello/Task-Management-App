@@ -17,177 +17,212 @@ TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFi
 ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
 SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
-#When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window"
-#and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
-
 class mainApp(QMainWindow, FORM_CLASS):
-    #Constructor
+    # Constructor
     def __init__(self, parent=None):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
         
         # Icons
-        self.pushButton_sort1.setIcon(QIcon('App\sort.png'))
-        self.pushButton_sort1.setIconSize(QSize(24,24))
-        self.setWindowIcon(QIcon('App\App_icon.png'))
+        self.pushButton_sort1.setIcon(QIcon('App/sort.png'))
+        self.pushButton_sort1.setIconSize(QSize(24, 24))
+        self.setWindowIcon(QIcon('App/App_icon.png'))
 
-        #Function calls
+        # Function calls
         self.Handle_UI()
         self.Handle_searchBar()
         
-        #Connecting signals (buttons, etc) to slots (functions)
-            #Handles adding new tasks
-        self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
-            #When the search bar button is clicked, it goes to the function "Handle_searchBar"
+        # Connecting signals
+        self.pushButton_addTask.clicked.connect(self.Handle_add_window)
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
 
         # Handle ComboBox changes
         self.comboBox_techniques.currentTextChanged.connect(self.update_textbox)
 
-        #Variables
+        # Variables
         self.searchBarText = ""
-        
-        #ScrollArea Task Widgets
+        self.timer = None
+
+        # ScrollArea Task Widgets
         self.addTaskList = []
         self.addTask = None
         self.tasksGroupBox = None
-        self.tasksForm  = None
-        # self.taskList = dict()
+        self.tasksForm = None
 
-        #Add Window
+        # Add Window
         self.addWin = None
-
 
     def Handle_UI(self):
         self.setWindowTitle("Taskyyy")
 
     def update_textbox(self, text):
-        descriptions = {
-        "Pomodoro Technique": """
-            <h1 style="font-family: Arial; font-weight: bold; text-align: center;font-size: 32px;">
-                <u>Pomodoro Technique</u>
-            </h1>
-            <p style="font-family: Arial; font-size: 32px;">
-                <b>How it works:</b> This technique involves working in focused 25-minute intervals, followed by a 5-minute break. 
-                After four Pomodoros, take a longer 15-20 minute break.
-            </p>
-        """,
-        "52-17 Technique": """
-            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
-                <u>52-17 Technique</u>
-            </h1>
-            <p style="font-family: Arial; font-size: 32px;">
-                <b>How it works:</b> Study for 52 minutes, then take a 17-minute break.
-                This cycle can be repeated multiple times throughout the day.
-            </p>
-        """,
-        "The 45-15 Method": """
-            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
-                <u>The 45-15 Method</u>
-            </h1>
-            <p style="font-family: Arial; font-size: 32px;">
-                <b>How it works:</b> Study for 45 minutes, then take a 15-minute break.
-                This cycle can be repeated throughout the day.
-            </p>
-        """,
-        "Your Own Time Blocking": """
-            <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
-                <u>Your Own Time Blocking</u>
-            </h1>
-            <p style="font-family: Arial; font-size: 32px;">
-                <b>How it works:</b> Divide your study time into specific blocks, allocating a certain amount of time to each subject or task.
-            </p>
-        """
-    }
-        formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
-        self.TextBrowser_display.setText(formatted_text)
+        layout = self.TextBrowser_display.layout()
+        self.TextBrowser_display.clear()
+        if layout:
+            while layout.count():
+                item = layout.takeAt(0)
+                widget = item.widget()
+                if widget:
+                    widget.deleteLater()
+                del item
+            layout.deleteLater()
 
-    #Prints what's in the search bar, the function is called when the button is pressed
+        if text == "Your Own Time Blocking":
+            # Create layout directly in TextBrowser
+            layout = QVBoxLayout()
+
+            # Create labels and inputs
+            instruction_label = QLabel("Enter your study and break times (in minutes): ")
+            instruction_label.setStyleSheet("font-size: 14px; font-family: Arial;")
+            layout.addWidget(instruction_label)
+
+            study_time_label = QLabel("Study Time (minutes):")
+            study_time_input = QSpinBox()
+            study_time_input.setRange(1, 1440)
+            study_time_input.setStyleSheet("font-size: 14px; font-family: Arial;")
+            layout.addWidget(study_time_label)
+            layout.addWidget(study_time_input)
+
+            break_time_label = QLabel("Break Time (minutes):")
+            break_time_input = QSpinBox()
+            break_time_input.setRange(1, 1440)
+            break_time_input.setStyleSheet("font-size: 14px; font-family: Arial;")
+            layout.addWidget(break_time_label)
+            layout.addWidget(break_time_input)
+
+            # Create start button
+            start_button = QPushButton("Start Countdown")
+            start_button.setStyleSheet("font-size: 14px; font-family: Arial;")
+            layout.addWidget(start_button)
+
+            # Create countdown label
+            self.countdown_label = QLabel("")
+            self.countdown_label.setStyleSheet("font-size: 18px; font-family: Arial; color: red; text-align: center;")
+            layout.addWidget(self.countdown_label)
+
+            # Connect button to start_countdown function
+            start_button.clicked.connect(lambda: self.start_countdown(study_time_input.value(), break_time_input.value()))
+
+            # Set layout to TextBrowser
+            self.TextBrowser_display.setLayout(layout)
+        else:
+            
+            # Default descriptions for other techniques
+            descriptions = {
+                "Pomodoro Technique": """
+                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;font-size: 32px;">
+                        <u>Pomodoro Technique</u>
+                    </h1>
+                    <p style="font-family: Arial; font-size: 32px;">
+                        <b>How it works:</b> This technique involves working in focused 25-minute intervals, followed by a 5-minute break.
+                        After four Pomodoros, take a longer 15-20 minute break.
+                    </p>
+                """,
+                "52-17 Technique": """
+                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
+                        <u>52-17 Technique</u>
+                    </h1>
+                    <p style="font-family: Arial; font-size: 32px;">
+                        <b>How it works:</b> Study for 52 minutes, then take a 17-minute break.
+                        This cycle can be repeated multiple times throughout the day.
+                    </p>
+                """,
+                "The 45-15 Method": """
+                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
+                        <u>The 45-15 Method</u>
+                    </h1>
+                    <p style="font-family: Arial; font-size: 32px;">
+                        <b>How it works:</b> Study for 45 minutes, then take a 15-minute break.
+                        This cycle can be repeated throughout the day.
+                    </p>
+                """
+            }
+
+            formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
+            self.TextBrowser_display.setText(formatted_text)
+
+    def start_countdown(self, study_time, break_time):
+        total_seconds = study_time * 60  # Convert minutes to seconds for the timer
+
+        def update_timer():
+            nonlocal total_seconds
+            if total_seconds > 0:
+                minutes, seconds = divmod(total_seconds, 60)
+                self.countdown_label.setText(f"Time Remaining: {minutes:02}:{seconds:02}")
+                total_seconds -= 1
+            else:
+                self.timer.stop()
+                self.countdown_label.setText("Break Time! Take a rest.")
+
+        # Create a QTimer to update the countdown every second
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(update_timer)
+        self.timer.start(1000)
+
     def Handle_searchBar(self):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)
 
     def Handle_add_window(self):
-        # if self.addWin is None:
-        #     self.addWin = addWindow(self)
         self.addWin = addWindow(self)
         self.addWin.show()
 
-
     def add_task_widget(self):
-
         self.addTask = addTask(self)
-        if (self.tasksGroupBox == None):
+        if self.tasksGroupBox is None:
             self.tasksGroupBox = QGroupBox('Tasks')
-        if(self.tasksForm == None):
-            self.tasksForm= QFormLayout()
+        if self.tasksForm is None:
+            self.tasksForm = QFormLayout()
         self.tasksGroupBox.setLayout(self.tasksForm)
-        
-        
+
         self.addTaskList.append(addTask(self))
 
         for task in self.addTaskList:
             self.tasksForm.addRow(task)
 
-
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
 
     def Handle_settings(self):
-        self.Settings= settingWindow(self)
+        self.Settings = settingWindow(self)
         self.Settings.show()
 
-
 class addWindow(QDialog, ADD_TASK_CLASS):
-    #Constructor
     def __init__(self, parent=None):
         super(addWindow, self).__init__(parent)
         QDialog.__init__(self)
         self.setupUi(self)
-
-        #The parent is the main window, SO IT'S IMPORTANT TO: pass self when initiating addWindow -> addWindow(self)
         self.mainWindow = parent
-
-        #Connecting signals
-        # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
-        # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
-
         self.TaskDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
         self.TaskDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
 
     def Handle_ok_clicked(self):
         self.mainWindow.add_task_widget()
         self.close()
-    
+
     def Handle_cancel_clicked(self):
         self.close()
 
 class settingWindow(QMainWindow, SETTING_CLASS):
-    #Constructor
     def __init__(self, parent=None):
         super(settingWindow, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
-
         self.mainWindow = parent
 
 class addTask(QWidget, TASK_WIDGET_CLASS):
-    #Constructor
     def __init__(self, parent=None):
         super(addTask, self).__init__(parent)
         QWidget.__init__(self)
         self.setupUi(self)
 
-
-
 def main():
     app = QApplication(sys.argv)
-    window = mainApp() #An instance of the class mainApp
+    window = mainApp()
     window.show()
-    app.exec_() #Infinite loop
+    app.exec_()
 
-#Where the program starts
 if __name__ == '__main__':
     main()
