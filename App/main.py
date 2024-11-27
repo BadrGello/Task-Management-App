@@ -261,6 +261,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         self.setupUi(self)
         self.mainWindow = parent
 
+# This is the task widget 
 class addTask(QWidget, TASK_WIDGET_CLASS):
     #Constructor
     def __init__(self, parent=None):
@@ -268,13 +269,66 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         QWidget.__init__(self)
         self.setupUi(self)
 
+        ##Steps List##
+        self.stepInput.returnPressed.connect(self.add_step)  # When pressing Enter after writing a step, it will add it to the list
+        self.stepsListWidget.itemDoubleClicked.connect(self.toggle_step_completion) #We can double click to mark as completed
+        self.stepsListWidget.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.stepsListWidget.customContextMenuRequested.connect(self.show_context_menu) # Right click a step and click delete to delete
+        ##          ##
+
+        ##Complete Button##
+        self.completeStatus = False
+        self.taskCompletetoolButton.setAccessibleDescription("Incompleted")
+        self.taskCompletetoolButton.setCheckable(True)  # Button stays pressed when clicked
+        self.taskCompletetoolButton.toggled.connect(self.toggle_task_completion)
+        ##               ##
+
+    #Following functions for steps list
+    def add_step(self):
+        
+        step_desc = self.stepInput.text()
+        if (step_desc):
+            item = QListWidgetItem(step_desc)
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
+            item.setCheckState(Qt.Unchecked)  #Default is unchecked
+            self.stepsListWidget.addItem(item) #Add step
+            self.stepInput.clear()
+
+    def toggle_step_completion(self, item):
+
+        if item.checkState() == Qt.Checked:
+            item.setCheckState(Qt.Unchecked)
+        else:
+            item.setCheckState(Qt.Checked)
+
+    def show_context_menu(self, position):
+
+        menu = QMenu()
+        delete_step = menu.addAction("Delete Step")
+        action = menu.exec_(self.stepsListWidget.mapToGlobal(position))
+        if (action == delete_step):
+            selected_items = self.stepsListWidget.selectedItems() #Displays the context menu and returns the action selected by the user or none
+            for item in selected_items:
+                deleted_step = self.stepsListWidget.takeItem(self.stepsListWidget.row(item))
+
+    # When clicking on Incompleted/Completed button
+    def toggle_task_completion(self):
+        
+        if(self.completeStatus):
+            # self.taskCompletetoolButton.setIcon(QIcon("path_to_icon.png")) # Can set an icon instead of text
+            self.taskCompletetoolButton.setText("Incompleted")
+            self.completeStatus = False
+        else:
+            self.taskCompletetoolButton.setText("Completed")
+            self.completeStatus = True
+
+
 def main():
     app = QApplication(sys.argv)
     window = mainApp() #An instance of the class mainApp
-
     
-    #Applying Style Sheet EXAMPLE ONLY
-    stream = QFile('App\MailSy.qss')
+    #Applying Style Sheet
+    stream = QFile('App\LightMode.qss')
     stream.open(QIODevice.ReadOnly)
     app.setStyleSheet(QTextStream(stream).readAll())
 
