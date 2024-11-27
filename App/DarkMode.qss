@@ -1,6 +1,10 @@
 QMainWindow {
-	background-color:rgb(243,243,243);
-    color:#2f3548;
+	background-color:rgb(46,46,58);
+    color:rgb(241,246,252);
+}
+
+QDialog{
+    background-color:rgb(46,46,58);
 }
 
 /*___________________________________________________TABS___________________________________________________*/
@@ -9,7 +13,7 @@ QTabWidget {
 	background-color:rgb(255,255,255);
 }
 QTabWidget::pane {
-	background-color:rgb(255,255,255);
+	background-color:rgb(33,34,65);
     border-width: 0;
   	border-radius: 25px;
 	border-top-left-radius:0;
@@ -22,42 +26,43 @@ QTabBar::tab {
 	padding-right:5px;
 	padding-bottom:5px;
 	padding-top:5px;
-	color:rgb(72,72,81);
-  	background-color: rgb(204,204,246);
+	color:rgba(241,246,252,0.6);
+  	background-color: rgb(29,29,41);
 	border:0;
     margin-top: 4px;
 	margin-right: 4px;
     margin-bottom:0;
 }
 QTabBar::tab:selected, QTabBar::tab:last:selected {
-	background-color:rgb(241,246,252);
-	border-left: 2px solid rgb(57,52,255);
-    color:rgb(57,52,255);
+	background-color:rgb(33,34,65);
+	border-left: 2px solid rgb(255,187,13);
+    color:rgb(241,246,252);
 }
 
 QTabBar::tab:hover{
     background: qlineargradient(
             x1: 0, y1: 0, 
             x2: 1, y2: 0, 
-            stop: 0 rgb(241,246,252), 
-            stop: 1 #f8f9ff);
-    color:rgb(57,52,255);
+            stop: 0 rgb(29,29,41), 
+            stop: 1 rgb(33,34,65)
+    );
+    color:rgb(241,246,252);
 }
 /*___________________________________________________PROGRESSBAR___________________________________________________*/
 
 QProgressBar {
 	text-align: center;
-	color: rgb(255,255,255);
+	color: rgb(0,0,0);
 	border: 1px inset rgb(150,150,150);
 	border-radius: 10px;
-	background-color:rgb(204,204,246);
+	background-color:rgb(250,223,159);
 }
 QProgressBar::chunk:horizontal {
 	background: qlineargradient(
             x1: 0, y1: 0, 
             x2: 1, y2: 0,
-            stop:0 rgba(57,52,255,0.6), 
-            stop:1 rgb(57,52,255));
+            stop:0 rgba(253,186,18,0.6), 
+            stop:1 rgb(253,186,18));
 	border-radius:8px;
     border-width:0;
 }
@@ -68,18 +73,18 @@ QPushButton,QToolButton{
     width:100px;
     height:20px;
     font-size: 15px;
-	color: #f6f6f6;
+	color: rgb(0,0,0);
 	padding: 4px;
 	border-radius: 10px;
-	background-color: rgb(57,52,255);
+	background-color: rgb(253,186,18);
 }
 QPushButton:hover{
-	background-color:rgba(57,52,255,0.6);
+	background-color:rgba(253,186,18,0.6);
 	border:0;
 }
 QPushButton:pressed{
-	background-color: rgba(57,52,255,0.8);
-    color: #f6f6f6;
+	background-color: rgba(253,186,18,0.8);
+    color: rgb(0,0,0);
 }
 QPushButton:disabled{
 	color:rgb(174,167,159);
@@ -97,28 +102,30 @@ QScrollArea {
     border-radius: 15px;
     padding-left:5px;
     margin:20px;
+    /*background-color: rgb(57,58,106);*/
 }
 
 
 
 /*___________________________________________________ComboBox/QDATEEDIT/QTIMEEDIT___________________________________________________*/
 
-QComboBox,QDateEdit ,QTimeEdit {
+QComboBox,QDateTimeEdit {
+    background-color:rgb(79,81,130);
     border-radius: 7px;
 	font-size: 13px;                    
-    color: black;                       
+    color: rgb(255,255,255);                       
     height: 50px;                       
     margin-left: 5px; 
 	padding-left:20px;
 	width:150px;
-	border:1px solid rgb(220,220,220);
+	border:1px solid rgb(57,57,57);
 }
 QTimeEdit {
 	height: 25px;
 }
 
 QComboBox:hover ,QDateEdit:hover ,QTimeEdit:hover{
-    background-color: rgb(248,248,248);
+    background-color: rgb(109,111,171);
 }
 
 
@@ -133,12 +140,13 @@ QComboBox::drop-down {
 
 QComboBox QAbstractItemView ,QDateEdit QAbstractItemView ,QTimeEdit QAbstractItemView{
 	padding:10px;
-    background-color: rgb(252,248,253);
+    background-color: rgb(243,217,133);
     color: black;
-    selection-background-color: rgb(204,204,246);
+    selection-background-color: rgb(251,190,16);
+    selection-color:black;
     font-size: 13px;
+    border:0;
 }
-
 
 /*___________________________________________________MENUBAR___________________________________________________*/
 
@@ -146,18 +154,18 @@ QComboBox QAbstractItemView ,QDateEdit QAbstractItemView ,QTimeEdit QAbstractIte
 
 
 QMenuBar {
-	background-color:rgb(243,243,243);
+	background-color:rgb(46,46,58);
 }
 QMenuBar::item {
 	padding:5px 14px;
-	background-color:rgb(243,243,243);
-    color:rgb(57,52,255);
+	background-color:rgb(46,46,58);
+    color:rgba(241,246,252,0.6);
 	font-size:13px;
 	font-weight:bold;
 }
 QMenuBar::item:selected {
-	color:rgb(57,57,57);
-  	background-color: rgba(57,52,255,0.2);
+	background-color:rgb(33,34,65);
+    color:rgb(241,246,252);
 }
 
 
@@ -165,7 +173,8 @@ QMenuBar::item:selected {
 
 
 QMenu {
-	background-color:rgb(204,204,246);
+	background-color:rgb(33,34,65);
+    color:rgb(241,246,252);
 	padding:0;
 }
 QMenu::item {
@@ -173,7 +182,7 @@ QMenu::item {
 }
 QMenu::item:selected {
 	color:rgb(255,255,255);
-	background-color: rgba(57,52,255,0.5);
+	background-color: rgb(57,58,106);
 	border-radius:5px;
 }
 
@@ -183,12 +192,12 @@ QMenu::item:selected {
 
 QPlainTextEdit , QTextEdit , QListWidget , QLineEdit {
 	border-radius:7px;
-	border:1px solid rgb(220,220,220);
+	border:1px solid rgb(87,87,87);
 	padding-top:3px;
 	padding-left:5px;
-	color:rgb(17,17,17);
+	color:rgb(255,255,255);
 	selection-background-color:rgb(236,116,64);
-    background-color: rgb(255,255,255);
+    background-color: rgb(54,54,94);
 	text-align:left;
     vertical-align: middle;
 	font-size:18px;
@@ -207,28 +216,31 @@ QTextBrowser {
 
 
 #calendarWidget QWidget{
-	alternate-background-color:rgb(255,255,255);
-	font-size:15px;
+	alternate-background-color:rgb(33,34,65);
+    color: #ffffff;
+    font-size:15px;
 }
-
+/*
 QCalendarWidget QWidget{
 background-color:rgb(255,255,255);
 color: black;
 margin:0;
 
 }
-
-
+*/
+QCalendarWidget QToolButton{
+    background-color:rgb(33,34,65);
+}
 
 QCalendarWidget QToolButton:hover,
 QCalendarWidget QToolButton#qt_calendar_prevmonth:hover,
 QCalendarWidget QToolButton#qt_calendar_nextmonth:hover {
 	border:0;
-	background-color: rgb(236,236,244);
+	background-color: rgb(57,58,106);
 }
 
 #qt_calendar_navigationbar{
-	background-color:rgb(255,255,255);
+	background-color:rgb(33,34,65);
     min-height:60px;
     max-height:60px;
 }
@@ -241,6 +253,7 @@ QCalendarWidget QToolButton#qt_calendar_nextmonth:hover {
     max-height:35px;
 	min-width:35px;
     max-width:35px;
+    background:rgb(33,34,65);
 }
 
 
@@ -255,11 +268,11 @@ QCalendarWidget QToolButton#qt_calendar_nextmonth:hover {
 
 
 QCalendarWidget QSpinBox{
-    background-color: rgb(255,255,255);
+    background-color: rgb(57,58,106);
 	height:50px;
     padding:5px 15px;
     border-radius: 20px;
-    color: black;
+    color: white;
     font-size:15px;
 	max-width:70px;
     margin-left:20px;
@@ -275,9 +288,9 @@ QCalendarWidget QSpinBox::down-button{
 
 
 QCalendarWidget QSpinBox::up-button:hover ,QCalendarWidget QSpinBox::down-button:hover{
-	background-color: rgb(245, 245, 250);
+	background-color: rgb(57,58,106);
     color: rgb(50, 50, 50);
-    border: 1px solid rgb(240,240,240);
+    border: 1px solid rgb(57,57,57);
     border-radius: 6px;
 }
 
@@ -286,44 +299,52 @@ QCalendarWidget QSpinBox::up-button:hover ,QCalendarWidget QSpinBox::down-button
 #qt_calendar_yearedit{
 	min-width:53px;
 	color:#000;
-	background:transparent;
+	background:rgb(33,34,65);
 	font-size: 13px;
 }
 
 
 
 #calendarWidget QToolButton QMenu{
-	background-color:rgb(245, 245, 250);
+	/*background-color:rgb(33,34,65);
+    color:rgb(241,246,252);*/
 	min-width:70px;
+    background-color: rgb(243,217,133);
+    color: black;
 }
 
 
+    
 
 #calendarWidget QToolButton QMenu::item{
-	background-color:rgb(245, 245, 250);
 	padding:10px 30px;
 	font-size:13px;
 }
 
 #calendarWidget QToolButton QMenu::item:selected:enabled{
-	color: black;
-	background-color: rgba(57,52,255,0.4);
+	/*color:rgb(255,255,255);
+	background-color: rgb(57,58,106);*/
 	border-radius:5px;
+    background-color: rgb(251,190,16);
+    color:black;
 }
 
 #qt_calendar_calendarview{
 	border:none;
+    background-color:rgb(33,34,65);
 }
 
 
 #qt_calendar_calendarview::item:hover {
 	border-radius:5px;
-	background-color: rgb(57,52,255);
+	background-color:rgba(253,186,18,0.6);
+    color: rgb(50, 50, 50);
 }
 
 #qt_calendar_calendarview::item:selected {
 	border-radius:5px;
-	background-color: rgb(57,52,255);
+	background-color:rgba(253,186,18,0.6);
+    color: rgb(50, 50, 50);
 }
 
 #calendarWidget QToolButton::menu-indicator{
@@ -337,18 +358,21 @@ QCalendarWidget QSpinBox::up-button:hover ,QCalendarWidget QSpinBox::down-button
 QCheckBox {
 	padding:7px 5px;
 	font-size:13px;
+    color:rgb(255,255,255);
 }
+
 QCheckBox:hover {
-	background-color:rgba(57,52,255,0.2);
+	background-color:rgba(253,186,18,0.2);
 	border-radius:15px;
+    color:rgb(255,255,255);
 }
 QCheckBox::indicator:checked {
 	border-radius:6px;
-	background-color: rgb(57,52,255);
+	background-color: rgb(253,186,18);
 }
 QCheckBox::indicator:unchecked {
 	border-radius:6px;
-  	background-color:rgba(57,52,255,0.3);
+  	background-color:rgba(253,186,18,0.3);
 }
 
 /*___________________________________________________LABEL___________________________________________________*/
@@ -356,6 +380,7 @@ QCheckBox::indicator:unchecked {
 
 QLabel,QLineEdit {
 	font-size: 15px;
+    color:rgb(255,255,255);
 }
 
 
@@ -366,7 +391,7 @@ QGroupBox {
 	margin-top:20px;
 	font-size:17px;
 	border:0;
-	background-color: rgb(248,248,253);
+	background-color: rgb(57,58,106);
 	border-radius:20px;
 }
 
@@ -374,6 +399,7 @@ QGroupBox::title {
 	margin-bottom:20px;
 	subcontrol-position: top left;
 	padding:15px 10px; 
+    color:rgb(255,255,255);
 }
 
 
@@ -385,7 +411,7 @@ QGroupBox::title {
 QTextBrowser {
 	border:none;
 	border-radius:20px;
-	background-color: rgb(248,248,253);
+	background-color: rgb(73,74,115);
 	margin-left: 15px;
 }
 
@@ -394,12 +420,12 @@ QTextBrowser {
 
 
 QLCDNumber {
-    background-color: rgba(204,204,246,0.6);  
-    color: rgba(57,52,255,0.5);            
-    border-radius:7px;
-	border:1px solid rgb(220,220,220);       
+    background-color: rgb(250,223,159);  
+    color: rgb(57,57,57);            
+    border-radius:7px;      
     padding: 5px;      
 	text-align:center;        
     font-size: 20px;           
     font-family: "Courier New", monospace; 
 }
+

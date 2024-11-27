@@ -117,7 +117,7 @@
        <x>10</x>
        <y>60</y>
        <width>291</width>
-       <height>221</height>
+       <height>211</height>
       </rect>
      </property>
      <property name="cursor" stdset="0">
@@ -405,7 +405,7 @@
        <x>10</x>
        <y>60</y>
        <width>291</width>
-       <height>221</height>
+       <height>211</height>
       </rect>
      </property>
      <property name="placeholderText">

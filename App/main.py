@@ -110,20 +110,20 @@ class mainApp(QMainWindow, FORM_CLASS):
 
             # Create labels and inputs
             instruction_label = QLabel("Enter your study and break times (in minutes): ")
-            instruction_label.setStyleSheet("font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);")
+            instruction_label.setStyleSheet("font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(252,189,16);")
             layout.addWidget(instruction_label)
 
             study_time_label = QLabel("Study Time (minutes):")
             study_time_input = QSpinBox()
             study_time_input.setRange(1, 1440)
-            study_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(220,220,220);")
+            study_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(248,218,111);")
             layout.addWidget(study_time_label)
             layout.addWidget(study_time_input)
 
             break_time_label = QLabel("Break Time (minutes):")
             break_time_input = QSpinBox()
             break_time_input.setRange(1, 1440)
-            break_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(220,220,220);")
+            break_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(248,218,111);")
             layout.addWidget(break_time_label)
             layout.addWidget(break_time_input)
 
@@ -134,7 +134,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
             # Create countdown label
             self.countdown_label = QLabel("")
-            self.countdown_label.setStyleSheet("font-size: 20px; font-family: Arial; color: rgb(255,183,0); font-weight:bold; text-align: center;")
+            self.countdown_label.setStyleSheet("font-size: 20px; font-family: Arial; color: rgb(209,56,62); font-weight:bold; text-align: center;")
             layout.addWidget(self.countdown_label)
 
             # Connect button to start_countdown function
@@ -148,30 +148,30 @@ class mainApp(QMainWindow, FORM_CLASS):
             descriptions = {
                 "Pomodoro Technique": """
                 <br>
-                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255); ">
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(252,189,16); ">
                         Pomodoro Technique
                     </h1>
-                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(248,218,111);">
                         <br><br><b>-</b>This technique involves working in focused 25-minute intervals, followed by a 5-minute break.<br><br>
                         <b>-</b>After four Pomodoros, take a longer 15-20 minute break.
                     </p>
                 """,
                 "52-17 Technique": """
                 <br>
-                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255);">
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(252,189,16);">
                         52-17 Technique
                     </h1>
-                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(248,218,111);">
                         <br><br><b>-</b>Study for 52 minutes, then take a 17-minute break.<br><br>
                         <b>-</b>This cycle can be repeated multiple times throughout the day.
                     </p>
                 """,
                 "The 45-15 Method": """
                 <br>
-                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255);">
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(252,189,16);">
                         The 45-15 Method
                     </h1>
-                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(248,218,111);">
                         <br><br><b>-</b>Study for 45 minutes, then take a 15-minute break.<br><br>
                         <b>-</b>This cycle can be repeated throughout the day.
                     </p>
@@ -328,7 +328,7 @@ def main():
     window = mainApp() #An instance of the class mainApp
     
     #Applying Style Sheet
-    stream = QFile('App\LightMode.qss')
+    stream = QFile('App\DarkMode.qss')
     stream.open(QIODevice.ReadOnly)
     app.setStyleSheet(QTextStream(stream).readAll())
 
