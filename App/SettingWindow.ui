@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="GeneralTab">
      <attribute name="title">
@@ -77,13 +77,6 @@
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line1">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QCheckBox" name="ConfirmDel">
          <property name="font">
           <font>
@@ -99,13 +92,6 @@
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QCheckBox" name="TodayOnTop">
          <property name="font">
           <font>
@@ -117,13 +103,6 @@
          </property>
          <property name="checked">
           <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -253,13 +232,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="Line" name="line4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -295,7 +267,7 @@
         <x>20</x>
         <y>170</y>
         <width>271</width>
-        <height>281</height>
+        <height>251</height>
        </rect>
       </property>
       <property name="font">
@@ -358,7 +330,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

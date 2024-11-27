@@ -100,9 +100,12 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>131</width>
-       <height>31</height>
+       <width>141</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
      </property>
      <property name="placeholderText">
       <string>Title</string>
@@ -112,10 +115,13 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>60</y>
        <width>291</width>
        <height>221</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
      </property>
      <property name="placeholderText">
       <string>Description</string>
@@ -137,11 +143,14 @@
     <widget class="QComboBox" name="TaskRepeat">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>450</x>
        <y>180</y>
-       <width>111</width>
+       <width>151</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
       <string>Repeating due date</string>
@@ -181,6 +190,9 @@
        <height>22</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="toolTip">
       <string>Priority is useful for filtering</string>
      </property>
@@ -209,6 +221,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="dateTime">
       <datetime>
        <hour>0</hour>
@@ -226,9 +241,9 @@
     <widget class="QLineEdit" name="TaskTagInput">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>450</x>
        <y>10</y>
-       <width>111</width>
+       <width>151</width>
        <height>31</height>
       </rect>
      </property>
@@ -259,6 +274,9 @@
        <width>151</width>
        <height>71</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
      </property>
     </widget>
     <widget class="QDialogButtonBox" name="TaskDialogButtonBox">
@@ -307,6 +325,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="dateTime">
       <datetime>
        <hour>0</hour>
@@ -324,11 +345,14 @@
     <widget class="QComboBox" name="EventRepeatValue">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>390</x>
        <y>130</y>
-       <width>111</width>
+       <width>151</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
       <string>Repeating due date</string>
@@ -364,9 +388,12 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>131</width>
-       <height>31</height>
+       <width>141</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
      </property>
      <property name="placeholderText">
       <string>Title</string>
@@ -376,7 +403,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>60</y>
        <width>291</width>
        <height>221</height>
       </rect>

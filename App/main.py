@@ -66,6 +66,29 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Add Window
         self.addWin = None
 
+        self.iterate_buttons(self)
+        
+        self.iterate_combobox(self)
+
+    def iterate_buttons(self, parent_widget):
+        for child in parent_widget.findChildren(QWidget):
+            if isinstance(child, QAbstractButton):
+                # SIZE
+                child.setFixedSize(150, 30)
+                
+            self.iterate_buttons(child)
+
+    
+
+    def iterate_combobox(self, parent_widget):
+        for child in parent_widget.findChildren(QWidget):
+            if isinstance(child, QComboBox):
+                # SIZE
+                child.setFixedSize(150, 30)
+                
+            self.iterate_combobox(child)
+            
+
     def Handle_UI(self):
         self.setWindowTitle("Taskyyy")
 
@@ -87,31 +110,31 @@ class mainApp(QMainWindow, FORM_CLASS):
 
             # Create labels and inputs
             instruction_label = QLabel("Enter your study and break times (in minutes): ")
-            instruction_label.setStyleSheet("font-size: 14px; font-family: Arial;")
+            instruction_label.setStyleSheet("font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);")
             layout.addWidget(instruction_label)
 
             study_time_label = QLabel("Study Time (minutes):")
             study_time_input = QSpinBox()
             study_time_input.setRange(1, 1440)
-            study_time_input.setStyleSheet("font-size: 14px; font-family: Arial;")
+            study_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(220,220,220);")
             layout.addWidget(study_time_label)
             layout.addWidget(study_time_input)
 
             break_time_label = QLabel("Break Time (minutes):")
             break_time_input = QSpinBox()
             break_time_input.setRange(1, 1440)
-            break_time_input.setStyleSheet("font-size: 14px; font-family: Arial;")
+            break_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(220,220,220);")
             layout.addWidget(break_time_label)
             layout.addWidget(break_time_input)
 
             # Create start button
             start_button = QPushButton("Start Countdown")
-            start_button.setStyleSheet("font-size: 14px; font-family: Arial;")
+            start_button.setStyleSheet("font-size: 13px; font-family: Arial;")
             layout.addWidget(start_button)
 
             # Create countdown label
             self.countdown_label = QLabel("")
-            self.countdown_label.setStyleSheet("font-size: 18px; font-family: Arial; color: red; text-align: center;")
+            self.countdown_label.setStyleSheet("font-size: 20px; font-family: Arial; color: rgb(255,183,0); font-weight:bold; text-align: center;")
             layout.addWidget(self.countdown_label)
 
             # Connect button to start_countdown function
@@ -124,30 +147,33 @@ class mainApp(QMainWindow, FORM_CLASS):
             # Default descriptions for other techniques
             descriptions = {
                 "Pomodoro Technique": """
-                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;font-size: 32px;">
-                        <u>Pomodoro Technique</u>
+                <br>
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255); ">
+                        Pomodoro Technique
                     </h1>
-                    <p style="font-family: Arial; font-size: 32px;">
-                        <b>How it works:</b> This technique involves working in focused 25-minute intervals, followed by a 5-minute break.
-                        After four Pomodoros, take a longer 15-20 minute break.
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                        <br><br><b>-</b>This technique involves working in focused 25-minute intervals, followed by a 5-minute break.<br><br>
+                        <b>-</b>After four Pomodoros, take a longer 15-20 minute break.
                     </p>
                 """,
                 "52-17 Technique": """
-                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
-                        <u>52-17 Technique</u>
+                <br>
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255);">
+                        52-17 Technique
                     </h1>
-                    <p style="font-family: Arial; font-size: 32px;">
-                        <b>How it works:</b> Study for 52 minutes, then take a 17-minute break.
-                        This cycle can be repeated multiple times throughout the day.
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                        <br><br><b>-</b>Study for 52 minutes, then take a 17-minute break.<br><br>
+                        <b>-</b>This cycle can be repeated multiple times throughout the day.
                     </p>
                 """,
                 "The 45-15 Method": """
-                    <h1 style="font-family: Arial; font-weight: bold; text-align: center;">
-                        <u>The 45-15 Method</u>
+                <br>
+                    <h1 style="font-family: Arial; text-align: left; font-size: 22px; margin-left: 20px; color:rgb(61,111,255);">
+                        The 45-15 Method
                     </h1>
-                    <p style="font-family: Arial; font-size: 32px;">
-                        <b>How it works:</b> Study for 45 minutes, then take a 15-minute break.
-                        This cycle can be repeated throughout the day.
+                    <p style="font-family: Arial; font-size: 20px; margin-left: 20px; color:rgb(129,163,255);">
+                        <br><br><b>-</b>Study for 45 minutes, then take a 15-minute break.<br><br>
+                        <b>-</b>This cycle can be repeated throughout the day.
                     </p>
                 """
             }
@@ -199,9 +225,13 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
 
+        self.iterate_buttons(self)
+
     def Handle_settings(self):
         self.Settings = settingWindow(self)
         self.Settings.show()
+
+        self.iterate_combobox(self)            
 
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
