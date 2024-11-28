@@ -5,6 +5,9 @@ from PyQt5.uic import loadUiType
 import sys
 from os import path
 
+stream = QFile('App\LightMode.qss')
+app = QApplication(sys.argv)
+
 # Constants
 mainWindowFileName = "mainWindow.ui"
 taskWidgetFileName = "taskWidget.ui"
@@ -28,7 +31,12 @@ class mainApp(QMainWindow, FORM_CLASS):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
+        global stream
+        global app
+        stream.open(QIODevice.ReadOnly)
+        app.setStyleSheet(QTextStream(stream).readAll())
         
+        self.Settings = settingWindow(self)
         # Icons
         self.pushButton_sort1.setIcon(QIcon('App/sort.png'))
         self.pushButton_sort1.setIconSize(QSize(24, 24))
@@ -228,7 +236,6 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.iterate_buttons(self)
 
     def Handle_settings(self):
-        self.Settings = settingWindow(self)
         self.Settings.show()
 
         self.iterate_combobox(self)            
@@ -260,6 +267,38 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.mainWindow = parent
+        self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
+        global stream,app 
+        
+    
+    def change_theme(self, text):
+        """
+        Change the theme based on the selected text from ThemeComboBox.
+        """
+        global stream
+        global app
+
+        # Close the current theme file if open
+        if stream.isOpen():
+            stream.close()
+
+        # Select the appropriate theme file
+        if text == "Light theme":
+            stream = QFile('App\LightMode.qss')
+            stream.open(QIODevice.ReadOnly)
+            app.setStyleSheet(QTextStream(stream).readAll())
+        elif text == "Dark theme":
+            stream = QFile('App\DarkMode.qss')
+            stream.open(QIODevice.ReadOnly)
+            app.setStyleSheet(QTextStream(stream).readAll())
+        else:
+            print(f"Unknown theme selected: {text}")
+            return
+
+        # Reopen the selected theme file
+        
+        
+        
 
 # This is the task widget 
 class addTask(QWidget, TASK_WIDGET_CLASS):
@@ -324,13 +363,11 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 
 
 def main():
-    app = QApplication(sys.argv)
-    window = mainApp() #An instance of the class mainApp
+    
     
     #Applying Style Sheet
-    stream = QFile('App\DarkMode.qss')
-    stream.open(QIODevice.ReadOnly)
-    app.setStyleSheet(QTextStream(stream).readAll())
+    
+    window = mainApp() #An instance of the class mainApp
 
     window.show()
     app.exec_()#Infinite loop
