@@ -124,29 +124,27 @@ class mainApp(QMainWindow, FORM_CLASS):
             study_time_label = QLabel("Study Time (minutes):")
             study_time_input = QSpinBox()
             study_time_input.setRange(1, 1440)
-            study_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(248,218,111);")
+            study_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:35px; border-radius:5px;border:1px solid rgb(248,218,111);")
             layout.addWidget(study_time_label)
             layout.addWidget(study_time_input)
 
             break_time_label = QLabel("Break Time (minutes):")
             break_time_input = QSpinBox()
             break_time_input.setRange(1, 1440)
-            break_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:25px; border-radius:5px;border:1px solid rgb(248,218,111);")
+            break_time_input.setStyleSheet("font-size: 13px; font-family: Arial; height:35px; border-radius:5px;border:1px solid rgb(248,218,111);")
             layout.addWidget(break_time_label)
             layout.addWidget(break_time_input)
-
-            # Create start button
-            start_button = QPushButton("Start Countdown")
-            start_button.setStyleSheet("font-size: 13px; font-family: Arial;")
-            layout.addWidget(start_button)
 
             # Create countdown label
             self.countdown_label = QLabel("")
             self.countdown_label.setStyleSheet("font-size: 20px; font-family: Arial; color: rgb(209,56,62); font-weight:bold; text-align: center;")
             layout.addWidget(self.countdown_label)
 
+            self.study_time_input = study_time_input  # Store reference
+            self.break_time_input = break_time_input    # Store reference
+
             # Connect button to start_countdown function
-            start_button.clicked.connect(lambda: self.start_countdown(study_time_input.value(), break_time_input.value()))
+            self.pushButton_study.clicked.connect(lambda: self.start_countdown(study_time_input.value(), break_time_input.value()))
 
             # Set layout to TextBrowser
             self.TextBrowser_display.setLayout(layout)
@@ -196,10 +194,12 @@ class mainApp(QMainWindow, FORM_CLASS):
             nonlocal total_seconds
             if total_seconds > 0:
                 minutes, seconds = divmod(total_seconds, 60)
-                self.countdown_label.setText(f"Time Remaining: {minutes:02}:{seconds:02}")
+                self.doneNum_3.display(total_seconds)
+                self.countdown_label.setText(f"{minutes:02}:{seconds:02}")
                 total_seconds -= 1
             else:
                 self.timer.stop()
+                self.doneNum_3.display(0)
                 self.countdown_label.setText("Break Time! Take a rest.")
 
         # Create a QTimer to update the countdown every second
@@ -238,7 +238,7 @@ class mainApp(QMainWindow, FORM_CLASS):
     def Handle_settings(self):
         self.Settings.show()
 
-        self.iterate_combobox(self)            
+        self.iterate_combobox(self)
 
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
@@ -268,7 +268,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         self.setupUi(self)
         self.mainWindow = parent
         self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
-        global stream,app 
+        global stream,app
         
     
     def change_theme(self, text):
@@ -300,7 +300,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         
         
 
-# This is the task widget 
+# This is the task widget
 class addTask(QWidget, TASK_WIDGET_CLASS):
     #Constructor
     def __init__(self, parent=None):
