@@ -44,6 +44,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         
         # Create a settings window instance on startup
         self.Settings = settingWindow(self)
+        self.settingsOpenedBefore = False
 
         # Calender
         # self.calendarWidget.setLocale(QLocale(QLocale.Arabic, QLocale.Egypt))
@@ -244,7 +245,9 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     def Handle_settings(self):
         self.Settings.show()
-        refresh()
+        if (not self.settingsOpenedBefore):
+            refresh()
+            self.settingsOpenedBefore = True
         self.iterate_combobox(self)
 
 class addWindow(QDialog, ADD_TASK_CLASS):
