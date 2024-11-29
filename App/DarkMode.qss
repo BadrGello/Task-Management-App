@@ -356,9 +356,17 @@ QCalendarWidget QSpinBox::up-button:hover ,QCalendarWidget QSpinBox::down-button
 
 
 QCheckBox {
+	min-width:450px;
 	padding:7px 5px;
 	font-size:13px;
     color:rgb(255,255,255);
+}
+
+#DueTodayNotif {
+	min-width:435px;
+}
+#EnableRepeatedTasksRem, #EnableStdTechRem, #EnableEventRem{
+	min-width:240px;
 }
 
 QCheckBox:hover {
