@@ -37,7 +37,7 @@ rgb(241, 255, 231)</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -752,7 +752,7 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="tab_insights">
        <attribute name="title">
-        <string>Insights and Analytics</string>
+        <string>Tasks Progress</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="1">

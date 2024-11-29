@@ -77,6 +77,9 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.iterate_buttons(self)
         self.iterate_combobox(self)
         
+        # Comment this for original Tabs Layout
+        self.setTabsLabelsHorizontal()
+
         """""
         Connecting signals (buttons, etc) to slots (functions)
         """""
@@ -138,7 +141,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         if (event == QSystemTrayIcon.DoubleClick):
             self.restoreApp()
 
-    # Overwrite the closeEvent so when the user closes the app it gets minimized instead
+    # Override the closeEvent so when the user closes the app it gets minimized instead
     def closeEvent(self, event):
         event.ignore()
         self.hide()
@@ -159,6 +162,16 @@ class mainApp(QMainWindow, FORM_CLASS):
                 child.setFixedSize(150, 30)
                 
             self.iterate_combobox(child)
+    def setTabsLabelsHorizontal(self):
+        self.tabWidget_mainTabs.setTabPosition(QTabWidget.West)  # Set tabs to West first (text will be rotated so the following fixes)
+        for i in range(self.tabWidget_mainTabs.count()):
+            label = QLabel(self.tabWidget_mainTabs.tabText(i)) 
+            label.setAlignment(Qt.AlignCenter)
+            
+            self.tabWidget_mainTabs.tabBar().setTabText(i, "")  # Remove the default tab text
+            self.tabWidget_mainTabs.tabBar().setTabButton(i, QTabBar.LeftSide, label)  # Add custom text with correct orientation
+
+    
     ##################### 
             
     # Study Tech Tab #      
@@ -322,7 +335,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         Icons
         """""
         self.setWindowIcon(QIcon(addIcon))
-        
+
         #Connecting signals
         # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
         # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
