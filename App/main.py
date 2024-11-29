@@ -38,7 +38,13 @@ class mainApp(QMainWindow, FORM_CLASS):
         app.setStyleSheet(QTextStream(stream).readAll())
 
         
+        # Create a settings window instance on startup
         self.Settings = settingWindow(self)
+
+        # Calender
+        # self.calendarWidget.setLocale(QLocale(QLocale.Arabic, QLocale.Egypt))
+        self.calendarWidget.setFirstDayOfWeek(Qt.Saturday)
+
         # Icons
         self.pushButton_sort1.setIcon(QIcon('App/sort.png'))
         self.pushButton_sort1.setIconSize(QSize(24, 24))
