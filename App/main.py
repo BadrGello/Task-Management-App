@@ -1,3 +1,4 @@
+from PyQt5.QtGui import QCloseEvent
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -7,6 +8,11 @@ from os import path
 
 stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
+
+appIcon = 'App/Icons/appIcon (1).svg'
+appName = 'Tasky' #Temp
+settingsIcon = 'App/Icons/settings.svg'
+addIcon = 'App/Icons/add.svg'
 
 # Constants
 mainWindowFileName = "mainWindow.ui"
@@ -37,7 +43,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         QMainWindow.__init__(self)
         self.setupUi(self)
 
-        # Setting a default theme (light)
+        # Setting a default theme (light) (TEMPORARY)
         global stream, app
         stream.open(QIODevice.ReadOnly)
         app.setStyleSheet(QTextStream(stream).readAll())
@@ -46,30 +52,46 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Settings = settingWindow(self)
         self.settingsOpenedBefore = False
 
-        # Calender
+        """""
+        Calender
+        """""
         # self.calendarWidget.setLocale(QLocale(QLocale.Arabic, QLocale.Egypt))
         self.calendarWidget.setFirstDayOfWeek(Qt.Saturday)
 
-        # Icons
+        """""
+        Icons
+        """""
         self.pushButton_sort1.setIcon(QIcon('App/sort.png'))
         self.pushButton_sort1.setIconSize(QSize(24, 24))
-        self.setWindowIcon(QIcon('App/App_icon.png'))
+        self.setWindowIcon(QIcon(appIcon))
+        # app.setWindowIcon(QIcon(appIcon))
+        
 
-        # Function calls
-        self.Handle_UI()
+        """""
+        Initial Function Calls
+        """""
+        self.setWindowTitle(appName)
         self.Handle_searchBar()
+
+        # Set fixed size for buttons and comboboxes
+        self.iterate_buttons(self)
+        self.iterate_combobox(self)
         
-        #Connecting signals (buttons, etc) to slots (functions)
-        
+        """""
+        Connecting signals (buttons, etc) to slots (functions)
+        """""
         #Handles adding new tasks
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
         #When the search bar button is clicked, it goes to the function "Handle_searchBar"
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
         # Handle ComboBox changes
-        self.comboBox_techniques.currentTextChanged.connect(self.update_textbox)
+        self.comboBox_techniques.currentTextChanged.connect(self.update_study_textbox)
 
-        # Variables
+        """""
+        Initialize Variables
+        """""
+
         self.searchBarText = ""
         self.timer = None
 
@@ -83,10 +105,46 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Add Window
         self.addWin = None
 
-        # Set fixed size for buttons and comboboxes
-        self.iterate_buttons(self)
-        self.iterate_combobox(self)
+        """""
+        Initialize App System Tray
+        """""
+        # We create a new TrayIcon (which is more than an icon), create a new context menu and add it to it
+        self.trayIcon = QSystemTrayIcon(QIcon(appIcon), self)
+        self.trayIcon.setToolTip(appName)
+        self.trayMenu = QMenu()
+        self.trayRestoreApp = QAction("Restore", self)
+        self.trayQuitApp = QAction("Quit", self)
+        self.trayRestoreApp.triggered.connect(self.restoreApp)
+        self.trayQuitApp.triggered.connect(self.quitApp)
 
+        self.trayMenu.addAction(self.trayRestoreApp)
+        self.trayMenu.addAction(self.trayQuitApp)
+
+        self.trayIcon.setContextMenu(self.trayMenu)
+        self.trayIcon.activated.connect(self.trayIconClicked)
+
+        self.trayIcon.show()
+        
+    # App Tray #
+    def restoreApp(self):
+        self.show()
+        self.activateWindow()
+
+    def quitApp(self):
+        self.trayIcon.hide()
+        QApplication.quit()
+
+    def trayIconClicked(self, event):
+        if (event == QSystemTrayIcon.DoubleClick):
+            self.restoreApp()
+
+    # Overwrite the closeEvent so when the user closes the app it gets minimized instead
+    def closeEvent(self, event):
+        event.ignore()
+        self.hide()
+    ############
+        
+    # General Functions #
     def iterate_buttons(self, parent_widget):
         for child in parent_widget.findChildren(QWidget):
             if isinstance(child, QAbstractButton):
@@ -94,8 +152,6 @@ class mainApp(QMainWindow, FORM_CLASS):
                 child.setFixedSize(150, 30)
                 
             self.iterate_buttons(child)
-
-    
     def iterate_combobox(self, parent_widget):
         for child in parent_widget.findChildren(QWidget):
             if isinstance(child, QComboBox):
@@ -103,12 +159,10 @@ class mainApp(QMainWindow, FORM_CLASS):
                 child.setFixedSize(150, 30)
                 
             self.iterate_combobox(child)
+    ##################### 
             
-
-    def Handle_UI(self):
-        self.setWindowTitle("Taskyyy")
-
-    def update_textbox(self, text):
+    # Study Tech Tab #      
+    def update_study_textbox(self, text):
         layout = self.TextBrowser_display.layout()
         self.TextBrowser_display.clear()
         if layout:
@@ -151,8 +205,8 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.study_time_input = study_time_input  # Store reference
             self.break_time_input = break_time_input    # Store reference
 
-            # Connect button to start_countdown function
-            self.pushButton_study.clicked.connect(lambda: self.start_countdown(study_time_input.value(), break_time_input.value()))
+            # Connect button to start_study_countdown function
+            self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
 
             # Set layout to TextBrowser
             self.TextBrowser_display.setLayout(layout)
@@ -195,7 +249,7 @@ class mainApp(QMainWindow, FORM_CLASS):
             formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
             self.TextBrowser_display.setText(formatted_text)
 
-    def start_countdown(self, study_time, break_time):
+    def start_study_countdown(self, study_time, break_time):
         total_seconds = study_time * 60  # Convert minutes to seconds for the timer
 
         def update_timer():
@@ -214,7 +268,9 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer = QTimer(self)
         self.timer.timeout.connect(update_timer)
         self.timer.start(1000)
-
+    ##################
+        
+    # Tasks Tab #
     def Handle_searchBar(self):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)
@@ -242,14 +298,17 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollArea_tasks.setWidgetResizable(True)
 
         self.iterate_buttons(self)
-
+    ##############
+        
+    # Settings Window #
     def Handle_settings(self):
         self.Settings.show()
         if (not self.settingsOpenedBefore):
             refresh()
             self.settingsOpenedBefore = True
         self.iterate_combobox(self)
-
+    ###################
+        
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
     def __init__(self, parent=None):
@@ -258,6 +317,12 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         self.setupUi(self)
         #The parent is the main window, SO IT'S IMPORTANT TO: pass self when initiating addWindow -> addWindow(self)
         self.mainWindow = parent
+
+        """""
+        Icons
+        """""
+        self.setWindowIcon(QIcon(addIcon))
+        
         #Connecting signals
         # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
         # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
@@ -277,6 +342,11 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.mainWindow = parent
+
+        """""
+        Icons
+        """""
+        self.setWindowIcon(QIcon(settingsIcon))
 
         # Connecting signals to slots
         self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
