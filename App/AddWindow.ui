@@ -100,7 +100,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>141</width>
+       <width>201</width>
        <height>41</height>
       </rect>
      </property>
@@ -116,7 +116,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>291</width>
+       <width>351</width>
        <height>211</height>
       </rect>
      </property>
@@ -184,7 +184,7 @@
     <widget class="QComboBox" name="TaskPriorityValue">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>220</x>
        <y>30</y>
        <width>141</width>
        <height>22</height>
@@ -306,7 +306,7 @@
     <widget class="QLabel" name="EventDateLabel">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>400</x>
        <y>90</y>
        <width>31</width>
        <height>31</height>
@@ -319,7 +319,7 @@
     <widget class="QDateTimeEdit" name="EventDate">
      <property name="geometry">
       <rect>
-       <x>390</x>
+       <x>440</x>
        <y>90</y>
        <width>151</width>
        <height>31</height>
@@ -345,7 +345,7 @@
     <widget class="QComboBox" name="EventRepeatValue">
      <property name="geometry">
       <rect>
-       <x>390</x>
+       <x>440</x>
        <y>130</y>
        <width>151</width>
        <height>22</height>
@@ -388,7 +388,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>141</width>
+       <width>201</width>
        <height>41</height>
       </rect>
      </property>
@@ -404,7 +404,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>291</width>
+       <width>351</width>
        <height>211</height>
       </rect>
      </property>
