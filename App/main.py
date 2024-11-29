@@ -5,7 +5,7 @@ from PyQt5.uic import loadUiType
 import sys
 from os import path
 
-stream = QFile('App\LightMode.qss')
+stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
 
 # Constants
@@ -31,10 +31,12 @@ class mainApp(QMainWindow, FORM_CLASS):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
-        global stream
-        global app
+    
+        # Setting a default theme (light)
+        global stream, app
         stream.open(QIODevice.ReadOnly)
         app.setStyleSheet(QTextStream(stream).readAll())
+
         
         self.Settings = settingWindow(self)
         # Icons
@@ -267,7 +269,12 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.mainWindow = parent
+
+        # Connecting signals to slots
         self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
+        self.FontComboBox.currentFontChanged.connect(self.change_font)
+
+
         global stream,app
         
     
@@ -284,18 +291,26 @@ class settingWindow(QMainWindow, SETTING_CLASS):
 
         # Select the appropriate theme file
         if text == "Light theme":
-            stream = QFile('App\LightMode.qss')
+            stream = QFile('App/LightMode.qss')
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
         elif text == "Dark theme":
-            stream = QFile('App\DarkMode.qss')
+            stream = QFile('App/DarkMode.qss')
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
         else:
             print(f"Unknown theme selected: {text}")
             return
 
-        # Reopen the selected theme file
+    def change_font(self, font):
+        global app, stream
+        QApplication.setFont(font)
+
+        # A trick to refresh the app in order to apply the font
+        if stream.isOpen():
+            stream.close()
+        stream.open(QIODevice.ReadOnly)
+        app.setStyleSheet(QTextStream(stream).readAll())
         
         
         

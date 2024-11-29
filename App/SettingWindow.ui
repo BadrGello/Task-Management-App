@@ -180,7 +180,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Main window theme</string>
+        <string>App theme</string>
        </property>
       </widget>
       <widget class="QLabel" name="MainWinFontLB">
@@ -198,7 +198,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Main window font</string>
+        <string>App font</string>
        </property>
       </widget>
      </widget>
@@ -283,7 +283,7 @@
         <rect>
          <x>10</x>
          <y>40</y>
-         <width>251</width>
+         <width>254</width>
          <height>201</height>
         </rect>
        </property>
@@ -330,7 +330,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
