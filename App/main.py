@@ -20,10 +20,15 @@ TASK_WIDGET_CLASS, _ = loadUiType(path.join(path.dirname(__file__), taskWidgetFi
 ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFileName))
 SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
+def refresh():
+    # A trick to refresh the app in order to apply the font and fix display issue in QCheckBox in Settings 
+    if stream.isOpen():
+        stream.close()
+    stream.open(QIODevice.ReadOnly)
+    app.setStyleSheet(QTextStream(stream).readAll())
+
 #When you start a new design on Qt designer, you are promted many chocies, the important 2 are "Main Window"
-
 #and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
-
 
 class mainApp(QMainWindow, FORM_CLASS):
     # Constructor
@@ -31,12 +36,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
-    
+
         # Setting a default theme (light)
         global stream, app
         stream.open(QIODevice.ReadOnly)
         app.setStyleSheet(QTextStream(stream).readAll())
-
         
         # Create a settings window instance on startup
         self.Settings = settingWindow(self)
@@ -55,16 +59,12 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Handle_searchBar()
         
         #Connecting signals (buttons, etc) to slots (functions)
-
+        
         #Handles adding new tasks
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
-
         #When the search bar button is clicked, it goes to the function "Handle_searchBar"
-
-        # Connecting signals
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
-
         # Handle ComboBox changes
         self.comboBox_techniques.currentTextChanged.connect(self.update_textbox)
 
@@ -82,8 +82,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Add Window
         self.addWin = None
 
+        # Set fixed size for buttons and comboboxes
         self.iterate_buttons(self)
-        
         self.iterate_combobox(self)
 
     def iterate_buttons(self, parent_widget):
@@ -95,7 +95,6 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.iterate_buttons(child)
 
     
-
     def iterate_combobox(self, parent_widget):
         for child in parent_widget.findChildren(QWidget):
             if isinstance(child, QComboBox):
@@ -245,7 +244,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     def Handle_settings(self):
         self.Settings.show()
-
+        refresh()
         self.iterate_combobox(self)
 
 class addWindow(QDialog, ADD_TASK_CLASS):
@@ -280,7 +279,6 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
         self.FontComboBox.currentFontChanged.connect(self.change_font)
 
-
         global stream,app
         
     
@@ -288,8 +286,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         """
         Change the theme based on the selected text from ThemeComboBox.
         """
-        global stream
-        global app
+        global stream, app
 
         # Close the current theme file if open
         if stream.isOpen():
@@ -311,12 +308,8 @@ class settingWindow(QMainWindow, SETTING_CLASS):
     def change_font(self, font):
         global app, stream
         QApplication.setFont(font)
-
-        # A trick to refresh the app in order to apply the font
-        if stream.isOpen():
-            stream.close()
-        stream.open(QIODevice.ReadOnly)
-        app.setStyleSheet(QTextStream(stream).readAll())
+        refresh()
+        
         
         
         
