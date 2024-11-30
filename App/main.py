@@ -219,7 +219,7 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.break_time_input = break_time_input    # Store reference
 
             # Connect button to start_study_countdown function
-            self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
+            # self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
 
             # Set layout to TextBrowser
             self.TextBrowser_display.setLayout(layout)
@@ -316,9 +316,9 @@ class mainApp(QMainWindow, FORM_CLASS):
     # Settings Window #
     def Handle_settings(self):
         self.Settings.show()
-        if (not self.settingsOpenedBefore):
-            refresh()
-            self.settingsOpenedBefore = True
+        # if (not self.settingsOpenedBefore):
+        refresh()
+            # self.settingsOpenedBefore = True
         self.iterate_combobox(self)
     ###################
         

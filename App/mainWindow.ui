@@ -133,13 +133,6 @@ rgb(241, 255, 231)</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_sort2">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -868,7 +861,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QGroupBox" name="myDay_data">
           <property name="title">
-           <string>My Day</string>
+           <string>My Week</string>
           </property>
           <property name="flat">
            <bool>true</bool>
