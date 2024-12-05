@@ -4,7 +4,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUiType
 import sys
-from os import path
+from os import path, makedirs
+from datetime import datetime
+import json
 
 stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
@@ -19,6 +21,50 @@ mainWindowFileName = "mainWindow.ui"
 taskWidgetFileName = "taskWidget.ui"
 addTaskWindowFileName = "AddWindow.ui"
 settingsWindowFilName = "SettingWindow.ui"
+
+# Templates, if you want to copy do task = taskTemplate.copy()
+taskTemplate = {
+    "type": "",
+    "id": "",
+    "title": "",
+    "desc": "", # Description
+    "date": "",
+    "repeat": "",
+
+    "priority": 3, # 3 low, 2 med, 1 high
+    "tags": list(),
+    "steps": list(),
+    "complete": False,
+}
+
+eventTemplate = {
+    "type": "",
+    "id": "",
+    "title": "",
+    "desc": "", # Description
+    "date": "",
+    "repeat": "",
+
+}
+
+# Should have 1 instance / copy only
+settingsOptionsTemplate = {
+    "highPrioritise": True,
+    "confirmDelete": True,
+    "deleteCompleted": False,
+
+    "theme": "Light theme", #"Dark theme"
+    "font": "MS Shell Dlg 2",
+
+    "dueTodayNotif": True,
+    "dueTodayNotifTime": "04:00",
+
+    "reminderTime": 2,
+    "taskReminder": True,
+    "eventReminder": True,
+    "studyReminder": True,
+} 
+
 
 # Import UI files
 FORM_CLASS, _ = loadUiType(path.join(path.dirname(__file__), mainWindowFileName))
@@ -44,14 +90,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.setupUi(self)
 
         # Setting a default theme (light) (TEMPORARY)
-        global stream, app
-        stream.open(QIODevice.ReadOnly)
-        app.setStyleSheet(QTextStream(stream).readAll())
+        # global stream, app
+        # stream.open(QIODevice.ReadOnly)
+        # app.setStyleSheet(QTextStream(stream).readAll())
+        refresh()
         
-        # Create a settings window instance on startup
-        self.Settings = settingWindow(self)
-        self.settingsOpenedBefore = False
-
         """""
         Calender
         """""
@@ -99,11 +142,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer = None
 
         # ScrollArea Task Widgets
-        self.addTaskList = []
-        self.addTask = None
+        self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
+        self.newTaskWidget = None
         self.tasksGroupBox = None
         self.tasksForm = None
-        # self.taskList = dict()
+        self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
 
         # Add Window
         self.addWin = None
@@ -127,6 +170,21 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.trayIcon.activated.connect(self.trayIconClicked)
 
         self.trayIcon.show()
+
+
+        """""
+        Save and Load Data
+        """""
+        self.db_folder = "App/Data"
+        if not path.exists(self.db_folder):
+            makedirs(self.db_folder)
+
+        self.settingsOptions = None
+        self.loadApp()
+
+
+        # Create a settings window instance on startup and a settingsOptions dict()
+        self.Settings = settingWindow(self, self.settingsOptions)
         
     # App Tray #
     def restoreApp(self):
@@ -155,6 +213,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                 child.setFixedSize(150, 30)
                 
             self.iterate_buttons(child)
+
     def iterate_combobox(self, parent_widget):
         for child in parent_widget.findChildren(QWidget):
             if isinstance(child, QComboBox):
@@ -162,6 +221,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                 child.setFixedSize(150, 30)
                 
             self.iterate_combobox(child)
+
     def setTabsLabelsHorizontal(self):
         self.tabWidget_mainTabs.setTabPosition(QTabWidget.West)  # Set tabs to West first (text will be rotated so the following fixes)
         for i in range(self.tabWidget_mainTabs.count()):
@@ -171,9 +231,87 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.tabWidget_mainTabs.tabBar().setTabText(i, "")  # Remove the default tab text
             self.tabWidget_mainTabs.tabBar().setTabButton(i, QTabBar.LeftSide, label)  # Add custom text with correct orientation
 
+    # For updating the tasksList (either edit an existing task or add new task)
+    def update_tasksList(self, task):
+
+        newTask = True
+
+        # If task is present, just update it
+        for i in range(len(self.tasksList)):
+            if (self.tasksList[i]["id"] == task["id"]):
+                newTask = False
+                self.tasksList[i] = task
+                break
+
+        # If it's a new task, append it
+        if (newTask):
+            self.tasksList.append(task)
+
+        # print(self.tasksList)
     
+    def delete_task(self, task):
+
+        # Delete it from tasksList
+        for i in range(len(self.tasksList)):
+            if (self.tasksList[i]["id"] == task["id"]):
+                del self.tasksList[i]
+                break
+        
+        # Delete it from taskWidgetsList
+        for widget in self.taskWidgetsList:
+            if (widget.task["id"] == task["id"]): 
+                self.tasksForm.removeRow(widget)
+                self.taskWidgetsList.remove(widget)
+                break
+
+    def update_settings(self, settingsOptions):
+        self.settingsOptions = settingsOptions
+        self.saveApp()
+
     ##################### 
+
+    # Save and Load #
+
+    def saveApp(self):
+        # Path to the JSON file
+        file_path = path.join(self.db_folder, "data.json")
+        
+        # Currently saves tasksList only
+        data = {
+            "tasks": self.tasksList,
+            "settings": self.settingsOptions,
+        }
+        
+        with open(file_path, "w") as json_file:
+            json.dump(data, json_file, indent=4)
+
+        print(data)
+        print("Data saved to data.json")
+
+    def loadApp(self):
+        # Path to the JSON file
+        file_path = path.join(self.db_folder, "data.json")
+        
+        # Load the data from the JSON file if it exists
+        if path.exists(file_path):
+            with open(file_path, "r") as json_file:
+                data = json.load(json_file)
+
+                self.tasksList = data.get("tasks", [])
+                self.settingsOptions = data.get("settings", None)
             
+            print(data)
+            print("Data loaded from tasks_data.json")
+        
+        else:
+            print("No data found to load.")
+
+        # Add task widgets with the data loaded from JSON file
+        for task in self.tasksList:
+            self.add_task_widget(task)
+
+    #################
+
     # Study Tech Tab #      
     def update_study_textbox(self, text):
         layout = self.TextBrowser_display.layout()
@@ -294,18 +432,38 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.addWin = addWindow(self)
         self.addWin.show()
 
-    def add_task_widget(self):
-        self.addTask = addTask(self)
+    def edit_task_widget(self, task):
+        for widget in self.taskWidgetsList:
+            if (widget.task["id"] == task["id"]):
+                # Update the widget with the new task data
+                print("Edit began", task)
+                widget.task = task
+                widget.update_task_info()
+                break
+        else:
+            # If no matching widget found, add a new one (shouldn't happen)
+            print("ERROR, Didn't find the task to be edited")
+            self.add_task_widget(task)
+
+    def add_task_widget(self, task):
+
+        self.newTaskWidget = addTask(self)
+        self.newTaskWidget.add_new_task_info(task)
+        self.update_tasksList(task)
+
         if self.tasksGroupBox is None:
             self.tasksGroupBox = QGroupBox('Tasks')
         if self.tasksForm is None:
             self.tasksForm = QFormLayout()
+            # self.tasksForm.setVerticalSpacing(10)  # Set vertical space between widgets (Didn't work)
+
         self.tasksGroupBox.setLayout(self.tasksForm)
 
-        self.addTaskList.append(addTask(self))
+        # Holds all the tasks widgets
+        self.taskWidgetsList.append(self.newTaskWidget)
 
-        for task in self.addTaskList:
-            self.tasksForm.addRow(task)
+        for task_ in self.taskWidgetsList:
+            self.tasksForm.addRow(task_)
 
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
@@ -316,59 +474,276 @@ class mainApp(QMainWindow, FORM_CLASS):
     # Settings Window #
     def Handle_settings(self):
         self.Settings.show()
-        # if (not self.settingsOpenedBefore):
         refresh()
-            # self.settingsOpenedBefore = True
         self.iterate_combobox(self)
     ###################
         
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, editTask=None):
         super(addWindow, self).__init__(parent)
         QDialog.__init__(self)
         self.setupUi(self)
         #The parent is the main window, SO IT'S IMPORTANT TO: pass self when initiating addWindow -> addWindow(self)
         self.mainWindow = parent
+        self.editTask = editTask
 
         """""
         Icons
         """""
         self.setWindowIcon(QIcon(addIcon))
 
+        """""
+        Signals
+        """""
+
         #Connecting signals
-        # self.EventDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
-        # self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
-        self.TaskDialogButtonBox.accepted.connect(self.Handle_ok_clicked)
+        self.EventDialogButtonBox.accepted.connect(self.Handle_event_ok_clicked)
+        self.EventDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
+        self.TaskDialogButtonBox.accepted.connect(self.Handle_task_ok_clicked)
         self.TaskDialogButtonBox.rejected.connect(self.Handle_cancel_clicked)
 
-    def Handle_ok_clicked(self):
-        self.mainWindow.add_task_widget()
+        ##Tags List##
+        self.AddTag.clicked.connect(self.add_tag)  # When pressing Enter after writing a step, it will add it to the list
+        self.TaskTags.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.TaskTags.customContextMenuRequested.connect(self.show_context_menu) # Right click a tag and click delete to delete
+        ##          ##
+
+
+        """""
+        Initialisations
+        """""
+        # Set the date of QDateTimeEdit to current time to be easier for user 
+        self.TaskDate.setDateTime(QDateTime.currentDateTime())
+
+        """""
+        Edit Mode
+        """""
+        if editTask:
+            self.Handle_edit_mode()
+            
+                
+
+    # Following functions for tags list
+    def add_tag(self):
+        
+        tag = self.TaskTagInput.text()
+        tag = tag.replace(" ", "")
+        if (tag):
+            item = QListWidgetItem(tag)
+            self.TaskTags.addItem(item)
+            self.TaskTagInput.clear()
+
+    def show_context_menu(self, position):
+
+        menu = QMenu()
+        delete_step = menu.addAction("Delete Tag")
+        action = menu.exec_(self.TaskTags.mapToGlobal(position))
+        if (action == delete_step):
+            selected_items = self.TaskTags.selectedItems() #Displays the context menu and returns the action selected by the user or none
+            for item in selected_items:
+                deleted_step = self.TaskTags.takeItem(self.TaskTags.row(item))
+
+    def Handle_edit_mode(self):
+        # Hide Event Tab
+        self.AddTabs.removeTab(1)
+
+        # Set window name
+        self.setWindowTitle("Edit Task")
+
+        # Set every field
+        self.TaskTitleInput.setPlainText(self.editTask.get("title", ""))
+        self.TaskDescInput.setPlainText(self.editTask.get("desc", ""))
+        self.TaskDate.setDateTime(QDateTime.fromString(self.editTask.get("date", ""), "yyyy-MM-dd HH:mm:ss"))
+        self.TaskRepeat.setCurrentText(self.editTask.get("repeat", ""))
+        if (self.editTask["priority"] == 1): self.TaskPriorityValue.setCurrentText("High Priority")
+        elif (self.editTask["priority"] == 2): self.TaskPriorityValue.setCurrentText("Moderate Priority")
+        else: self.TaskPriorityValue.setCurrentText("Low Priority")
+        for tag in self.editTask.get("tags", []):
+            item = QListWidgetItem(tag)
+            self.TaskTags.addItem(item)
+
+    def Handle_task_ok_clicked(self):
+        
+        task = taskTemplate.copy()
+
+        task_title = self.TaskTitleInput.toPlainText() 
+        task_description = self.TaskDescInput.toPlainText()
+        task_due_date = self.TaskDate.dateTime().toString("yyyy-MM-dd HH:mm:ss")
+        task_repeat = self.TaskRepeat.currentText()
+        task_priority = self.TaskPriorityValue.currentText()
+        task_tags = [self.TaskTags.item(i).text() for i in range(self.TaskTags.count())]
+
+        task["type"] = "task"
+        task["id"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Unique id as current time
+        task["title"] = task_title
+        task["desc"] = task_description
+        task["date"] = task_due_date
+        task["repeat"] = task_repeat
+        
+        if (task_priority == "High Priority"):
+            task["priority"] = 1
+        elif (task_priority == "Moderate Priority"):
+            task["priority"] = 2
+        elif (task_priority == "Low Priority"):
+            task["priority"] = 3
+
+        task["tags"] = task_tags
+        
+        # Edit existing task
+        if self.editTask:
+            task["id"] = self.editTask["id"]
+            task["steps"] = self.editTask["steps"]
+            self.mainWindow.edit_task_widget(task)
+
+        # Add new task to list
+        else:
+            self.mainWindow.add_task_widget(task)
+        self.close()
+
+    def Handle_event_ok_clicked(self):
+        event = eventTemplate.copy()
+
+        event_title = self.EventTitleInput.toPlainText() 
+        event_description = self.EventDescInput.toPlainText()  
+        event_date = self.EventDate.dateTime().toString("yyyy-MM-dd HH:mm:ss")
+        event_repeat = self.EventRepeatValue.currentText() 
+        event["type"] = "event"
+        event["id"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Unique id as current time
+        event["title"] = event_title
+        event["desc"] = event_description
+        event["date"] = event_date
+        event["repeat"] = event_repeat
+        
+
+        #####################
+        # Handle adding event
+        # self.mainWindow.add_event(event)
         self.close()
 
     def Handle_cancel_clicked(self):
         self.close()
 
+
 class settingWindow(QMainWindow, SETTING_CLASS):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, settingsOptions=None):
         super(settingWindow, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.mainWindow = parent
+        self.settingsOptions = settingsOptions
 
         """""
         Icons
         """""
         self.setWindowIcon(QIcon(settingsIcon))
 
+        """""
+        Signals and Slots
+        """""
         # Connecting signals to slots
-        self.ThemeComboBox.currentTextChanged.connect(self.change_theme)
-        self.FontComboBox.currentFontChanged.connect(self.change_font)
+        self.ThemeComboBox.currentTextChanged.connect(self.Handle_change_theme)
+        self.FontComboBox.currentFontChanged.connect(self.Handle_change_font)
 
-        global stream,app
+        self.HighPrioritise.toggled.connect(self.Handle_change_high_priority_incomplete_tasks)
+        self.ConfirmDel.toggled.connect(self.Handle_change_confirm_before_delete)
+        self.DelAfterComplete.toggled.connect(self.Handle_change_delete_after_complete)
+        self.DueTodayNotif.toggled.connect(self.Handle_change_due_today_notification)
+        self.SetDueTodayTime.timeChanged.connect(self.Handle_change_due_today_time)
+        self.ReminderTime.valueChanged.connect(self.Handle_change_reminder_time)
+        self.EnableTasksRem.toggled.connect(self.Handle_change_enable_task_reminder)
+        self.EnableEventRem.toggled.connect(self.Handle_change_enable_event_reminder)
+        self.EnableStdTechRem.toggled.connect(self.Handle_change_enable_stdtech_reminder)
         
-    
-    def change_theme(self, text):
+        self.DefaultFontButton.clicked.connect(self.set_default_font)
+
+        """""
+        Set Options Upon Loading
+        """""
+        self.initialize_settings()
+        
+    def set_default_font(self):
+        self.settingsOptions["font"] = "MS Shell Dlg 2"
+        self.change_font()
+        self.FontComboBox.setCurrentFont(QFont("MS Shell Dlg 2"))
+
+
+
+    def initialize_settings(self):
+        # Set initial values if settingsOptions is not None
+        if self.settingsOptions:
+            # Theme
+            print("Initialise Settings ", self.settingsOptions)
+            theme = self.settingsOptions.get("theme", "Light theme")
+            if theme in ["Light theme", "Dark theme"]:
+                self.ThemeComboBox.setCurrentText(theme)
+
+            # Font
+            font = self.settingsOptions.get("font", "")
+            if font:
+                self.FontComboBox.setCurrentFont(QFont(font))
+
+            # Checkbox States
+            self.HighPrioritise.setChecked(self.settingsOptions.get("highPrioritise", True))
+            self.ConfirmDel.setChecked(self.settingsOptions.get("confirmDelete", True))
+            self.DelAfterComplete.setChecked(self.settingsOptions.get("deleteCompleted", False))
+            self.DueTodayNotif.setChecked(self.settingsOptions.get("dueTodayNotif", True))
+            self.EnableTasksRem.setChecked(self.settingsOptions.get("taskReminder", True))
+            self.EnableEventRem.setChecked(self.settingsOptions.get("eventReminder", True))
+            self.EnableStdTechRem.setChecked(self.settingsOptions.get("studyReminder", True))
+
+            # Reminder Time and Due Today Time
+            self.ReminderTime.setValue(int(self.settingsOptions.get("reminderTime", 0)))
+            self.SetDueTodayTime.setTime(QTime.fromString(self.settingsOptions["dueTodayNotifTime"], "HH:mm"))
+
+            refresh()
+
+        else: 
+            self.settingsOptions = settingsOptionsTemplate.copy()
+
+    def Handle_change_high_priority_incomplete_tasks(self, checked):
+        self.settingsOptions["highPrioritise"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_confirm_before_delete(self, checked):
+        self.settingsOptions["confirmDelete"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_delete_after_complete(self, checked):
+        self.settingsOptions["deleteCompleted"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_due_today_notification(self, checked):
+        self.settingsOptions["dueTodayNotif"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_due_today_time(self, time):
+        self.settingsOptions["dueTodayNotifTime"] = time.toString("HH:mm")
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_reminder_time(self, value):
+        self.settingsOptions["reminderTime"] = value
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_enable_task_reminder(self, checked):
+        self.settingsOptions["taskReminder"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_enable_event_reminder(self, checked):
+        self.settingsOptions["eventReminder"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+
+    def Handle_change_enable_stdtech_reminder(self, checked):
+        self.settingsOptions["studyReminder"] = checked
+        self.mainWindow.update_settings(self.settingsOptions)
+        
+        
+    def Handle_change_theme(self, text):
+        self.settingsOptions["theme"] = text
+        self.mainWindow.update_settings(self.settingsOptions)
+        self.change_theme()
+
+    def change_theme(self):
         """
         Change the theme based on the selected text from ThemeComboBox.
         """
@@ -379,21 +754,25 @@ class settingWindow(QMainWindow, SETTING_CLASS):
             stream.close()
 
         # Select the appropriate theme file
-        if text == "Light theme":
+        if self.settingsOptions["theme"] == "Light theme":
             stream = QFile('App/LightMode.qss')
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
-        elif text == "Dark theme":
+        elif self.settingsOptions["theme"] == "Dark theme":
             stream = QFile('App/DarkMode.qss')
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
         else:
-            print(f"Unknown theme selected: {text}")
+            print(f"Unknown theme selected: {self.settingsOptions["theme"]}")
             return
+    
+    def Handle_change_font(self, font):
+        self.settingsOptions["font"] = font.family()
+        self.mainWindow.update_settings(self.settingsOptions)
+        self.change_font()
 
-    def change_font(self, font):
-        global app, stream
-        QApplication.setFont(font)
+    def change_font(self):
+        QApplication.setFont(QFont(self.settingsOptions["font"], QApplication.font().pointSize()))
         refresh()
         
         
@@ -407,6 +786,16 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         super(addTask, self).__init__(parent)
         QWidget.__init__(self)
         self.setupUi(self)
+        self.mainWindow = parent
+
+        # This "task" dictionary should hold all info, sould be always updated as this is what will be put in DB (JSON)
+        self.task = dict()
+        """""
+        Signals and Slots
+        """""
+        # Delete and Edit Buttons
+        self.taskDeletePushButton.clicked.connect(self.Handle_delete_task)
+        self.taskEditPushButton.clicked.connect(self.Handle_edit_task)
 
         ##Steps List##
         self.stepInput.returnPressed.connect(self.add_step)  # When pressing Enter after writing a step, it will add it to the list
@@ -416,30 +805,56 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         ##          ##
 
         ##Complete Button##
-        self.completeStatus = False
         self.taskCompletetoolButton.setAccessibleDescription("Incompleted")
         self.taskCompletetoolButton.setCheckable(True)  # Button stays pressed when clicked
         self.taskCompletetoolButton.toggled.connect(self.toggle_task_completion)
         ##               ##
 
     #Following functions for steps list
-    def add_step(self):
+    def add_step(self, step=None):
         
-        step_desc = self.stepInput.text()
-        if (step_desc):
-            item = QListWidgetItem(step_desc)
+        # Add steps when creating a new step
+        if (step is None): 
+            step_desc = self.stepInput.text()
+        
+            if (step_desc):
+                item = QListWidgetItem(step_desc)
+                item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
+                item.setCheckState(Qt.Unchecked)  #Default is unchecked
+                self.stepsListWidget.addItem(item) #Add step
+            
+                # Add step info to self.task
+                self.task["steps"].append({"desc": step_desc, "complete": False})
+                self.mainWindow.saveApp()
+
+                self.stepInput.clear()
+
+        # Add steps in loading app phase
+        else:
+            item = QListWidgetItem(step["desc"])
             item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
-            item.setCheckState(Qt.Unchecked)  #Default is unchecked
+            if (step["complete"]):
+                item.setCheckState(Qt.Checked) 
+            else :
+                item.setCheckState(Qt.Unchecked)
+
             self.stepsListWidget.addItem(item) #Add step
-            self.stepInput.clear()
+        
 
     def toggle_step_completion(self, item):
+        
+        row = self.stepsListWidget.row(item)
 
         if item.checkState() == Qt.Checked:
             item.setCheckState(Qt.Unchecked)
+            self.task["steps"][row]["complete"] = False
+
         else:
             item.setCheckState(Qt.Checked)
-
+            self.task["steps"][row]["complete"] = True
+        
+        self.mainWindow.saveApp()
+        
     def show_context_menu(self, position):
 
         menu = QMenu()
@@ -448,24 +863,94 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         if (action == delete_step):
             selected_items = self.stepsListWidget.selectedItems() #Displays the context menu and returns the action selected by the user or none
             for item in selected_items:
+                
+                row = self.stepsListWidget.row(item)
+                self.task["steps"].pop(row)
+
                 deleted_step = self.stepsListWidget.takeItem(self.stepsListWidget.row(item))
+
+        self.mainWindow.saveApp()
 
     # When clicking on Incompleted/Completed button
     def toggle_task_completion(self):
         
-        if(self.completeStatus):
+        if(self.task["complete"]):
             # self.taskCompletetoolButton.setIcon(QIcon("path_to_icon.png")) # Can set an icon instead of text
             self.taskCompletetoolButton.setText("Incompleted")
-            self.completeStatus = False
+            self.task["complete"] = False
+            self.update_task_info() # To update the color
         else:
             self.taskCompletetoolButton.setText("Completed")
-            self.completeStatus = True
+            self.task["complete"] = True
+            self.update_task_info() # To update the color
 
+        self.mainWindow.saveApp()
+
+    # Should be called only when creating a new task
+    def add_new_task_info(self, task):
+        self.task = task
+        self.update_task_info()
+
+    def Handle_edit_task(self):
+        edit_window = addWindow(self.mainWindow, self.task)  # Pass the current task for editing
+        edit_window.exec_()  # Show the dialog
+
+    def Handle_delete_task(self):
+
+        settingChoice = True # Confirm before deletion
+
+        # ARE YOU SURE MESSGAE SHOULD APPEAR
+
+        if (settingChoice):
+            reply = QMessageBox.question(self, 'Confirm Deletion', 'Are you sure you want to delete this task?',
+                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        
+            if reply == QMessageBox.Yes:
+                self.mainWindow.delete_task(self.task)
+            else:
+                pass
+        # If in prefrences there's no confirm before deletion, just delete
+        else:
+            self.mainWindow.delete_task(self.task)
+        
+        self.mainWindow.saveApp()
+
+    # Call when you updated self.task and want to update the task widget gui / send updated task to be saved
+    def update_task_info(self):
+
+        # Update task in tasksList
+        self.mainWindow.update_tasksList(self.task)
+        self.mainWindow.saveApp()
+
+        # Update the title and description
+        self.taskTitlePlainTextEdit.setPlainText(self.task["title"])
+        self.taskDescPlainTextEdit.setPlainText(self.task["desc"])
+
+        # Update the date
+        date = QDateTime.fromString(self.task["date"], "yyyy-MM-dd hh:mm:ss")
+        self.taskDateTimeEdit.setDateTime(date)
+        
+        # Update the priority line color
+        if self.task["priority"] == 1: # High
+            self.taskPriorityLine.setStyleSheet(" border: 6px solid red;")
+        elif self.task["priority"] == 2: # Med
+            self.taskPriorityLine.setStyleSheet(" border: 6px solid orange;")
+        else: # Low
+            self.taskPriorityLine.setStyleSheet(" border: 6px solid yellow;")
+        
+        # Update the task steps
+        self.stepsListWidget.clear()
+        for step in self.task["steps"]:
+            self.add_step(step)
+        
+        # Update the "completed" status button text (Incompleted/Completed)
+        if self.task["complete"]:
+            self.taskCompletetoolButton.setText("Completed")
+            self.taskPriorityLine.setStyleSheet(" border: 6px solid lime;")
+        else:
+            self.taskCompletetoolButton.setText("Incompleted")
 
 def main():
-    
-    
-    #Applying Style Sheet
     
     window = mainApp() #An instance of the class mainApp
 
