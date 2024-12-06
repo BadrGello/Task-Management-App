@@ -7,6 +7,7 @@ import sys
 from os import path, makedirs
 from datetime import datetime
 import json
+import time
 
 stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
@@ -475,7 +476,6 @@ class mainApp(QMainWindow, FORM_CLASS):
     def Handle_settings(self):
         self.Settings.show()
         refresh()
-        self.iterate_combobox(self)
     ###################
         
 class addWindow(QDialog, ADD_TASK_CLASS):
@@ -920,6 +920,8 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 
         # Update task in tasksList
         self.mainWindow.update_tasksList(self.task)
+        # print("Here is a delay")
+        # time.sleep(3)
         self.mainWindow.saveApp()
 
         # Update the title and description
