@@ -84,8 +84,19 @@ def refresh():
 #and "Widget", and based on that is the first argument, the second argument is this "FROM_CLASS" that loads file path
 
 class mainApp(QMainWindow, FORM_CLASS):
+    #taskWidgetsList=[]
     # Constructor
     def __init__(self, parent=None):
+
+         # ScrollArea Task Widgets
+        self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
+        self.tempTaskWidgetsList =[]
+        self.newTaskWidget = None
+        self.tasksGroupBox = None
+        self.tasksForm = None
+        self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
+        self.tempTaskList = []
+
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
         self.setupUi(self)
@@ -135,19 +146,14 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Handle ComboBox changes
         self.comboBox_techniques.currentTextChanged.connect(self.update_study_textbox)
 
+        self.plainTextEdit_searchTask.textChanged.connect(self.Handle_searchBar)
+
         """""
         Initialize Variables
         """""
 
         self.searchBarText = ""
         self.timer = None
-
-        # ScrollArea Task Widgets
-        self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
-        self.newTaskWidget = None
-        self.tasksGroupBox = None
-        self.tasksForm = None
-        self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
 
         # Add Window
         self.addWin = None
@@ -422,10 +428,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer.start(1000)
     ##################
         
-    # Tasks Tab #
-    def Handle_searchBar(self):
-        self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
-        print(self.searchBarText)
+    # Tasks Tab #          
 
     def Handle_add_window(self):
         # if self.addWin is None:
@@ -448,6 +451,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     def add_task_widget(self, task):
 
+        self.plainTextEdit_searchTask.clear()
+
         self.newTaskWidget = addTask(self)
         self.newTaskWidget.add_new_task_info(task)
         self.update_tasksList(task)
@@ -461,7 +466,9 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksGroupBox.setLayout(self.tasksForm)
 
         # Holds all the tasks widgets
+        print(self.taskWidgetsList)
         self.taskWidgetsList.append(self.newTaskWidget)
+        
 
         for task_ in self.taskWidgetsList:
             self.tasksForm.addRow(task_)
@@ -470,8 +477,36 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollArea_tasks.setWidgetResizable(True)
 
         self.iterate_buttons(self)
-    ##############
-        
+
+    def Handle_searchBar(self):
+        self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
+        print(self.searchBarText)
+
+        # Ensure the layout is initialized
+        if self.tasksForm is None:
+            self.tasksForm = QFormLayout()
+            self.tasksGroupBox = QGroupBox('Tasks')
+            self.tasksGroupBox.setLayout(self.tasksForm)
+            self.scrollArea_tasks.setWidget(self.tasksGroupBox)
+            self.scrollArea_tasks.setWidgetResizable(True)
+
+        # Remove all widgets from the layout without deleting them
+        while self.tasksForm.count():
+            child = self.tasksForm.takeAt(0)
+            if child.widget():
+                child.widget().setParent(None)  # Detach widget from the layout but do not delete it
+
+        # Add matching tasks back to the layout
+        for widget in self.taskWidgetsList:
+            if self.searchBarText in widget.task["title"] or self.isSearchTextInTags(widget.task["tags"],self.searchBarText) :
+                self.tasksForm.addRow(widget)  # Re-add the widget to the layout
+                print(widget.task)
+
+    def isSearchTextInTags(self,tags,searchText):
+        for tag in tags:
+            if searchText in tag:
+                return True
+        return False    
     # Settings Window #
     def Handle_settings(self):
         self.Settings.show()
@@ -763,7 +798,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
         else:
-            print(f"Unknown theme selected: {self.settingsOptions["theme"]}")
+            #print(f"Unknown theme selected: {self.settingsOptions["theme"]}")
             return
     
     def Handle_change_font(self, font):
