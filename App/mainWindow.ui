@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1297</width>
-    <height>710</height>
+    <width>1321</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -72,6 +72,18 @@ rgb(241, 255, 231)</string>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="pushButton_addTask">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">/*#pushButton_addTask {
     background-color: #3498db;
@@ -92,6 +104,18 @@ rgb(241, 255, 231)</string>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_searchTask">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="text">
               <string>Search</string>
              </property>
@@ -127,9 +151,40 @@ rgb(241, 255, 231)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_sort1">
+            <widget class="QPushButton" name="pushButton_sortType">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_sortOrder">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Ascendingly</string>
              </property>
             </widget>
            </item>
@@ -158,8 +213,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1245</width>
-             <height>513</height>
+             <width>1269</width>
+             <height>517</height>
             </rect>
            </property>
           </widget>
@@ -661,7 +716,7 @@ p, li { white-space: pre-wrap; }
               <property name="maximumSize">
                <size>
                 <width>150</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -700,7 +755,7 @@ p, li { white-space: pre-wrap; }
               <property name="maximumSize">
                <size>
                 <width>150</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -944,26 +999,59 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1297</width>
+     <width>1321</width>
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionExit"/>
-    <addaction name="actionSave_Data"/>
-    <addaction name="actionBack_Up_Data"/>
-    <addaction name="actionRestore_Data"/>
-   </widget>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
     </property>
     <addaction name="actionPreferences"/>
    </widget>
-   <addaction name="menuFile"/>
+   <widget class="QMenu" name="menuExit">
+    <property name="title">
+     <string>App</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuExit"/>
    <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -994,6 +1082,11 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
    </property>
   </action>
  </widget>

@@ -1,0 +1,2764 @@
+{
+    "tasks": [
+        {
+            "type": "task",
+            "id": "2024-12-08 10:05:43",
+            "title": "Study for exams",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 10:05:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:06:43",
+            "title": "Prepare presentation",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 10:06:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "fitness",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:07:43",
+            "title": "Fix the car",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 10:07:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "personal",
+                "work",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:08:43",
+            "title": "Read a new book",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 10:08:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:09:43",
+            "title": "Check emails",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:09:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "home",
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:10:43",
+            "title": "Prepare dinner",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 10:10:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "urgent",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:11:43",
+            "title": "Book flight tickets",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:11:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "home",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:12:43",
+            "title": "Book flight tickets",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 10:12:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "personal",
+                "urgent",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:13:43",
+            "title": "Buy groceries",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:13:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "personal",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:14:43",
+            "title": "Schedule meeting",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 10:14:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "finance",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:15:43",
+            "title": "Plan birthday party",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:15:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:16:43",
+            "title": "Prepare dinner",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:16:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "home",
+                "urgent",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:17:43",
+            "title": "Buy groceries",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 10:17:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "home",
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:18:43",
+            "title": "Read a new book",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:18:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "urgent",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:19:43",
+            "title": "Schedule meeting",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:19:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "education",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:20:43",
+            "title": "Clean the house",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:20:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "work",
+                "travel",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:21:43",
+            "title": "Attend yoga class",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:21:43",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [
+                "health",
+                "education",
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:22:43",
+            "title": "Workout at the gym",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 10:22:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:23:43",
+            "title": "Read a new book",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 10:23:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "home",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:24:43",
+            "title": "Update resume",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 10:24:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:25:43",
+            "title": "Update resume",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:25:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "education",
+                "shopping",
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:26:43",
+            "title": "Attend yoga class",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 10:26:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "work",
+                "education",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:27:43",
+            "title": "Organize desk",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 10:27:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:28:43",
+            "title": "Water the plants",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:28:43",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [
+                "fitness",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:29:43",
+            "title": "Prepare presentation",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:29:43",
+            "repeat": "Monthly",
+            "priority": 3,
+            "tags": [
+                "work",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:30:43",
+            "title": "Prepare dinner",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:30:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:31:43",
+            "title": "Study for exams",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 10:31:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "education",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:32:43",
+            "title": "Schedule meeting",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:32:43",
+            "repeat": "Monthly",
+            "priority": 3,
+            "tags": [
+                "health",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:33:43",
+            "title": "Water the plants",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:33:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "health",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:34:43",
+            "title": "Water the plants",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:34:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "travel",
+                "shopping",
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:35:43",
+            "title": "Prepare dinner",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:35:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:36:43",
+            "title": "Clean the house",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:36:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:37:43",
+            "title": "Organize desk",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 10:37:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:38:43",
+            "title": "Read a new book",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:38:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "urgent",
+                "home",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:39:43",
+            "title": "Organize desk",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:39:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "home",
+                "shopping",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:40:43",
+            "title": "Read a new book",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 10:40:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:41:43",
+            "title": "Write a blog post",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 10:41:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:42:43",
+            "title": "Check emails",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 10:42:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "health",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:43:43",
+            "title": "Workout at the gym",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 10:43:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "travel",
+                "finance",
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:44:43",
+            "title": "Water the plants",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 10:44:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "health",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:45:43",
+            "title": "Water the plants",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 10:45:43",
+            "repeat": "Monthly",
+            "priority": 3,
+            "tags": [
+                "home",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:46:43",
+            "title": "Fix the car",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:46:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "health",
+                "travel",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:47:43",
+            "title": "Study for exams",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 10:47:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "fitness",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:48:43",
+            "title": "Update resume",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 10:48:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "tags": [
+                "personal",
+                "work",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:49:43",
+            "title": "Book flight tickets",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:49:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "finance",
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:50:43",
+            "title": "Buy groceries",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:50:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "health",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:51:43",
+            "title": "Book flight tickets",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 10:51:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "shopping",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:52:43",
+            "title": "Organize desk",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 10:52:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:53:43",
+            "title": "Prepare presentation",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:53:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:54:43",
+            "title": "Finish homework",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 10:54:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:55:43",
+            "title": "Fix the car",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:55:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:56:43",
+            "title": "Prepare presentation",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 10:56:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:57:43",
+            "title": "Prepare dinner",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 10:57:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:58:43",
+            "title": "Call the doctor",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 10:58:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 10:59:43",
+            "title": "Plan birthday party",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 10:59:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "education",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:00:43",
+            "title": "Finish homework",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 11:00:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "urgent",
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:01:43",
+            "title": "Pay utility bills",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 11:01:43",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [
+                "travel",
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:02:43",
+            "title": "Book flight tickets",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 11:02:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:03:43",
+            "title": "Schedule meeting",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 11:03:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "travel",
+                "health",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:04:43",
+            "title": "Water the plants",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 11:04:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "finance",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:05:43",
+            "title": "Plan birthday party",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:05:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "work",
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:06:43",
+            "title": "Organize desk",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:06:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "home",
+                "travel",
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:07:43",
+            "title": "Plan birthday party",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 11:07:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "finance",
+                "health",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:08:43",
+            "title": "Call the doctor",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 11:08:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "education",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:09:43",
+            "title": "Call the doctor",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:09:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:10:43",
+            "title": "Water the plants",
+            "desc": "Complete the exercise routine planned for today.",
+            "date": "2024-12-08 11:10:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "home",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:11:43",
+            "title": "Water the plants",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 11:11:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:12:43",
+            "title": "Plan birthday party",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 11:12:43",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [
+                "health",
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:13:43",
+            "title": "Book flight tickets",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 11:13:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:14:43",
+            "title": "Workout at the gym",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:14:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:15:43",
+            "title": "Buy groceries",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 11:15:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:16:43",
+            "title": "Clean the house",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:16:43",
+            "repeat": "Monthly",
+            "priority": 3,
+            "tags": [
+                "travel",
+                "shopping",
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:17:43",
+            "title": "Write a blog post",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:17:43",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:18:43",
+            "title": "Read a new book",
+            "desc": "Contact the clinic and confirm the appointment details.",
+            "date": "2024-12-08 11:18:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:19:43",
+            "title": "Read a new book",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:19:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:20:43",
+            "title": "Fix the car",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 11:20:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "personal",
+                "health",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:21:43",
+            "title": "Check emails",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 11:21:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "finance",
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:22:43",
+            "title": "Finish homework",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 11:22:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "personal"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:23:43",
+            "title": "Call the doctor",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:23:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "personal",
+                "travel"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:24:43",
+            "title": "Organize desk",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:24:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:25:43",
+            "title": "Study for exams",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 11:25:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "urgent",
+                "education",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:26:43",
+            "title": "Plan birthday party",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 11:26:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "education",
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:27:43",
+            "title": "Organize desk",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 11:27:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "home",
+                "work"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:28:43",
+            "title": "Check emails",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:28:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "travel",
+                "finance",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:29:43",
+            "title": "Schedule meeting",
+            "desc": "Write and format the document professionally for submission.",
+            "date": "2024-12-08 11:29:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:30:43",
+            "title": "Check emails",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:30:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:31:43",
+            "title": "Attend yoga class",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 11:31:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "shopping",
+                "fitness",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:32:43",
+            "title": "Finish homework",
+            "desc": "Prepare and rehearse for the upcoming meeting next week.",
+            "date": "2024-12-08 11:32:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "travel",
+                "education",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:33:43",
+            "title": "Water the plants",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:33:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:34:43",
+            "title": "Water the plants",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 11:34:43",
+            "repeat": "Weekly",
+            "priority": 2,
+            "tags": [
+                "health",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:35:43",
+            "title": "Workout at the gym",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:35:43",
+            "repeat": "Daily",
+            "priority": 2,
+            "tags": [
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:36:43",
+            "title": "Call the doctor",
+            "desc": "Focus on the book club's reading for this week.",
+            "date": "2024-12-08 11:36:43",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [
+                "home",
+                "education",
+                "urgent"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:37:43",
+            "title": "Write a blog post",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 11:37:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "home"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:38:43",
+            "title": "Call the doctor",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:38:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "health"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:39:43",
+            "title": "Update resume",
+            "desc": "Pick up necessary items from the grocery store.",
+            "date": "2024-12-08 11:39:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:40:43",
+            "title": "Prepare dinner",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:40:43",
+            "repeat": "Daily",
+            "priority": 3,
+            "tags": [
+                "work",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:41:43",
+            "title": "Study for exams",
+            "desc": "This task involves completing all pending work for the day.",
+            "date": "2024-12-08 11:41:43",
+            "repeat": "Weekly",
+            "priority": 1,
+            "tags": [
+                "home",
+                "fitness",
+                "finance"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:42:43",
+            "title": "Finish homework",
+            "desc": "Sort out all bills and ensure payments are made on time.",
+            "date": "2024-12-08 11:42:43",
+            "repeat": "Monthly",
+            "priority": 2,
+            "tags": [
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:43:43",
+            "title": "Attend yoga class",
+            "desc": "Research new trends in the industry for the blog post.",
+            "date": "2024-12-08 11:43:43",
+            "repeat": "Daily",
+            "priority": 1,
+            "tags": [
+                "shopping",
+                "education"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-08 11:44:43",
+            "title": "Buy groceries",
+            "desc": "Ensure the area is tidy and all items are in their place.",
+            "date": "2024-12-08 11:44:43",
+            "repeat": "Monthly",
+            "priority": 1,
+            "tags": [
+                "finance",
+                "health",
+                "shopping"
+            ],
+            "steps": [
+                {
+                    "desc": "Step 1",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 2",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 3",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 4",
+                    "complete": false
+                },
+                {
+                    "desc": "Step 5",
+                    "complete": false
+                }
+            ],
+            "complete": false
+        }
+    ],
+    "settings": null
+}

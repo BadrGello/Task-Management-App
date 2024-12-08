@@ -44,10 +44,16 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QToolButton" name="taskCompletetoolButton">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>150</width>
-            <height>40</height>
+            <height>30</height>
            </size>
           </property>
           <property name="cursor">
@@ -60,10 +66,16 @@
         </item>
         <item>
          <widget class="QPushButton" name="taskEditPushButton">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
-            <width>100</width>
-            <height>16777215</height>
+            <width>150</width>
+            <height>30</height>
            </size>
           </property>
           <property name="cursor">
@@ -76,10 +88,16 @@
         </item>
         <item>
          <widget class="QPushButton" name="taskDeletePushButton">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
-            <width>100</width>
-            <height>16777215</height>
+            <width>150</width>
+            <height>30</height>
            </size>
           </property>
           <property name="cursor">

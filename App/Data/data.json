@@ -2,120 +2,10 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-07 23:47:51",
-            "title": "s",
+            "id": "2024-12-08 12:44:19",
+            "title": "",
             "desc": "",
-            "date": "2024-12-07 23:47:45",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-07 23:50:21",
-            "title": "g",
-            "desc": "",
-            "date": "2024-12-07 23:50:18",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-07 23:50:59",
-            "title": "gg",
-            "desc": "",
-            "date": "2024-12-07 23:50:54",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 00:47:33",
-            "title": "dz",
-            "desc": "",
-            "date": "2024-12-08 00:47:29",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 00:47:41",
-            "title": "fy",
-            "desc": "",
-            "date": "2024-12-08 00:47:38",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 00:47:57",
-            "title": "dy",
-            "desc": "",
-            "date": "2024-12-08 00:47:52",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 00:48:04",
-            "title": "dq",
-            "desc": "",
-            "date": "2024-12-08 00:47:59",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 01:29:34",
-            "title": "b",
-            "desc": "",
-            "date": "2024-12-08 01:29:30",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 01:30:37",
-            "title": "g",
-            "desc": "",
-            "date": "2024-12-08 01:30:31",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [
-                "a"
-            ],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-08 01:33:26",
-            "title": "new",
-            "desc": "",
-            "date": "2024-12-08 01:33:22",
+            "date": "2024-12-08 12:44:19",
             "repeat": "No Repeating",
             "priority": 3,
             "tags": [],
@@ -123,5 +13,17 @@
             "complete": false
         }
     ],
-    "settings": null
+    "settings": {
+        "highPrioritise": false,
+        "confirmDelete": false,
+        "deleteCompleted": false,
+        "theme": "Dark theme",
+        "font": "Modern No. 20",
+        "dueTodayNotif": false,
+        "dueTodayNotifTime": "04:00",
+        "reminderTime": 5,
+        "taskReminder": true,
+        "eventReminder": true,
+        "studyReminder": true
+    }
 }

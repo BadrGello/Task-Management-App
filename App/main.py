@@ -88,7 +88,17 @@ class mainApp(QMainWindow, FORM_CLASS):
     # Constructor
     def __init__(self, parent=None):
 
-         # ScrollArea Task Widgets
+        """""
+        Initialize Variables
+        """""
+
+        self.searchBarText = ""
+        self.timer = None
+
+        # Add Window
+        self.addWin = None
+
+        # ScrollArea Task Widgets
         self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
         self.tempTaskWidgetsList =[]
         self.newTaskWidget = None
@@ -116,8 +126,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         """""
         Icons
         """""
-        self.pushButton_sort1.setIcon(QIcon('App/sort.png'))
-        self.pushButton_sort1.setIconSize(QSize(24, 24))
+        self.pushButton_sortType.setIcon(QIcon('App/sort.png'))
+        self.pushButton_sortType.setIconSize(QSize(24, 24))
         self.setWindowIcon(QIcon(appIcon))
         # app.setWindowIcon(QIcon(appIcon))
         
@@ -129,8 +139,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Handle_searchBar()
 
         # Set fixed size for buttons and comboboxes
-        self.iterate_buttons(self)
-        self.iterate_combobox(self)
+        # self.iterate_buttons(self)
+        # self.iterate_combobox(self)
         
         # Comment this for original Tabs Layout
         self.setTabsLabelsHorizontal()
@@ -143,21 +153,14 @@ class mainApp(QMainWindow, FORM_CLASS):
         #When the search bar button is clicked, it goes to the function "Handle_searchBar"
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         self.actionPreferences.triggered.connect(self.Handle_settings)
+        self.actionQuit.triggered.connect(self.quitApp)
+        
         # Handle ComboBox changes
         self.comboBox_techniques.currentTextChanged.connect(self.update_study_textbox)
 
         self.plainTextEdit_searchTask.textChanged.connect(self.Handle_searchBar)
 
-        """""
-        Initialize Variables
-        """""
-
-        self.searchBarText = ""
-        self.timer = None
-
-        # Add Window
-        self.addWin = None
-
+        
         """""
         Initialize App System Tray
         """""
@@ -192,6 +195,10 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         # Create a settings window instance on startup and a settingsOptions dict()
         self.Settings = settingWindow(self, self.settingsOptions)
+
+        # This fixes a bug caused by loading tasks upon loading
+        self.menuBar().raise_()
+
         
     # App Tray #
     def restoreApp(self):
@@ -466,7 +473,6 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksGroupBox.setLayout(self.tasksForm)
 
         # Holds all the tasks widgets
-        print(self.taskWidgetsList)
         self.taskWidgetsList.append(self.newTaskWidget)
         
 
@@ -476,7 +482,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
 
-        self.iterate_buttons(self)
+        # self.iterate_buttons(self)
 
     def Handle_searchBar(self):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
@@ -506,7 +512,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         for tag in tags:
             if searchText in tag:
                 return True
-        return False    
+        return False   
+
     # Settings Window #
     def Handle_settings(self):
         self.Settings.show()
@@ -955,8 +962,6 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 
         # Update task in tasksList
         self.mainWindow.update_tasksList(self.task)
-        # print("Here is a delay")
-        # time.sleep(3)
         self.mainWindow.saveApp()
 
         # Update the title and description
