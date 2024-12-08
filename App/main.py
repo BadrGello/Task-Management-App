@@ -74,7 +74,7 @@ ADD_TASK_CLASS, _ = loadUiType(path.join(path.dirname(__file__), addTaskWindowFi
 SETTING_CLASS, _ = loadUiType(path.join(path.dirname(__file__), settingsWindowFilName))
 
 def refresh():
-    # A trick to refresh the app in order to apply the font and fix display issue in QCheckBox in Settings 
+    # A trick to refresh the app in order to apply the font and fix display issue in QCheckBox in Settings
     if stream.isOpen():
         stream.close()
     stream.open(QIODevice.ReadOnly)
@@ -117,6 +117,13 @@ class mainApp(QMainWindow, FORM_CLASS):
         # app.setStyleSheet(QTextStream(stream).readAll())
         refresh()
         
+        #state of the study in techniques
+        self.state = self.findChild(QTextBrowser, "state")
+        self.state.setText("Studying")
+        self.current_mode = "study"
+        self.stop_study.setEnabled(False)
+        self.reset_study.setEnabled(False)
+
         """""
         Calender
         """""
@@ -371,7 +378,9 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.break_time_input = break_time_input    # Store reference
 
             # Connect button to start_study_countdown function
-            # self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
+            self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
+            self.stop_study.clicked.connect(self.toggle_study)
+            self.reset_study.clicked.connect(self.clear_study)
 
             # Set layout to TextBrowser
             self.TextBrowser_display.setLayout(layout)
@@ -412,27 +421,86 @@ class mainApp(QMainWindow, FORM_CLASS):
             }
 
             formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
+            match text:
+                case "Pomodoro Technique":
+                    self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(25, 5))
+                    self.stop_study.clicked.connect(self.toggle_study)
+                    self.reset_study.clicked.connect(self.clear_study)
+                case "52-17 Technique":
+                    self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(52, 17))
+                    self.stop_study.clicked.connect(self.toggle_study)
+                    self.reset_study.clicked.connect(self.clear_study)
+                case "The 45-15 Method":
+                    self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(45, 15))
+                    self.stop_study.clicked.connect(self.toggle_study)
+                    self.reset_study.clicked.connect(self.clear_study)
+            
             self.TextBrowser_display.setText(formatted_text)
 
     def start_study_countdown(self, study_time, break_time):
-        total_seconds = study_time * 60  # Convert minutes to seconds for the timer
+        # Convert minutes to seconds for the timer
+        study_total_seconds = study_time * 60
+        break_total_seconds = break_time * 60
+        study = study_total_seconds
+        rest = break_total_seconds
+
+        self.study_bar.setValue(0)
+
+        self.stop_study.setEnabled(True)
+        self.reset_study.setEnabled(True)
+        self.pushButton_study.setEnabled(False)
 
         def update_timer():
-            nonlocal total_seconds
-            if total_seconds > 0:
-                minutes, seconds = divmod(total_seconds, 60)
-                self.doneNum_3.display(total_seconds)
-                self.countdown_label.setText(f"{minutes:02}:{seconds:02}")
-                total_seconds -= 1
+            nonlocal study, rest
+            if self.current_mode == "study" and study > 0:
+                minutes, seconds = divmod(study, 60)
+                self.time_label.setText(f"{minutes:02}:{seconds:02}")
+                self.study_bar.setValue(int((study_total_seconds - study) / study_total_seconds * 100))
+                study -= 1
+            elif self.current_mode == "break" and rest > 0:
+                minutes, seconds = divmod(rest, 60)
+                self.time_label.setText(f"{minutes:02}:{seconds:02}")
+                self.study_bar.setValue(int((break_total_seconds - rest) / break_total_seconds * 100))
+                rest -= 1
             else:
-                self.timer.stop()
-                self.doneNum_3.display(0)
-                self.countdown_label.setText("Break Time! Take a rest.")
+                self.time_label.setText(f"{0:02}:{0:02}")
+                if self.current_mode == "study":
+                    rest = break_total_seconds
+                    self.current_mode = "break"
+                    self.state.setText("Break")
+                else:
+                    study = study_total_seconds
+                    self.current_mode = "study"
+                    self.state.setText("Studying")
 
         # Create a QTimer to update the countdown every second
         self.timer = QTimer(self)
         self.timer.timeout.connect(update_timer)
         self.timer.start(1000)
+        self.is_paused = False
+        
+    def toggle_study(self):
+        if self.is_paused:
+            self.timer.start(1000)
+            self.stop_study.setText("Pause")
+        else:
+            self.timer.stop()
+            self.stop_study.setText("Resume")
+        self.is_paused = not self.is_paused
+
+    def clear_study(self):
+        self.timer.stop()
+        self.is_paused = False
+        self.current_mode = "study"
+        self.study_bar.setValue(0)
+        self.time_label.setText("00:00")
+        self.state.setText("Studying")
+        self.pushButton_study.setEnabled(True)
+        self.stop_study.setEnabled(False)
+        self.reset_study.setEnabled(False)
+        self.stop_study.setText("Pause")
+        self.study_time_input = None
+        self.break_time_input = None
     ##################
         
     # Tasks Tab #          
