@@ -94,9 +94,11 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         self.searchBarText = ""
         self.timer = None
-
+        
         # Add Window
         self.addWin = None
+
+        self.events=[]
 
         # ScrollArea Task Widgets
         self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
@@ -106,6 +108,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksForm = None
         self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
         self.tempTaskList = []
+        
 
         super(mainApp, self).__init__(parent)
         QMainWindow.__init__(self)
@@ -204,10 +207,78 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Settings = settingWindow(self, self.settingsOptions)
 
         # This fixes a bug caused by loading tasks upon loading
+        self.taskTimers= []
+        self.reminderTimers= []
+        self.appTimer=QTimer(self)
+        self.appTimer.timeout.connect(self.appTimer_event)
+        self.timer_interval = 3600000  # 1 hour in milliseconds
         self.menuBar().raise_()
+        self.appTimer_event()
+        self.appTimer.start(self.timer_interval)
+
+        
 
         
     # App Tray #
+    def reminderTimer_event(self,Task):
+        print("done")
+        global stream
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Reminder")
+        dialog.setWindowFlag(Qt.FramelessWindowHint)  
+        dialog.resize(400, 300)
+
+        label = QLabel('This is your reminder for '+Task.task["title"], dialog)
+        label.setAlignment(Qt.AlignCenter)
+        
+        dismiss_button = QPushButton("Dismiss", dialog)
+        dismiss_button.clicked.connect(dialog.accept)
+
+        layout = QVBoxLayout()
+        layout.addWidget(label)
+        layout.addWidget(dismiss_button)
+
+        dialog.setLayout(layout)
+
+        dialog.show()
+        dialog.raise_()  
+        dialog.activateWindow()
+    def taskTimer_event(self,Task):
+        Task.task["priority"] =0
+        Task.update_task_info()
+
+    def appTimer_event(self):
+        self.taskTimers = []
+        self.reminderTimers = []
+        current_time = datetime.now()
+        current_minutes = current_time.minute
+        current_seconds = current_time.second
+
+        # Calculate the remaining time until the next hour
+        self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
+        for task_ in self.taskWidgetsList:
+            if not task_.task["complete"]:
+                target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
+                remainTime =target_time-current_time
+                if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
+                    realRemainTime = remainTime.seconds -remainTime.seconds %60
+                    print(realRemainTime )
+                    taskTimer=QTimer(self)
+                    taskTimer.setSingleShot(True)
+                    taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
+                    taskTimer.start(realRemainTime*1000)
+                    self.taskTimers.append(taskTimer)
+                elif remainTime.days<=0 or (remainTime.seconds//3600) <= 0:
+                     self.taskTimer_event(task_)
+                if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
+                    reminderTimer=QTimer(self)
+                    reminderTimer.setSingleShot(True)
+                    reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_))
+                    reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
+                    self.reminderTimers.append(reminderTimer)
+                
+        
+
     def restoreApp(self):
         self.show()
         self.activateWindow()
@@ -780,6 +851,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         event["desc"] = event_description
         event["date"] = event_date
         event["repeat"] = event_repeat
+        self.events.append(event)
         
 
         #####################
@@ -1097,7 +1169,9 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         self.taskDateTimeEdit.setDateTime(date)
         
         # Update the priority line color
-        if self.task["priority"] == 1: # High
+        if self.task["priority"] == 0: #late due date
+            self.taskPriorityLine.setStyleSheet(" border: 6px solid black;")
+        elif self.task["priority"] == 1: # High
             self.taskPriorityLine.setStyleSheet(" border: 6px solid red;")
         elif self.task["priority"] == 2: # Med
             self.taskPriorityLine.setStyleSheet(" border: 6px solid orange;")
