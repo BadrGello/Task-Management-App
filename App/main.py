@@ -92,8 +92,10 @@ class mainApp(QMainWindow, FORM_CLASS):
         """""
         Initialize Variables
         """""
-
+        self.taskTimers = []
+        self.reminderTimers = []
         self.player = QMediaPlayer()
+        self.appPlayer = QMediaPlayer()
         self.searchBarText = ""
         self.timer = None
         
@@ -209,22 +211,28 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Settings = settingWindow(self, self.settingsOptions)
 
         # This fixes a bug caused by loading tasks upon loading
-        self.taskTimers= []
-        self.reminderTimers= []
+
         self.appTimer=QTimer(self)
         self.appTimer.timeout.connect(self.appTimer_event)
         self.timer_interval = 3600000  # 1 hour in milliseconds
         self.menuBar().raise_()
         self.appTimer_event()
         self.appTimer.start(self.timer_interval)
+        
 
         
 
         
     # App Tray #
+    def alarmLoop(self, status):
+        if status == QMediaPlayer.EndOfMedia:
+            self.appPlayer.play()
+        
     def reminderTimer_event(self,Task):
-        print("done")
-        global stream
+        self.appPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("App\Audio\Study alarm.wav")))
+        self.appPlayer.setVolume(100)
+        self.appPlayer.mediaStatusChanged.connect(self.alarmLoop)
+        self.appPlayer.play()
         dialog = QDialog(self)
         dialog.setWindowTitle("Reminder")
         dialog.setWindowFlag(Qt.FramelessWindowHint)  
@@ -234,6 +242,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         label.setAlignment(Qt.AlignCenter)
         
         dismiss_button = QPushButton("Dismiss", dialog)
+        dismiss_button.clicked.connect(self.stopAlarm)
         dismiss_button.clicked.connect(dialog.accept)
 
         layout = QVBoxLayout()
@@ -245,11 +254,19 @@ class mainApp(QMainWindow, FORM_CLASS):
         dialog.show()
         dialog.raise_()  
         dialog.activateWindow()
+
+    def stopAlarm(self):
+        self.appPlayer.stop()
+
     def taskTimer_event(self,Task):
         Task.task["priority"] =0
         Task.update_task_info()
 
     def appTimer_event(self):
+        for timer in self.taskTimers :
+            timer.stop()
+        for timer in self.reminderTimers :
+            timer.stop()    
         self.taskTimers = []
         self.reminderTimers = []
         current_time = datetime.now()
@@ -656,6 +673,8 @@ class mainApp(QMainWindow, FORM_CLASS):
             print("ERROR, Didn't find the task to be edited")
             self.add_task_widget(task)
 
+        self.appTimer_event()    
+
     def add_task_widget(self, task):
 
         self.plainTextEdit_searchTask.clear()
@@ -678,6 +697,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         for task_ in self.taskWidgetsList:
             self.tasksForm.addRow(task_)
+
+        self.appTimer_event()
 
         self.scrollArea_tasks.setWidget(self.tasksGroupBox)
         self.scrollArea_tasks.setWidgetResizable(True)
