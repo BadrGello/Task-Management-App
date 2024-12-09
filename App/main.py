@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUiType
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 import sys
 from os import path, makedirs
 from datetime import datetime
@@ -92,6 +93,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         Initialize Variables
         """""
 
+        self.player = QMediaPlayer()
         self.searchBarText = ""
         self.timer = None
         
@@ -590,6 +592,9 @@ class mainApp(QMainWindow, FORM_CLASS):
                 self.study_bar.setValue(int((break_total_seconds - rest) / break_total_seconds * 100))
                 rest -= 1
             else:
+                self.player.setMedia(QMediaContent(QUrl.fromLocalFile("App\Audio\Study alarm.wav")))
+                self.player.setVolume(100)
+                self.player.play()
                 self.time_label.setText(f"{0:02}:{0:02}")
                 if self.current_mode == "study":
                     rest = break_total_seconds

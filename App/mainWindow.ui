@@ -796,7 +796,7 @@ p, li { white-space: pre-wrap; }
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">font: 14pt;</string>
+             <string notr="true">font: 26pt;</string>
             </property>
             <property name="lineWidth">
              <number>1</number>

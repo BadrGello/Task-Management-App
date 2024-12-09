@@ -179,13 +179,37 @@
             "tags": [],
             "steps": [],
             "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-09 14:53:35",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-09 14:53:34",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-09 14:53:38",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-09 14:53:37",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": false
         }
     ],
     "settings": {
         "highPrioritise": false,
         "confirmDelete": false,
         "deleteCompleted": false,
-        "theme": "Light theme",
+        "theme": "Dark theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": false,
         "dueTodayNotifTime": "04:00",
