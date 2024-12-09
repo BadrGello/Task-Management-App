@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUiType
+from PyQt5.QtMultimedia import QSound
 import sys
 from os import path, makedirs
 from datetime import datetime
@@ -519,6 +520,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                 self.study_bar.setValue(int((break_total_seconds - rest) / break_total_seconds * 100))
                 rest -= 1
             else:
+                QSound.play("App\Audio\Study alarm.wav")
                 self.time_label.setText(f"{0:02}:{0:02}")
                 if self.current_mode == "study":
                     rest = break_total_seconds
