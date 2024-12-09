@@ -64,7 +64,7 @@ settingsOptionsTemplate = {
     "taskReminder": True,
     "eventReminder": True,
     "studyReminder": True,
-} 
+}
 
 
 # Import UI files
@@ -246,7 +246,7 @@ class mainApp(QMainWindow, FORM_CLASS):
     def setTabsLabelsHorizontal(self):
         self.tabWidget_mainTabs.setTabPosition(QTabWidget.West)  # Set tabs to West first (text will be rotated so the following fixes)
         for i in range(self.tabWidget_mainTabs.count()):
-            label = QLabel(self.tabWidget_mainTabs.tabText(i)) 
+            label = QLabel(self.tabWidget_mainTabs.tabText(i))
             label.setAlignment(Qt.AlignCenter)
             
             self.tabWidget_mainTabs.tabBar().setTabText(i, "")  # Remove the default tab text
@@ -280,7 +280,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         
         # Delete it from taskWidgetsList
         for widget in self.taskWidgetsList:
-            if (widget.task["id"] == task["id"]): 
+            if (widget.task["id"] == task["id"]):
                 self.tasksForm.removeRow(widget)
                 self.taskWidgetsList.remove(widget)
                 break
@@ -289,7 +289,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.settingsOptions = settingsOptions
         self.saveApp()
 
-    ##################### 
+    #####################
 
     # Save and Load #
 
@@ -333,7 +333,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     #################
 
-    # Study Tech Tab #      
+    # Study Tech Tab #
     def update_study_textbox(self, text):
         layout = self.TextBrowser_display.layout()
         self.TextBrowser_display.clear()
@@ -378,6 +378,20 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.break_time_input = break_time_input    # Store reference
 
             # Connect button to start_study_countdown function
+            try:
+                self.pushButton_study.clicked.disconnect()
+            except TypeError:
+                pass
+
+            try:
+                self.stop_study.clicked.disconnect()
+            except TypeError:
+                pass
+
+            try:
+                self.reset_study.clicked.disconnect()
+            except TypeError:
+                pass
             self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(study_time_input.value(), break_time_input.value()))
             self.stop_study.clicked.connect(self.toggle_study)
             self.reset_study.clicked.connect(self.clear_study)
@@ -423,14 +437,56 @@ class mainApp(QMainWindow, FORM_CLASS):
             formatted_text = descriptions.get(text, "<p>No description available for this technique.</p>")
             match text:
                 case "Pomodoro Technique":
+                    try:
+                        self.pushButton_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.stop_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.reset_study.clicked.disconnect()
+                    except TypeError:
+                        pass
                     self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(25, 5))
                     self.stop_study.clicked.connect(self.toggle_study)
                     self.reset_study.clicked.connect(self.clear_study)
                 case "52-17 Technique":
+                    try:
+                        self.pushButton_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.stop_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.reset_study.clicked.disconnect()
+                    except TypeError:
+                        pass
                     self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(52, 17))
                     self.stop_study.clicked.connect(self.toggle_study)
                     self.reset_study.clicked.connect(self.clear_study)
                 case "The 45-15 Method":
+                    try:
+                        self.pushButton_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.stop_study.clicked.disconnect()
+                    except TypeError:
+                        pass
+
+                    try:
+                        self.reset_study.clicked.disconnect()
+                    except TypeError:
+                        pass
                     self.pushButton_study.clicked.connect(lambda: self.start_study_countdown(45, 15))
                     self.stop_study.clicked.connect(self.toggle_study)
                     self.reset_study.clicked.connect(self.clear_study)
@@ -503,7 +559,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.break_time_input = None
     ##################
         
-    # Tasks Tab #          
+    # Tasks Tab #
 
     def Handle_add_window(self):
         # if self.addWin is None:
@@ -580,7 +636,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         for tag in tags:
             if searchText in tag:
                 return True
-        return False   
+        return False
 
     # Settings Window #
     def Handle_settings(self):
@@ -623,7 +679,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         """""
         Initialisations
         """""
-        # Set the date of QDateTimeEdit to current time to be easier for user 
+        # Set the date of QDateTimeEdit to current time to be easier for user
         self.TaskDate.setDateTime(QDateTime.currentDateTime())
 
         """""
@@ -677,7 +733,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         
         task = taskTemplate.copy()
 
-        task_title = self.TaskTitleInput.toPlainText() 
+        task_title = self.TaskTitleInput.toPlainText()
         task_description = self.TaskDescInput.toPlainText()
         task_due_date = self.TaskDate.dateTime().toString("yyyy-MM-dd HH:mm:ss")
         task_repeat = self.TaskRepeat.currentText()
@@ -714,10 +770,10 @@ class addWindow(QDialog, ADD_TASK_CLASS):
     def Handle_event_ok_clicked(self):
         event = eventTemplate.copy()
 
-        event_title = self.EventTitleInput.toPlainText() 
-        event_description = self.EventDescInput.toPlainText()  
+        event_title = self.EventTitleInput.toPlainText()
+        event_description = self.EventDescInput.toPlainText()
         event_date = self.EventDate.dateTime().toString("yyyy-MM-dd HH:mm:ss")
-        event_repeat = self.EventRepeatValue.currentText() 
+        event_repeat = self.EventRepeatValue.currentText()
         event["type"] = "event"
         event["id"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Unique id as current time
         event["title"] = event_title
@@ -808,7 +864,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
 
             refresh()
 
-        else: 
+        else:
             self.settingsOptions = settingsOptionsTemplate.copy()
 
     def Handle_change_high_priority_incomplete_tasks(self, checked):
@@ -924,7 +980,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
     def add_step(self, step=None):
         
         # Add steps when creating a new step
-        if (step is None): 
+        if (step is None):
             step_desc = self.stepInput.text()
         
             if (step_desc):
@@ -944,7 +1000,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
             item = QListWidgetItem(step["desc"])
             item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
             if (step["complete"]):
-                item.setCheckState(Qt.Checked) 
+                item.setCheckState(Qt.Checked)
             else :
                 item.setCheckState(Qt.Unchecked)
 
