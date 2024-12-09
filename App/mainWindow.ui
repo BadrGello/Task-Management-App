@@ -213,8 +213,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1277</width>
-             <height>530</height>
+             <width>1269</width>
+             <height>517</height>
             </rect>
            </property>
           </widget>
@@ -796,7 +796,7 @@ p, li { white-space: pre-wrap; }
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">font: 14pt;</string>
+             <string notr="true">font: 26pt;</string>
             </property>
             <property name="lineWidth">
              <number>1</number>
