@@ -704,7 +704,7 @@ p, li { white-space: pre-wrap; }
 </string>
               </property>
               <property name="text">
-               <string>Stop</string>
+               <string>Pause</string>
               </property>
              </widget>
             </item>
