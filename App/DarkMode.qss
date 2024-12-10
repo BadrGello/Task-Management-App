@@ -63,8 +63,8 @@ QProgressBar::chunk:horizontal {
 	background: qlineargradient(
             x1: 0, y1: 0, 
             x2: 1, y2: 0,
-            stop:0 rgba(253,186,18,0.6), 
-            stop:1 rgb(253,186,18));
+            stop:0 #188524, 
+            stop:1 #29e367);
 	border-radius:8px;
     border-width:0;
 }

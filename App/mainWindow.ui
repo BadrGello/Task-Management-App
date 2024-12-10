@@ -37,7 +37,7 @@ rgb(241, 255, 231)</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -213,8 +213,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1269</width>
-             <height>517</height>
+             <width>1277</width>
+             <height>543</height>
             </rect>
            </property>
           </widget>
@@ -474,8 +474,8 @@ rgb(241, 255, 231)</string>
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -841,7 +841,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QProgressBar" name="completion_bar_2">
+            <widget class="QProgressBar" name="completion_bar_month">
              <property name="value">
               <number>100</number>
              </property>
@@ -855,7 +855,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="doneNum_2">
+            <widget class="QLCDNumber" name="doneNum_month">
              <property name="minimumSize">
               <size>
                <width>200</width>
@@ -878,7 +878,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="leftNum_2">
+            <widget class="QLCDNumber" name="leftNum_month">
              <property name="minimumSize">
               <size>
                <width>200</width>
@@ -951,12 +951,12 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QProgressBar" name="completion_bar">
+            <widget class="QProgressBar" name="completion_bar_week">
              <property name="enabled">
               <bool>true</bool>
              </property>
              <property name="value">
-              <number>50</number>
+              <number>0</number>
              </property>
             </widget>
            </item>
@@ -968,7 +968,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="1" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="doneNum">
+            <widget class="QLCDNumber" name="doneNum_week">
              <property name="minimumSize">
               <size>
                <width>200</width>
@@ -991,7 +991,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="leftNum">
+            <widget class="QLCDNumber" name="leftNum_week">
              <property name="minimumSize">
               <size>
                <width>200</width>
@@ -1021,7 +1021,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1321</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="sizePolicy">
