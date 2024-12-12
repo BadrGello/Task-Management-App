@@ -122,6 +122,9 @@ QComboBox,QDateTimeEdit {
 	width:150px;
 	border:1px solid rgb(57,57,57);
 }
+QDateTimeEdit{
+	font-size: 16px;  
+}
 QTimeEdit {
 	height: 25px;
 }

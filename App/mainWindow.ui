@@ -50,6 +50,35 @@ rgb(241, 255, 231)</string>
         <string>Tasks and Events</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="0">
+         <widget class="QScrollArea" name="scrollArea_tasks">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollArea_tasks_content">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1269</width>
+             <height>517</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox_addAndSearch">
           <property name="sizePolicy">
@@ -103,25 +132,6 @@ rgb(241, 255, 231)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_searchTask">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Search</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QPlainTextEdit" name="plainTextEdit_searchTask">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -151,39 +161,32 @@ rgb(241, 255, 231)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_sortType">
+            <widget class="QComboBox" name="comboBox_sortType">
              <property name="minimumSize">
               <size>
-               <width>150</width>
+               <width>160</width>
                <height>30</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>150</width>
+               <width>160</width>
                <height>30</height>
               </size>
              </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBox_sortType">
              <item>
               <property name="text">
-               <string>by Title</string>
+               <string>Sort by Title</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>by Due Date</string>
+               <string>Sort by Due Date</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>by Priority</string>
+               <string>Sort by Priority</string>
               </property>
              </item>
             </widget>
@@ -207,36 +210,26 @@ rgb(241, 255, 231)</string>
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_sortType">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
           </layout>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="scrollArea_tasks">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollArea_tasks_content">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>1269</width>
-             <height>517</height>
-            </rect>
-           </property>
-          </widget>
          </widget>
         </item>
        </layout>

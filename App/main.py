@@ -174,7 +174,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         #Handles adding new tasks
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
         #When the search bar button is clicked, it goes to the function "Handle_searchBar"
-        self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
+        # self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
         #When the sort button is clicked
         self.pushButton_sortType.clicked.connect(self.Handle_sort)
         #change the order of sorting
@@ -1007,7 +1007,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         event["desc"] = event_description
         event["date"] = event_date
         event["repeat"] = event_repeat
-        self.events.append(event)
+        # self.events.append(event)
         
 
         #####################

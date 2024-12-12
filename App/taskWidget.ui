@@ -221,10 +221,16 @@
       </item>
       <item row="0" column="2" rowspan="2">
        <widget class="QDateTimeEdit" name="taskDateTimeEdit">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>60</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>250</width>
-          <height>16777215</height>
+          <height>60</height>
          </size>
         </property>
         <property name="cursor">
@@ -242,6 +248,12 @@
           <month>10</month>
           <day>1</day>
          </datetime>
+        </property>
+        <property name="currentSection">
+         <enum>QDateTimeEdit::DaySection</enum>
+        </property>
+        <property name="displayFormat">
+         <string>d/M/yyyy h:mm AP</string>
         </property>
         <property name="calendarPopup">
          <bool>true</bool>
