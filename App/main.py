@@ -712,28 +712,24 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.tasksGroupBox = QGroupBox('Tasks')
         if self.tasksForm is None:
             self.tasksForm = QFormLayout()
-            # self.tasksForm.setVerticalSpacing(10)  # Set vertical space between widgets (Didn't work)
+            self.tasksGroupBox.setLayout(self.tasksForm)
+            self.scrollArea_tasks.setWidget(self.tasksGroupBox)
+            self.scrollArea_tasks.setWidgetResizable(True)
 
-        self.tasksGroupBox.setLayout(self.tasksForm)
+            # self.tasksForm.setVerticalSpacing(10)  # Set vertical space between widgets (Didn't work)
 
         # Holds all the tasks widgets
         self.taskWidgetsList.append(self.newTaskWidget)
-        
 
         for task_ in self.taskWidgetsList:
             self.tasksForm.addRow(task_)
 
         self.appTimer_event()
 
-        self.scrollArea_tasks.setWidget(self.tasksGroupBox)
-        self.scrollArea_tasks.setWidgetResizable(True)
-
-        # self.iterate_buttons(self)
-
         #For progress bar
         self.update_progress()
 
-        #Search
+    #Search
     def Handle_searchBar(self):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)

@@ -1,18 +1,5 @@
 {
-    "tasks": [
-        {
-            "type": "task",
-            "id": "2024-12-12 14:03:32",
-            "title": "as",
-            "desc": "",
-            "date": "2024-12-12 14:03:29",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        }
-    ],
+    "tasks": [],
     "settings": {
         "highPrioritise": false,
         "confirmDelete": false,
