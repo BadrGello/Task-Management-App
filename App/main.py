@@ -295,13 +295,14 @@ class mainApp(QMainWindow, FORM_CLASS):
                 remainTime =target_time-current_time
                 if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                     realRemainTime = remainTime.seconds -remainTime.seconds %60
-                    print(realRemainTime )
+                    print(remainTime.days )
                     taskTimer=QTimer(self)
                     taskTimer.setSingleShot(True)
                     taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
                     taskTimer.start(realRemainTime*1000)
                     self.taskTimers.append(taskTimer)
-                elif remainTime.days<=0 or (remainTime.seconds//3600) <= 0:
+                elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
+                     print(task_.task["title"],remainTime.seconds//3600)
                      self.taskTimer_event(task_)
                 if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
                     reminderTimer=QTimer(self)
