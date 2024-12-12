@@ -37,7 +37,7 @@ rgb(241, 255, 231)</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -170,6 +170,25 @@ rgb(241, 255, 231)</string>
             </widget>
            </item>
            <item>
+            <widget class="QComboBox" name="comboBox_sortType">
+             <item>
+              <property name="text">
+               <string>by Title</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>by Due Date</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>by Priority</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pushButton_sortOrder">
              <property name="minimumSize">
               <size>
@@ -213,8 +232,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1277</width>
-             <height>543</height>
+             <width>1269</width>
+             <height>517</height>
             </rect>
            </property>
           </widget>
@@ -474,8 +493,8 @@ rgb(241, 255, 231)</string>
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -1021,7 +1040,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1321</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="sizePolicy">

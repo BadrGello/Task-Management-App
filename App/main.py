@@ -175,6 +175,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.pushButton_addTask.clicked.connect(self.Handle_add_window) # Upon clicking the button "Add" which its object name is pushButton_addTask, it excutes the function "add_task_widget"
         #When the search bar button is clicked, it goes to the function "Handle_searchBar"
         self.pushButton_searchTask.clicked.connect(self.Handle_searchBar)
+        #When the sort button is clicked
+        self.pushButton_sortType.clicked.connect(self.Handle_sort)
+        #change the order of sorting
+        self.pushButton_sortOrder.clicked.connect(self.Change_Sort_Order)
+        
         self.actionPreferences.triggered.connect(self.Handle_settings)
         self.actionQuit.triggered.connect(self.quitApp)
         
@@ -727,6 +732,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         #For progress bar
         self.update_progress()
 
+        #Search
     def Handle_searchBar(self):
         self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
         print(self.searchBarText)
@@ -756,6 +762,37 @@ class mainApp(QMainWindow, FORM_CLASS):
             if searchText in tag:
                 return True
         return False
+        
+    # sort #
+    def Handle_sort (self):
+        #determine the sort type from the combo box
+        if self.comboBox_sortType.currentText()=="by Title":
+            sortType = "title"
+        elif self.comboBox_sortType.currentText()=="by Due Date":
+            sortType = "date"
+        else:
+            sortType = "priority"
+        # determine the order #
+        if self.pushButton_sortOrder.text() == "Ascendingly": 
+            order = False
+        else:
+            order = True         
+        # Remove all widgets from the layout without deleting them
+        while self.tasksForm.count():
+            child = self.tasksForm.takeAt(0)
+            if child.widget():
+                child.widget().setParent(None)  # Detach widget from the layout but do not delete it
+        #sort 
+        self.taskWidgetsList.sort(key = lambda x: x.task[sortType] , reverse = order)
+        #Re add tasks
+        for widget in self.taskWidgetsList:
+            self.tasksForm.addRow(widget)  # Re-add the widget to the layout
+    
+    def Change_Sort_Order(self):
+        if self.pushButton_sortOrder.text() == "Ascendingly":
+            self.pushButton_sortOrder.setText("Descendingly")
+        else:
+            self.pushButton_sortOrder.setText("Ascendingly")    
 
     # Settings Window #
     def Handle_settings(self):
