@@ -293,6 +293,8 @@ class mainApp(QMainWindow, FORM_CLASS):
             if not task_.task["complete"]:
                 target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
                 remainTime =target_time-current_time
+                if remainTime.days==0 and self.settingsOptions["highPrioritise"]:
+                    task_.task["priority"] = 1
                 if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                     realRemainTime = remainTime.seconds -remainTime.seconds %60
                     print(remainTime.days )
