@@ -7,8 +7,11 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 import sys
 from os import path, makedirs
 from datetime import datetime, timedelta
+import calendar
 import json
 import time
+from PyQt5.QtChart import *
+
 
 stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
@@ -112,6 +115,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.leftNum_month = QLCDNumber()
         self.doneNum_week = QLCDNumber()
         self.leftNum_week = QLCDNumber()
+        self.chart_week = QWidget()
+        self.chart_month = QWidget()
 
         # ScrollArea Task Widgets
         self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
@@ -806,11 +811,46 @@ class mainApp(QMainWindow, FORM_CLASS):
     def update_progress(self):
         self.progressMonthly()
         self.progressWeekly()
+        self.chartsWeekly()
+        self.chartsMonthly()
+
+
+    def chartsMonthly(self):
+
+        #Calculate current month and year
+        current_date = datetime.now()
+        current_month = current_date.month
+        current_year = current_date.year
+
+        #save current month tasks
+        current_month_tasks = [
+            task for task in self.tasksList
+            if datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S").month == current_month and
+            datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S").year == current_year
+        ]
+
+        #Count completed tasks for each week
+        weeks_in_month = [[] for _ in range(5)]
+        for task in current_month_tasks:
+            task_date = datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S")
+            week_of_month = (task_date.day - 1) // 7 
+            if task["complete"]:
+                weeks_in_month[week_of_month].append(task)
+        
+        completed_tasks_per_week = [len(week) for week in weeks_in_month]
+
+        #Chart
+        self.weeks_of_month = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"]
+        self.monthly_x_values = list(range(len(self.weeks_of_month)))  #Days of the month
+        self.monthly_y_values = completed_tasks_per_week
+        monthly_placeholder = self.findChild(QWidget, "chart_month")
+        chart = self.create_chart(self.monthly_x_values, self.monthly_y_values, "Previous Month Tasks Progress", self.weeks_of_month)
+        self.add_chart_to_placeholder(monthly_placeholder, chart)
 
     def progressMonthly(self):
 
         """
-        Updates the progress bar for tasks completed in the current month.
+        Updates the progress for tasks completed in the current month.
         """
 
         self.completion_bar_month.setValue(0)
@@ -828,6 +868,8 @@ class mainApp(QMainWindow, FORM_CLASS):
             datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S").year == current_year
         ]
 
+       
+
         #Calculate number of current month tasks
         total_tasks_this_month = len(current_month_tasks)
         completed_tasks_this_month = sum(1 for task in current_month_tasks if task["complete"])
@@ -836,25 +878,58 @@ class mainApp(QMainWindow, FORM_CLASS):
             completion_percentage = completed_tasks_this_month / total_tasks_this_month * 100
         else:
             completion_percentage = 0
+
             
+        #Progress bar and LCDs    
         self.completion_bar_month.setValue(int(completion_percentage))
         self.doneNum_month.display(completed_tasks_this_month)
         self.leftNum_month.display(total_tasks_this_month - completed_tasks_this_month)
+        
+        
 
-    def progressWeekly(self):
-        """
-        Updates the progress bar for tasks completed in the current week.
-        """
-        self.completion_bar_week.setValue(0)
+    def chartsWeekly(self):
 
         current_date = datetime.now()
-        start_of_week = current_date - timedelta(days=(current_date.weekday() + 2) % 7)  # Start of week: Saterday
+        start_of_week = current_date - timedelta(days=(current_date.weekday() + 2) % 7)  #Start of week: Saterday
 
         #save current week tasks
         current_week_tasks = [
             task for task in self.tasksList
             if start_of_week <= datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S") <= current_date
         ]
+        #Count completed tasks for each day
+        completed_tasks_per_day = [0] * 7  
+        for task in current_week_tasks:
+            task_date = datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S")
+            day_of_week = task_date.weekday()
+            if task["complete"]:
+                completed_tasks_per_day[(day_of_week + 2) % 7] += 1
+
+        #Chart
+        label = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+        self.weekly_x_values = list(range(7))
+        self.weekly_y_values = completed_tasks_per_day
+        weekly_placeholder = self.findChild(QWidget, "chart_week")
+        chart = self.create_chart(self.weekly_x_values, self.weekly_y_values, "My Week Tasks Progress", label)
+        self.add_chart_to_placeholder(weekly_placeholder, chart)
+
+
+    def progressWeekly(self):
+        """
+        Updates the progress for tasks completed in the current week.
+        """
+        self.completion_bar_week.setValue(0)
+
+        current_date = datetime.now()
+        start_of_week = current_date - timedelta(days=(current_date.weekday() + 2) % 7)  #Start of week: Saterday
+
+        #save current week tasks
+        current_week_tasks = [
+            task for task in self.tasksList
+            if start_of_week <= datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S") <= current_date
+        ]
+
+        
 
         #Calculate number of current week tasks
         total_tasks_this_week = len(current_week_tasks)
@@ -865,11 +940,67 @@ class mainApp(QMainWindow, FORM_CLASS):
         else:
             completion_percentage = 0
 
+        #Progress bar and LCDs
         self.completion_bar_week.setValue(int(completion_percentage))
         self.doneNum_week.display(completed_tasks_this_week)
         self.leftNum_week.display(total_tasks_this_week - completed_tasks_this_week)
 
+        
 
+
+    #Generating Charts
+    def create_chart(self, x, y, title, labels):
+        series = QLineSeries()
+        
+        #Append data points to the series
+        for data_x, data_y in zip(x, y):
+            series.append(data_x, data_y)
+
+        chart = QChart()
+        chart.addSeries(series)
+        chart.setTitle(title)
+        chart.createDefaultAxes()
+
+        
+        axis_x = QCategoryAxis()
+        axis_x.setLabelsPosition(QCategoryAxis.AxisLabelsPositionOnValue)
+        
+        #Labels
+        for idx, label in enumerate(labels):
+            axis_x.append(label, float(idx))
+
+        chart.setAxisX(axis_x, series)
+
+        #Set Y-axis range
+        max_value = max(y)
+        axis_y = chart.axes(Qt.Vertical)[0]
+        axis_y.setRange(0, max_value + 1)
+        axis_y.applyNiceNumbers()
+
+        axis_x.setGridLineVisible(False)
+        axis_y.setGridLineVisible(True) 
+
+        return chart
+    
+    def add_chart_to_placeholder(self, placeholder, chart):
+        """
+        Adds the chart to the specified placeholder.
+        """
+             
+        chart_view = QChartView(chart)
+        chart_view.setRenderHint(QPainter.Antialiasing)
+
+        #Set chart layout
+        layout = QHBoxLayout()
+        layout.addWidget(chart_view)
+        chart_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        placeholder.setLayout(layout)
+        chart_view.update()
+
+        chart.setTitleFont(QFont("Arial", 8, QFont.Bold))
+        chart.setTitleBrush(QBrush(Qt.black))
+        chart.legend().setVisible(False)
+    
     ##################
     
         

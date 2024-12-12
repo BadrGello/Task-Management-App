@@ -37,7 +37,7 @@ rgb(241, 255, 231)</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -72,8 +72,8 @@ rgb(241, 255, 231)</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1269</width>
-             <height>517</height>
+             <width>1277</width>
+             <height>543</height>
             </rect>
            </property>
           </widget>
@@ -486,8 +486,8 @@ rgb(241, 255, 231)</string>
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -836,6 +836,199 @@ p, li { white-space: pre-wrap; }
         <string>Tasks Progress</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
+        <item row="2" column="0" colspan="2">
+         <widget class="QGroupBox" name="myDay_data_2">
+          <property name="title">
+           <string>Charts</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="1" column="1">
+            <widget class="QLabel" name="chart_month">
+             <property name="text">
+              <string>Chart generated from data</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="chart_week">
+             <property name="text">
+              <string>Chart generated from data</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <spacer name="verticalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>30</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="1">
+            <spacer name="verticalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>30</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="myDay_data">
+          <property name="title">
+           <string>My Week</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="2" column="1">
+            <widget class="QProgressBar" name="completion_bar_week">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="done">
+             <property name="text">
+              <string>Total Tasks Done:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="copmletion_label">
+             <property name="text">
+              <string>Completion Percentage:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="left">
+             <property name="text">
+              <string>Tasks Left:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLCDNumber" name="doneNum_week">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLCDNumber" name="leftNum_week">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <spacer name="verticalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="1">
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="prev_month">
           <property name="title">
@@ -845,28 +1038,14 @@ p, li { white-space: pre-wrap; }
            <bool>true</bool>
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
-           <item row="0" column="0">
-            <widget class="QLabel" name="copmletion_label_2">
-             <property name="text">
-              <string>Completion Percentage:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QProgressBar" name="completion_bar_month">
-             <property name="value">
-              <number>100</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="done_2">
              <property name="text">
               <string>Total Tasks Done:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="1" alignment="Qt::AlignHCenter">
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLCDNumber" name="doneNum_month">
              <property name="minimumSize">
               <size>
@@ -883,13 +1062,27 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item row="2" column="0">
+            <widget class="QLabel" name="copmletion_label_2">
+             <property name="text">
+              <string>Completion Percentage:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QProgressBar" name="completion_bar_month">
+             <property name="value">
+              <number>100</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
             <widget class="QLabel" name="left_2">
              <property name="text">
               <string>Tasks Left:</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1" alignment="Qt::AlignHCenter">
+           <item row="6" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLCDNumber" name="leftNum_month">
              <property name="minimumSize">
               <size>
@@ -905,118 +1098,53 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QGroupBox" name="myDay_data_2">
-          <property name="title">
-           <string>Charts</string>
-          </property>
-          <property name="flat">
-           <bool>true</bool>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QLabel" name="chart1_3">
-             <property name="text">
-              <string>Chart generated from data</string>
+           <item row="3" column="1">
+            <spacer name="verticalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-             <property name="textFormat">
-              <enum>Qt::AutoText</enum>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="chart1_2">
-             <property name="text">
-              <string>Chart generated from data</string>
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-             <property name="textFormat">
-              <enum>Qt::AutoText</enum>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="myDay_data">
-          <property name="title">
-           <string>My Week</string>
-          </property>
-          <property name="flat">
-           <bool>true</bool>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="0" column="0">
-            <widget class="QLabel" name="copmletion_label">
-             <property name="text">
-              <string>Completion Percentage:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QProgressBar" name="completion_bar_week">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="done">
-             <property name="text">
-              <string>Total Tasks Done:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="doneNum_week">
-             <property name="minimumSize">
+             <property name="sizeHint" stdset="0">
               <size>
-               <width>200</width>
+               <width>20</width>
                <height>40</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>40</height>
-              </size>
-             </property>
-            </widget>
+            </spacer>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="left">
-             <property name="text">
-              <string>Tasks Left:</string>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-            </widget>
-           </item>
-           <item row="2" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLCDNumber" name="leftNum_week">
-             <property name="minimumSize">
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
               <size>
-               <width>200</width>
-               <height>40</height>
+               <width>20</width>
+               <height>10</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>40</height>
-              </size>
-             </property>
-            </widget>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -1033,7 +1161,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1321</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="sizePolicy">
