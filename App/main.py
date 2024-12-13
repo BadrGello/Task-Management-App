@@ -393,8 +393,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Delete it from taskWidgetsList
         for widget in self.taskWidgetsList:
             if (widget.task["id"] == task["id"]):
-                self.tasksForm.removeRow(widget)
-                self.taskWidgetsList.remove(widget)
+                # self.tasksForm.removeRow(widget)
+                # self.taskWidgetsList.remove(widget)
+                widget.setParent(None)
+                del widget
+                
                 break
 
     def update_settings(self, settingsOptions):
