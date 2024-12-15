@@ -46,9 +46,19 @@ class MainWindow(QWidget):
 
     def delete_row(self, row):
         # Remove the row from the layout and the list
+        print("1, ", self.layout.count()-1, len(self.rows))
+        
         self.layout.removeWidget(row)
+        
+        print("2, ", self.layout.count()-1, len(self.rows))
+        
         row.deleteLater()  # Properly delete the widget
+        
+        print("3, ", self.layout.count()-1, len(self.rows))
+        
         self.rows.remove(row)  # Remove from the list
+        
+        print("4, ", self.layout.count()-1, len(self.rows))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

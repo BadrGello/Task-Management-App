@@ -122,18 +122,15 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.chart_month = QWidget()
 
         # ScrollArea Task Widgets
-        self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
-        self.newTaskWidget = None
-        self.tasksGroupBox = None
-        self.tasksForm = None
+        # self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
+
         self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
-        
-        self.tasksLayout = QVBoxLayout()
-        self.tasksGroupBox = QGroupBox('Tasks')
-        self.tasksGroupBox.setLayout(self.tasksLayout)
-        self.scrollArea_tasks.setWidget(self.tasksGroupBox)
-        self.scrollArea_tasks.setWidgetResizable(True)
-        # self.scrollArea_tasks.setLayout(self.tasksLayout)
+        self.tasksForSearch = []
+
+        self.tasksLayout = None
+        self.tasksGroupBox = None
+
+        self.initialise_tasks_layout()        
 
         refresh()
         
@@ -239,7 +236,17 @@ class mainApp(QMainWindow, FORM_CLASS):
         
 
         
+    def initialise_tasks_layout(self):
+        self.tasksLayout = QVBoxLayout()
 
+        # Option 1: No GroupBox
+        # self.scrollArea_tasks_content.setLayout(self.tasksLayout)
+        
+        # Option 2: GroupBox
+        self.tasksGroupBox = QGroupBox('Tasks')
+        self.tasksGroupBox.setLayout(self.tasksLayout)
+        self.scrollArea_tasks.setWidget(self.tasksGroupBox)
+        self.scrollArea_tasks.setWidgetResizable(True)
         
     # App Tray #
     def alarmLoop(self, status):
@@ -293,29 +300,34 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         # Calculate the remaining time until the next hour
         self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
-        for task_ in self.taskWidgetsList:
-            if not task_.task["complete"]:
-                target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
-                remainTime =target_time-current_time
-                if remainTime.days==0 and self.settingsOptions["highPrioritise"]:
-                    task_.task["priority"] = 1
-                if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
-                    realRemainTime = remainTime.seconds -remainTime.seconds %60
-                    print(remainTime.days )
-                    taskTimer=QTimer(self)
-                    taskTimer.setSingleShot(True)
-                    taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
-                    taskTimer.start(realRemainTime*1000)
-                    self.taskTimers.append(taskTimer)
-                elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
-                     print(task_.task["title"],remainTime.seconds//3600)
-                     self.taskTimer_event(task_)
-                if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
-                    reminderTimer=QTimer(self)
-                    reminderTimer.setSingleShot(True)
-                    reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_))
-                    reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
-                    self.reminderTimers.append(reminderTimer)
+        # for task_ in self.taskWidgetsList:
+        for i in range(self.tasksLayout.count()):
+            item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
+            task_ = item.widget()  # Get the widget from the item
+            if task_:  # Ensure it's a valid widget
+                
+                if not task_.task["complete"]:
+                    target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
+                    remainTime =target_time-current_time
+                    if remainTime.days==0 and self.settingsOptions["highPrioritise"]:
+                        task_.task["priority"] = 1
+                    if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
+                        realRemainTime = remainTime.seconds -remainTime.seconds %60
+                        print(remainTime.days )
+                        taskTimer=QTimer(self)
+                        taskTimer.setSingleShot(True)
+                        taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
+                        taskTimer.start(realRemainTime*1000)
+                        self.taskTimers.append(taskTimer)
+                    elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
+                        print(task_.task["title"],remainTime.seconds//3600)
+                        self.taskTimer_event(task_)
+                    if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
+                        reminderTimer=QTimer(self)
+                        reminderTimer.setSingleShot(True)
+                        reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_))
+                        reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
+                        self.reminderTimers.append(reminderTimer)
                 
         
 
@@ -381,23 +393,6 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         # print(self.tasksList)
     
-    def delete_task(self, task):
-
-        # Delete it from tasksList
-        for i in range(len(self.tasksList)):
-            if (self.tasksList[i]["id"] == task["id"]):
-                del self.tasksList[i]
-                break
-        
-        # Delete it from taskWidgetsList
-        for widget in self.taskWidgetsList:
-            if (widget.task["id"] == task["id"]):
-                # self.tasksForm.removeRow(widget)
-                # self.taskWidgetsList.remove(widget)
-                widget.setParent(None)
-                del widget
-                
-                break
 
     def update_settings(self, settingsOptions):
         self.settingsOptions = settingsOptions
@@ -691,41 +686,63 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.addWin.show()
 
     def edit_task_widget(self, task):
-        for widget in self.taskWidgetsList:
-            if (widget.task["id"] == task["id"]):
-                # Update the widget with the new task data
-                print("Edit began", task)
-                widget.task = task
-                widget.update_task_info()
-                break
-        else:
-            # If no matching widget found, add a new one (shouldn't happen)
-            print("ERROR, Didn't find the task to be edited")
-            self.add_task_widget(task)
+        # for widget in self.taskWidgetsList:
+        for i in range(self.tasksLayout.count()):
+            item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
+            widget = item.widget()  # Get the widget from the item
+            if widget:  # Ensure it's a valid widget
+
+                if (widget.task["id"] == task["id"]):
+                    # Update the widget with the new task data
+                    print("Edit began", task)
+                    widget.task = task
+                    widget.update_task_info()
+                    break
+                else:
+                    # If no matching widget found, add a new one (shouldn't happen)
+                    print("ERROR, Didn't find the task to be edited")
+                    self.add_task_widget(task)
 
         self.appTimer_event() 
 
         #For progress bar
         self.update_progress()
    
+    def delete_task(self, taskWidget):
 
+        settingChoice = self.settingsOptions["confirmDelete"] # Confirm before deletion
+
+        if (settingChoice):
+            reply = QMessageBox.question(self, 'Confirm Deletion', 'Are you sure you want to delete this task?',
+                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        
+            if reply != QMessageBox.Yes:
+                return
+            else:
+                pass
+ 
+        
+        # Delete it from tasksList
+        for i in range(len(self.tasksList)):
+            if (self.tasksList[i]["id"] == taskWidget.task["id"]):
+                del self.tasksList[i]
+                break
+
+        self.tasksLayout.removeWidget(taskWidget)
+        taskWidget.setParent(None)
+        self.tasksLayout.update()
+
+        self.saveApp()
+        
     def add_task_widget(self, task):
 
         self.plainTextEdit_searchTask.clear()
 
-        self.newTaskWidget = addTask(self)
-        self.newTaskWidget.add_new_task_info(task)
+        newTaskWidget = addTask(parent=self, delete_callback=lambda: self.delete_task(newTaskWidget))
+        newTaskWidget.add_new_task_info(task)
         self.update_tasksList(task)
 
-        
-
-            # self.tasksForm.setVerticalSpacing(10)  # Set vertical space between widgets (Didn't work)
-
-        # Holds all the tasks widgets
-        self.taskWidgetsList.append(self.newTaskWidget)
-
-        # for task_ in self.taskWidgetsList:
-        self.tasksForm.addRow(self.newTaskWidget)
+        self.tasksLayout.addWidget(newTaskWidget)
 
         self.appTimer_event()
 
@@ -734,28 +751,28 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     #Search
     def Handle_searchBar(self):
-        self.searchBarText = self.plainTextEdit_searchTask.toPlainText()
-        print(self.searchBarText)
 
-        # Ensure the layout is initialized
-        if self.tasksForm is None:
-            self.tasksForm = QFormLayout()
-            self.tasksGroupBox = QGroupBox('Tasks')
-            self.tasksGroupBox.setLayout(self.tasksForm)
-            self.scrollArea_tasks.setWidget(self.tasksGroupBox)
-            self.scrollArea_tasks.setWidgetResizable(True)
+        self.searchBarText = self.plainTextEdit_searchTask.toPlainText().strip()
 
-        # Remove all widgets from the layout without deleting them
-        while self.tasksForm.count():
-            child = self.tasksForm.takeAt(0)
-            if child.widget():
-                child.widget().setParent(None)  # Detach widget from the layout but do not delete it
+        # If search field is empty, show all widgets
+        if not self.searchBarText:
+            for i in range(self.tasksLayout.count()):
+                item = self.tasksLayout.itemAt(i)
+                widget = item.widget()
+                if widget:
+                    widget.setVisible(True)  # Show all widgets
+            return
 
-        # Add matching tasks back to the layout
-        for widget in self.taskWidgetsList:
-            if self.searchBarText in widget.task["title"] or self.isSearchTextInTags(widget.task["tags"],self.searchBarText) :
-                self.tasksForm.addRow(widget)  # Re-add the widget to the layout
-                print(widget.task)
+        # Filter and display tasks based on the search bar text
+        for i in range(self.tasksLayout.count()):
+            item = self.tasksLayout.itemAt(i)
+            widget = item.widget()
+            if widget:
+                if (self.searchBarText in widget.task["title"] or 
+                    self.isSearchTextInTags(widget.task["tags"], self.searchBarText)):
+                    widget.setVisible(True)  # Show matching widgets
+                else:
+                    widget.setVisible(False)  # Hide non-matching widgets
 
     def isSearchTextInTags(self,tags,searchText):
         for tag in tags:
@@ -777,16 +794,25 @@ class mainApp(QMainWindow, FORM_CLASS):
             order = False
         else:
             order = True         
+        
+        tempSortList = []
+
+        for i in range(self.tasksLayout.count()):
+            item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
+            widget = item.widget()  # Get the widget from the item
+            if widget:  # Ensure it's a valid widget
+                tempSortList.append(widget)
+        
         # Remove all widgets from the layout without deleting them
-        while self.tasksForm.count():
-            child = self.tasksForm.takeAt(0)
+        while self.tasksLayout.count():
+            child = self.tasksLayout.takeAt(0)
             if child.widget():
                 child.widget().setParent(None)  # Detach widget from the layout but do not delete it
         #sort 
-        self.taskWidgetsList.sort(key = lambda x: x.task[sortType] , reverse = order)
+        tempSortList.sort(key = lambda x: x.task[sortType] , reverse = order)
         #Re add tasks
-        for widget in self.taskWidgetsList:
-            self.tasksForm.addRow(widget)  # Re-add the widget to the layout
+        for widget in tempSortList:
+            self.tasksLayout.addWidget(widget)  # Re-add the widget to the layout
     
     def Change_Sort_Order(self):
         if self.pushButton_sortOrder.text() == "Ascendingly":
@@ -1301,7 +1327,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
 # This is the task widget
 class addTask(QWidget, TASK_WIDGET_CLASS):
     #Constructor
-    def __init__(self, parent=None):
+    def __init__(self, delete_callback, parent=None):
         super(addTask, self).__init__(parent)
         QWidget.__init__(self)
         self.setupUi(self)
@@ -1313,12 +1339,14 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         Signals and Slots
         """""
         # Delete and Edit Buttons
-        self.taskDeletePushButton.clicked.connect(self.Handle_delete_task)
+        # self.taskDeletePushButton.clicked.connect(self.Handle_delete_task)
+        self.taskDeletePushButton.clicked.connect(delete_callback)
         self.taskEditPushButton.clicked.connect(self.Handle_edit_task)
 
         ##Steps List##
         self.stepInput.returnPressed.connect(self.add_step)  # When pressing Enter after writing a step, it will add it to the list
-        self.stepsListWidget.itemDoubleClicked.connect(self.toggle_step_completion) #We can double click to mark as completed
+        self.stepsListWidget.itemDoubleClicked.connect(self.toggle_step_completion) # We can double click to mark as completed
+        self.stepsListWidget.itemChanged.connect(self.on_item_checked)
         self.stepsListWidget.setContextMenuPolicy(Qt.CustomContextMenu)
         self.stepsListWidget.customContextMenuRequested.connect(self.show_context_menu) # Right click a step and click delete to delete
         ##          ##
@@ -1373,6 +1401,18 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
             self.task["steps"][row]["complete"] = True
         
         self.mainWindow.saveApp()
+
+    def on_item_checked(self, item):
+        
+        row = self.stepsListWidget.row(item)
+
+        if item.checkState() == Qt.Checked:
+            self.task["steps"][row]["complete"] = True
+
+        else:
+            self.task["steps"][row]["complete"] = False
+ 
+        self.mainWindow.saveApp() 
         
     def show_context_menu(self, position):
 
@@ -1418,26 +1458,6 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         self.edit_window.show()
         # edit_window.exec_()  # Show the dialog
 
-    def Handle_delete_task(self):
-
-        settingChoice = True # Confirm before deletion
-
-        # ARE YOU SURE MESSGAE SHOULD APPEAR
-
-        if (settingChoice):
-            reply = QMessageBox.question(self, 'Confirm Deletion', 'Are you sure you want to delete this task?',
-                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        
-            if reply == QMessageBox.Yes:
-                self.mainWindow.delete_task(self.task)
-            else:
-                pass
-        # If in prefrences there's no confirm before deletion, just delete
-        else:
-            self.mainWindow.delete_task(self.task)
-        
-        self.mainWindow.saveApp()
-
     # Call when you updated self.task and want to update the task widget gui / send updated task to be saved
     def update_task_info(self):
 
@@ -1481,7 +1501,7 @@ def main():
         window = mainApp() #An instance of the class mainApp
 
         window.show()
-        app.exec_()#Infinite loop
+        sys.exit(app.exec_())#Infinite loop
     except Exception as e:
         print("An error occurred:", e)
         traceback.print_exc()
