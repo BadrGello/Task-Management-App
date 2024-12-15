@@ -2,22 +2,37 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-12 15:47:21",
-            "title": "hi",
-            "desc": "",
-            "date": "2024-12-13 15:46:43",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
+            "id": "2024-12-15 17:43:39",
+            "title": "Ayo\t asdasd",
+            "desc": "asddsasdasd",
+            "date": "2024-12-27 17:43:36",
+            "repeat": "Yearly",
+            "priority": 0,
+            "tags": [
+                "123"
+            ],
+            "steps": [
+                {
+                    "desc": "12",
+                    "complete": false
+                },
+                {
+                    "desc": "213",
+                    "complete": false
+                },
+                {
+                    "desc": "123",
+                    "complete": false
+                }
+            ],
+            "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 15:49:45",
+            "id": "2024-12-15 16:48:43",
             "title": "",
             "desc": "",
-            "date": "2024-12-12 15:49:42",
+            "date": "2024-12-15 16:48:43",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
@@ -26,147 +41,90 @@
         },
         {
             "type": "task",
-            "id": "2024-12-12 15:50:26",
-            "title": "h",
+            "id": "2024-12-15 16:48:44",
+            "title": "",
             "desc": "",
-            "date": "2024-12-13 15:50:18",
+            "date": "2024-12-15 16:48:44",
             "repeat": "No Repeating",
-            "priority": 1,
+            "priority": 0,
             "tags": [],
             "steps": [],
             "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 15:53:51",
+            "id": "2024-12-15 17:43:49",
             "title": "",
             "desc": "",
-            "date": "2024-12-13 15:50:40",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 15:54:09",
-            "title": "s",
-            "desc": "",
-            "date": "2024-12-12 15:57:00",
+            "date": "2024-12-15 17:43:48",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
             "steps": [],
-            "complete": true
+            "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 15:58:01",
-            "title": "late",
-            "desc": "",
-            "date": "2024-12-13 14:57:49",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 15:58:43",
-            "title": "late1",
-            "desc": "",
-            "date": "2024-12-13 14:54:25",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 15:58:59",
-            "title": "late2",
-            "desc": "",
-            "date": "2024-12-13 14:55:45",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 21:06:20",
+            "id": "2024-12-15 16:48:41",
             "title": "",
             "desc": "",
-            "date": "2024-12-19 21:06:10",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 21:12:11",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-05 21:12:06",
+            "date": "2024-12-15 16:48:41",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
             "steps": [],
-            "complete": true
+            "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 21:12:20",
+            "id": "2024-12-15 17:45:40",
             "title": "",
             "desc": "",
-            "date": "2024-12-05 21:12:14",
+            "date": "2024-12-15 17:45:39",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
             "steps": [],
-            "complete": true
+            "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 21:12:26",
+            "id": "2024-12-15 16:48:45",
+            "title": "asddsa",
+            "desc": "sadasdasdasdasd",
+            "date": "2024-12-15 16:48:44",
+            "repeat": "No Repeating",
+            "priority": 0,
+            "tags": [
+                "asd",
+                "aaaa"
+            ],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-15 17:53:42",
             "title": "",
             "desc": "",
-            "date": "2024-12-05 21:12:21",
+            "date": "2024-12-15 17:53:38",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
             "steps": [],
-            "complete": true
+            "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-12 21:13:04",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-10 21:12:59",
+            "id": "2024-12-15 17:53:57",
+            "title": "wedf",
+            "desc": "dsfdsf",
+            "date": "2024-12-25 17:53:49",
             "repeat": "No Repeating",
-            "priority": 0,
+            "priority": 2,
             "tags": [],
             "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-12 21:13:13",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-09 21:13:06",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": true
+            "complete": false
         }
     ],
     "settings": {

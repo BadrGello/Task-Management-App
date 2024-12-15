@@ -11,7 +11,7 @@ import calendar
 import json
 import time
 from PyQt5.QtChart import *
-
+import traceback, pdb
 
 stream = QFile('App/LightMode.qss')
 app = QApplication(sys.argv)
@@ -91,7 +91,10 @@ class mainApp(QMainWindow, FORM_CLASS):
     #taskWidgetsList=[]
     # Constructor
     def __init__(self, parent=None):
-
+        super(mainApp, self).__init__(parent)
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+        
         """""
         Initialize Variables
         """""
@@ -120,22 +123,18 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         # ScrollArea Task Widgets
         self.taskWidgetsList = [] # Widgets themselves are stored here, we iterate over them to display them
-        self.tempTaskWidgetsList =[]
         self.newTaskWidget = None
         self.tasksGroupBox = None
         self.tasksForm = None
         self.tasksList = [] # Tasks dict() are stroed here [task1, task2] where task1 is same form as taskTemplate
-        self.tempTaskList = []
         
+        self.tasksLayout = QVBoxLayout()
+        self.tasksGroupBox = QGroupBox('Tasks')
+        self.tasksGroupBox.setLayout(self.tasksLayout)
+        self.scrollArea_tasks.setWidget(self.tasksGroupBox)
+        self.scrollArea_tasks.setWidgetResizable(True)
+        # self.scrollArea_tasks.setLayout(self.tasksLayout)
 
-        super(mainApp, self).__init__(parent)
-        QMainWindow.__init__(self)
-        self.setupUi(self)
-
-        # Setting a default theme (light) (TEMPORARY)
-        # global stream, app
-        # stream.open(QIODevice.ReadOnly)
-        # app.setStyleSheet(QTextStream(stream).readAll())
         refresh()
         
         #state of the study in techniques
@@ -164,7 +163,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         Initial Function Calls
         """""
         self.setWindowTitle(appName)
-        self.Handle_searchBar()
+        # self.Handle_searchBar()
 
         # Set fixed size for buttons and comboboxes
         # self.iterate_buttons(self)
@@ -421,7 +420,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         with open(file_path, "w") as json_file:
             json.dump(data, json_file, indent=4)
 
-        print(data)
+        # print(data)
         print("Data saved to data.json")
 
         #For progress bar
@@ -439,7 +438,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                 self.tasksList = data.get("tasks", [])
                 self.settingsOptions = data.get("settings", None)
             
-            print(data)
+            # print(data)
             print("Data loaded from tasks_data.json")
         
         else:
@@ -718,21 +717,15 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.newTaskWidget.add_new_task_info(task)
         self.update_tasksList(task)
 
-        if self.tasksGroupBox is None:
-            self.tasksGroupBox = QGroupBox('Tasks')
-        if self.tasksForm is None:
-            self.tasksForm = QFormLayout()
-            self.tasksGroupBox.setLayout(self.tasksForm)
-            self.scrollArea_tasks.setWidget(self.tasksGroupBox)
-            self.scrollArea_tasks.setWidgetResizable(True)
+        
 
             # self.tasksForm.setVerticalSpacing(10)  # Set vertical space between widgets (Didn't work)
 
         # Holds all the tasks widgets
         self.taskWidgetsList.append(self.newTaskWidget)
 
-        for task_ in self.taskWidgetsList:
-            self.tasksForm.addRow(task_)
+        # for task_ in self.taskWidgetsList:
+        self.tasksForm.addRow(self.newTaskWidget)
 
         self.appTimer_event()
 
@@ -773,9 +766,9 @@ class mainApp(QMainWindow, FORM_CLASS):
     # sort #
     def Handle_sort (self):
         #determine the sort type from the combo box
-        if self.comboBox_sortType.currentText()=="by Title":
+        if self.comboBox_sortType.currentText()=="Sort by Title":
             sortType = "title"
-        elif self.comboBox_sortType.currentText()=="by Due Date":
+        elif self.comboBox_sortType.currentText()=="Sort by Due Date":
             sortType = "date"
         else:
             sortType = "priority"
@@ -807,8 +800,6 @@ class mainApp(QMainWindow, FORM_CLASS):
         refresh()
     ###################
 
-
-    
     # Progress Tab #
 
     def update_progress(self):
@@ -887,8 +878,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.completion_bar_month.setValue(int(completion_percentage))
         self.doneNum_month.display(completed_tasks_this_month)
         self.leftNum_month.display(total_tasks_this_month - completed_tasks_this_month)
-        
-        
+             
 
     def chartsWeekly(self):
 
@@ -1123,6 +1113,8 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         if self.editTask:
             task["id"] = self.editTask["id"]
             task["steps"] = self.editTask["steps"]
+            task["priority"] = self.editTask["priority"]
+            task["complete"] = self.editTask["complete"]
             self.mainWindow.edit_task_widget(task)
 
         # Add new task to list
@@ -1305,9 +1297,6 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         QApplication.setFont(QFont(self.settingsOptions["font"], QApplication.font().pointSize()))
         refresh()
         
-        
-        
-        
 
 # This is the task widget
 class addTask(QWidget, TASK_WIDGET_CLASS):
@@ -1317,7 +1306,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         QWidget.__init__(self)
         self.setupUi(self)
         self.mainWindow = parent
-
+        self.edit_window = None
         # This "task" dictionary should hold all info, sould be always updated as this is what will be put in DB (JSON)
         self.task = dict()
         """""
@@ -1422,8 +1411,12 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         self.update_task_info()
 
     def Handle_edit_task(self):
-        edit_window = addWindow(self.mainWindow, self.task)  # Pass the current task for editing
-        edit_window.exec_()  # Show the dialog
+
+        self.edit_window = None
+        self.edit_window = addWindow(self.mainWindow, self.task)
+
+        self.edit_window.show()
+        # edit_window.exec_()  # Show the dialog
 
     def Handle_delete_task(self):
 
@@ -1483,11 +1476,16 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
             self.taskCompletetoolButton.setText("Incompleted")
 
 def main():
-    
-    window = mainApp() #An instance of the class mainApp
+    try:
+        # pdb.set_trace()
+        window = mainApp() #An instance of the class mainApp
 
-    window.show()
-    app.exec_()#Infinite loop
+        window.show()
+        app.exec_()#Infinite loop
+    except Exception as e:
+        print("An error occurred:", e)
+        traceback.print_exc()
+        sys.exit(1)
 
 if __name__ == '__main__':
     main()
