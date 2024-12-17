@@ -2,37 +2,10 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-15 17:43:39",
-            "title": "Ayo\t asdasd",
-            "desc": "asddsasdasd",
-            "date": "2024-12-27 17:43:36",
-            "repeat": "Yearly",
-            "priority": 0,
-            "tags": [
-                "123"
-            ],
-            "steps": [
-                {
-                    "desc": "12",
-                    "complete": false
-                },
-                {
-                    "desc": "213",
-                    "complete": false
-                },
-                {
-                    "desc": "123",
-                    "complete": false
-                }
-            ],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 16:48:43",
+            "id": "2024-12-18 01:43:19",
             "title": "",
             "desc": "",
-            "date": "2024-12-15 16:48:43",
+            "date": "2024-12-18 01:43:18",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
@@ -41,10 +14,10 @@
         },
         {
             "type": "task",
-            "id": "2024-12-15 16:48:44",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-15 16:48:44",
+            "id": "2024-12-18 01:43:26",
+            "title": "123",
+            "desc": "aaaa",
+            "date": "2024-12-18 01:43:21",
             "repeat": "No Repeating",
             "priority": 0,
             "tags": [],
@@ -53,73 +26,10 @@
         },
         {
             "type": "task",
-            "id": "2024-12-15 17:43:49",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-15 17:43:48",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 16:48:41",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-15 16:48:41",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 17:45:40",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-15 17:45:39",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 16:48:45",
-            "title": "asddsa",
-            "desc": "sadasdasdasdasd",
-            "date": "2024-12-15 16:48:44",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [
-                "asd",
-                "aaaa"
-            ],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 17:53:42",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-15 17:53:38",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-15 17:53:57",
-            "title": "wedf",
-            "desc": "dsfdsf",
-            "date": "2024-12-25 17:53:49",
+            "id": "2024-12-18 01:43:36",
+            "title": "123",
+            "desc": "asd",
+            "date": "2024-12-26 01:43:30",
             "repeat": "No Repeating",
             "priority": 2,
             "tags": [],
