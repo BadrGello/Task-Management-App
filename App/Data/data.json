@@ -12,48 +12,77 @@
                 "backend"
             ],
             "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-18 16:33:15",
+            "title": "Maths sheet",
+            "desc": "",
+            "date": "2025-01-08 16:32:51",
+            "repeat": "Weekly",
+            "priority": 3,
+            "tags": [],
+            "steps": [
+                {
+                    "desc": "upload",
+                    "complete": true
+                },
+                {
+                    "desc": "revise",
+                    "complete": true
+                },
+                {
+                    "desc": "solve sheet",
+                    "complete": true
+                }
+            ],
             "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-18 16:00:24",
-            "title": "za",
+            "id": "2024-12-18 16:33:40",
+            "title": "CO lab",
             "desc": "",
-            "date": "2024-12-18 16:00:18",
+            "date": "2024-12-25 16:33:21",
             "repeat": "No Repeating",
-            "priority": 0,
+            "priority": 2,
             "tags": [],
-            "steps": [],
+            "steps": [
+                {
+                    "desc": "revise",
+                    "complete": true
+                }
+            ],
             "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-18 16:00:31",
-            "title": "jja",
+            "id": "2024-12-18 16:34:48",
+            "title": "Discrete Maths Sheet",
             "desc": "",
-            "date": "2024-12-18 16:00:27",
+            "date": "2024-12-24 16:34:08",
             "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-18 16:00:51",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-18 16:00:49",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [],
-            "steps": [],
+            "priority": 1,
+            "tags": [
+                "college"
+            ],
+            "steps": [
+                {
+                    "desc": "solve sheet",
+                    "complete": false
+                },
+                {
+                    "desc": "revise",
+                    "complete": true
+                }
+            ],
             "complete": false
         }
     ],
     "settings": {
         "highPrioritise": true,
-        "confirmDelete": false,
+        "confirmDelete": true,
         "deleteCompleted": false,
         "theme": "Light theme",
         "font": "MS Shell Dlg 2",
