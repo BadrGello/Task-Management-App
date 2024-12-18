@@ -697,6 +697,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                     print("Edit began", task)
                     widget.task = task
                     widget.update_task_info()
+                    print(self.tasksLayout.count())
                     break
                 else:
                     # If no matching widget found, add a new one (shouldn't happen)
@@ -1139,7 +1140,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         if self.editTask:
             task["id"] = self.editTask["id"]
             task["steps"] = self.editTask["steps"]
-            task["priority"] = self.editTask["priority"]
+            # task["priority"] = self.editTask["priority"]
             task["complete"] = self.editTask["complete"]
             self.mainWindow.edit_task_widget(task)
 
