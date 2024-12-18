@@ -220,6 +220,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         self.settingsOptions = None
         self.loadApp()
+        self.Handle_sort()
 
 
         # Create a settings window instance on startup and a settingsOptions dict()
@@ -698,11 +699,16 @@ class mainApp(QMainWindow, FORM_CLASS):
                     widget.task = task
                     widget.update_task_info()
                     print(self.tasksLayout.count())
+                    # self.delete_task(widget)
+                    # self.add_task_widget(task)
                     break
                 else:
+                    pass
                     # If no matching widget found, add a new one (shouldn't happen)
-                    print("ERROR, Didn't find the task to be edited")
-                    self.add_task_widget(task)
+                    # print("ERROR, Didn't find the task to be edited")
+                    # self.add_task_widget(task)
+
+        self.Handle_sort()
 
         self.appTimer_event() 
 
@@ -745,6 +751,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         self.tasksLayout.addWidget(newTaskWidget)
 
+        self.Handle_sort()
+        
         self.appTimer_event()
 
         #For progress bar

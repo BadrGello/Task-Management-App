@@ -16,15 +16,37 @@
         },
         {
             "type": "task",
-            "id": "2024-12-18 01:43:43",
-            "title": "Discrete lab 3",
-            "desc": "set theory lab using java",
-            "date": "2024-12-20 01:43:10",
+            "id": "2024-12-18 16:00:24",
+            "title": "za",
+            "desc": "",
+            "date": "2024-12-18 16:00:18",
             "repeat": "No Repeating",
-            "priority": 3,
-            "tags": [
-                "java"
-            ],
+            "priority": 0,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-18 16:00:31",
+            "title": "jja",
+            "desc": "",
+            "date": "2024-12-18 16:00:27",
+            "repeat": "No Repeating",
+            "priority": 0,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-18 16:00:51",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-18 16:00:49",
+            "repeat": "No Repeating",
+            "priority": 0,
+            "tags": [],
             "steps": [],
             "complete": false
         }
