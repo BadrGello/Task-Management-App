@@ -224,7 +224,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
 
         # Create a settings window instance on startup and a settingsOptions dict()
-        self.Settings = settingWindow(self, self.settingsOptions)
+        
 
         # This fixes a bug caused by loading tasks upon loading
 
@@ -420,7 +420,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         print("Data saved to data.json")
 
         #For progress bar
-        self.update_progress()
+        # self.update_progress()
 
     def loadApp(self):
         # Path to the JSON file
@@ -445,7 +445,7 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.add_task_widget(task)
 
         #For progress bar
-        self.update_progress()
+        # self.update_progress()
 
     #################
 
@@ -683,6 +683,7 @@ class mainApp(QMainWindow, FORM_CLASS):
     def Handle_add_window(self):
         # if self.addWin is None:
         #     self.addWin = addWindow(self)
+        self.addWin = None
         self.addWin = addWindow(self)
         self.addWin.show()
 
@@ -713,7 +714,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.appTimer_event() 
 
         #For progress bar
-        self.update_progress()
+        # self.update_progress()
    
     def delete_task(self, taskWidget):
 
@@ -752,11 +753,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksLayout.addWidget(newTaskWidget)
 
         self.Handle_sort()
-        
+
         self.appTimer_event()
 
         #For progress bar
-        self.update_progress()
+        # self.update_progress()
 
     #Search
     def Handle_searchBar(self):
@@ -831,8 +832,10 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     # Settings Window #
     def Handle_settings(self):
+        self.settings = None
+        self.Settings = settingWindow(self, self.settingsOptions)
         self.Settings.show()
-        refresh()
+        # refresh()
     ###################
 
     # Progress Tab #
@@ -980,11 +983,18 @@ class mainApp(QMainWindow, FORM_CLASS):
     def create_chart(self, x, y, title, labels):
         series = QLineSeries()
         
+        chart = QChart()
+
+        if not x or not y:
+            # Handle empty data
+            chart.addSeries(QLineSeries())  # Add an empty series to avoid crashes
+            chart.createDefaultAxes()
+            return chart
+
         #Append data points to the series
         for data_x, data_y in zip(x, y):
             series.append(data_x, data_y)
-
-        chart = QChart()
+        
         chart.addSeries(series)
         chart.setTitle(title)
         chart.createDefaultAxes()
