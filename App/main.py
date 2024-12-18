@@ -223,8 +223,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.Handle_sort()
 
 
-        # Create a settings window instance on startup and a settingsOptions dict()
-        
+        # For the settings window
+        self.settings = None
 
         # This fixes a bug caused by loading tasks upon loading
 
