@@ -313,7 +313,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                     if remainTime.days==0 and self.settingsOptions["highPrioritise"]:
                         task_.task["priority"] = 1
                     if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
-                        realRemainTime = remainTime.seconds -remainTime.seconds %60
+                        realRemainTime = remainTime.seconds 
                         print(remainTime.days )
                         taskTimer=QTimer(self)
                         taskTimer.setSingleShot(True)
