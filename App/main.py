@@ -741,6 +741,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksLayout.update()
 
         self.saveApp()
+        self.appTimer_event() 
         
     def add_task_widget(self, task):
 
