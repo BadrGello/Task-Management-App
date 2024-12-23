@@ -237,6 +237,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.appTimer_event()
         self.appTimer.start(self.timer_interval)
         
+        self.loadAppStatus = False
 
         
     def initialise_tasks_layout(self):
@@ -515,6 +516,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         # self.update_progress()
 
     def loadApp(self):
+
+        self.loadAppStatus = True
         # Path to the JSON file
         file_path = path.join(self.db_folder, "data.json")
         
@@ -538,6 +541,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         #For progress bar
         # self.update_progress()
+
+        self.loadAppStatus = False
 
     #################
 
@@ -840,11 +845,12 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.plainTextEdit_searchTask.clear()
 
         newTaskWidget = addTask(parent=self, delete_callback=lambda: self.delete_task(newTaskWidget))
+        # print("1) New Task Widget", task)
         newTaskWidget.add_new_task_info(task)
         self.update_tasksList(task)
-
+        # print("Final) New Task Widget", newTaskWidget.task)
         self.tasksLayout.addWidget(newTaskWidget)
-
+        
         self.Handle_sort()
 
         self.appTimer_event()
@@ -1251,6 +1257,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         
         # Edit existing task
         if self.editTask:
+            print("Editing a task")
             task["id"] = self.editTask["id"]
             task["steps"] = self.editTask["steps"]
             # task["priority"] = self.editTask["priority"]
@@ -1259,6 +1266,8 @@ class addWindow(QDialog, ADD_TASK_CLASS):
 
         # Add new task to list
         else:
+            # print(task)
+            task["steps"] = []
             self.mainWindow.add_task_widget(task)
         self.close()
 
@@ -1492,6 +1501,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 
         # Add steps in loading app phase
         else:
+            # print("add_step step!=None")
             item = QListWidgetItem(step["desc"])
             item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
             if (step["complete"]):
@@ -1599,6 +1609,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         
         # Update the task steps
         self.stepsListWidget.clear()
+        # print(f'Steps of {self.task["title"]},  {self.task["steps"]}')
         for step in self.task["steps"]:
             self.add_step(step)
         
