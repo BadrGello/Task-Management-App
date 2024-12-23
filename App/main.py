@@ -37,6 +37,7 @@ taskTemplate = {
     "repeat": "",
 
     "priority": 3, # 3 low, 2 med, 1 high
+    "realPriority":3,
     "tags": list(),
     "steps": list(),
     "complete": False,
@@ -286,8 +287,37 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.appPlayer.stop()
 
     def taskTimer_event(self,Task):
-        Task.task["priority"] =0
-        Task.update_task_info()
+        if Task.task["repeat"]=="":
+            Task.task["priority"] =0
+        elif Task.task["repeat"]=="Daily":
+            target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(days=1)
+            Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+            Task.task["priority"]=Task.task["realPriority"]
+            Task.task["complete"]=False
+            if self.settingsOptions["highPrioritise"]:
+                        Task.task["priority"] = 1
+        elif Task.task["repeat"]=="Weekly":
+            target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(weeks=1)
+            Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+            Task.task["priority"]=Task.task["realPriority"]
+            Task.task["complete"]=False
+        elif Task.task["repeat"]=="Monthly":
+            target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(months=1)
+            Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+            Task.task["priority"]=Task.task["realPriority"]
+            Task.task["complete"]=False
+        elif Task.task["repeat"]=="Yearly":
+            target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(years=1)
+            Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+            Task.task["priority"]=Task.task["realPriority"]  
+            Task.task["complete"]=False       
+
+        Task.update_task_info()       
+                    
 
     def notifEvent(self):
         print("notfication")
@@ -377,7 +407,21 @@ class mainApp(QMainWindow, FORM_CLASS):
                         reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_))
                         reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
                         self.reminderTimers.append(reminderTimer)
-                
+
+                elif  not task_.task["repeat"]=="":        
+                    target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
+                    remainTime =target_time-current_time
+                    if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
+                        realRemainTime = remainTime.seconds 
+                        print(remainTime.days )
+                        taskTimer=QTimer(self)
+                        taskTimer.setSingleShot(True)
+                        taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
+                        taskTimer.start(realRemainTime*1000)
+                        self.taskTimers.append(taskTimer)
+                    elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
+                        print(task_.task["title"],remainTime.seconds//3600)
+                        self.taskTimer_event(task_)
         
 
     def restoreApp(self):
@@ -1200,6 +1244,8 @@ class addWindow(QDialog, ADD_TASK_CLASS):
             task["priority"] = 2
         elif (task_priority == "Low Priority"):
             task["priority"] = 3
+
+        task["realPriority"]=task["priority"]    
 
         task["tags"] = task_tags
         
