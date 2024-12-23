@@ -7,37 +7,12 @@
             "desc": "email web app",
             "date": "2024-12-19 23:59:05",
             "repeat": "No Repeating",
-            "priority": 2,
+            "priority": 0,
             "tags": [
                 "backend"
             ],
             "steps": [],
             "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-18 16:33:15",
-            "title": "Maths sheet",
-            "desc": "",
-            "date": "2025-01-08 16:32:51",
-            "repeat": "Weekly",
-            "priority": 0,
-            "tags": [],
-            "steps": [
-                {
-                    "desc": "upload",
-                    "complete": true
-                },
-                {
-                    "desc": "revise",
-                    "complete": true
-                },
-                {
-                    "desc": "solve sheet",
-                    "complete": true
-                }
-            ],
-            "complete": false
         },
         {
             "type": "task",
@@ -78,6 +53,30 @@
                 }
             ],
             "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-23 22:25:09",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-23 22:28:03",
+            "repeat": "No Repeating",
+            "priority": 0,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-23 22:36:27",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-23 22:38:22",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "tags": [],
+            "steps": [],
+            "complete": false
         }
     ],
     "settings": {
@@ -86,8 +85,8 @@
         "deleteCompleted": false,
         "theme": "Light theme",
         "font": "MS Shell Dlg 2",
-        "dueTodayNotif": false,
-        "dueTodayNotifTime": "04:00",
+        "dueTodayNotif": true,
+        "dueTodayNotifTime": "22:16",
         "reminderTime": 0,
         "taskReminder": true,
         "eventReminder": true,

@@ -100,6 +100,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         """""
         self.taskTimers = []
         self.reminderTimers = []
+        self.notifyTimer=QTimer(self)
         self.player = QMediaPlayer()
         self.appPlayer = QMediaPlayer()
         self.searchBarText = ""
@@ -288,7 +289,46 @@ class mainApp(QMainWindow, FORM_CLASS):
         Task.task["priority"] =0
         Task.update_task_info()
 
+    def notifEvent(self):
+        print("notfication")
+        tray_icon = QSystemTrayIcon()
+        tray_icon.setIcon(QIcon('App/Icons/appIcon (1).svg'))  # Set an icon file
+        todaysTasks=[]
+        for i in range(self.tasksLayout.count()):
+            item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
+            task_ = item.widget()  # Get the widget from the item
+            if task_:  # Ensure it's a valid widget
+                
+                if not task_.task["complete"] and  not task_.task["priority"]==0  :
+                    current_time = datetime.now()
+                    target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
+                    remainTime =target_time-current_time
+                    if remainTime.days==0:
+                        todaysTasks.append(task_.task["title"])
+                    
+        # Show the tray icon
+        tray_icon.setVisible(True)
+
+        # Send a notification
+        if len(todaysTasks)==0:
+            tray_icon.showMessage(
+                "todays Tasks",
+                "   there is no tasks today",
+                QSystemTrayIcon.Information,  # Message type
+                5000  # Duration in milliseconds
+            )
+
+        else:
+            message = "\n".join(todaysTasks)
+            tray_icon.showMessage(
+                "today's Tasks:",
+                message,
+                QSystemTrayIcon.Information,  # Message type
+                5000  # Duration in milliseconds
+            )    
+
     def appTimer_event(self):
+        self.notifyTimer.stop()
         for timer in self.taskTimers :
             timer.stop()
         for timer in self.reminderTimers :
@@ -298,7 +338,14 @@ class mainApp(QMainWindow, FORM_CLASS):
         current_time = datetime.now()
         current_minutes = current_time.minute
         current_seconds = current_time.second
-
+        if self.settingsOptions["dueTodayNotif"]==True:
+            notify_time = datetime.strptime(self.settingsOptions["dueTodayNotifTime"], "%H:%M")
+            notifiRemainTime =notify_time-current_time
+            if (notifiRemainTime.seconds//3600) <= 1 and (notifiRemainTime.seconds//3600) >= 0:
+                
+                self.notifyTimer.setSingleShot(True)
+                self.notifyTimer.timeout.connect(lambda: self.notifEvent())
+                self.notifyTimer.start(notifiRemainTime.seconds*1000)
         # Calculate the remaining time until the next hour
         self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
         # for task_ in self.taskWidgetsList:
@@ -312,6 +359,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                     remainTime =target_time-current_time
                     if remainTime.days==0 and self.settingsOptions["highPrioritise"]:
                         task_.task["priority"] = 1
+                        task_.update_task_info()
                     if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                         realRemainTime = remainTime.seconds 
                         print(remainTime.days )
