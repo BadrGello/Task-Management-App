@@ -2,51 +2,14 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-18 00:12:20",
-            "title": "Programming lab",
-            "desc": "email web app",
-            "date": "2024-12-19 23:59:05",
-            "repeat": "No Repeating",
-            "priority": 0,
-            "tags": [
-                "backend"
-            ],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
             "id": "2024-12-18 16:33:40",
             "title": "CO lab",
             "desc": "",
             "date": "2024-12-25 16:33:21",
             "repeat": "No Repeating",
-            "priority": 2,
+            "priority": 1,
             "tags": [],
             "steps": [
-                {
-                    "desc": "revise",
-                    "complete": true
-                }
-            ],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-18 16:34:48",
-            "title": "Discrete Maths Sheet",
-            "desc": "",
-            "date": "2024-12-24 16:34:08",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [
-                "college"
-            ],
-            "steps": [
-                {
-                    "desc": "solve sheet",
-                    "complete": false
-                },
                 {
                     "desc": "revise",
                     "complete": true
@@ -71,7 +34,7 @@
     "settings": {
         "highPrioritise": true,
         "confirmDelete": true,
-        "deleteCompleted": false,
+        "deleteCompleted": true,
         "theme": "Light theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": true,

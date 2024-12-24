@@ -287,8 +287,11 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.appPlayer.stop()
 
     def taskTimer_event(self,Task):
-        if Task.task["repeat"]=="":
-            Task.task["priority"] =0
+        if Task.task["repeat"]=="No Repeating":
+            if Task.task["complete"]==False:
+                Task.task["priority"] =0
+                Task.update_task_info() 
+                
         elif Task.task["repeat"]=="Daily":
             target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
             new_time = target_time + timedelta(days=1)
@@ -297,26 +300,30 @@ class mainApp(QMainWindow, FORM_CLASS):
             Task.task["complete"]=False
             if self.settingsOptions["highPrioritise"]:
                         Task.task["priority"] = 1
+            Task.update_task_info()             
         elif Task.task["repeat"]=="Weekly":
             target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
             new_time = target_time + timedelta(weeks=1)
             Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
             Task.task["priority"]=Task.task["realPriority"]
             Task.task["complete"]=False
+            Task.update_task_info() 
         elif Task.task["repeat"]=="Monthly":
             target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
             new_time = target_time + timedelta(months=1)
             Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
             Task.task["priority"]=Task.task["realPriority"]
             Task.task["complete"]=False
+            Task.update_task_info() 
         elif Task.task["repeat"]=="Yearly":
             target_time = datetime.strptime(Task.task["date"], "%Y-%m-%d %H:%M:%S")
             new_time = target_time + timedelta(years=1)
             Task.task["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
             Task.task["priority"]=Task.task["realPriority"]  
-            Task.task["complete"]=False       
+            Task.task["complete"]=False  
+            Task.update_task_info()      
 
-        Task.update_task_info()       
+              
                     
 
     def notifEvent(self):
@@ -380,6 +387,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
         # for task_ in self.taskWidgetsList:
         for i in range(self.tasksLayout.count()):
+            print("layout count",self.tasksLayout.count())
             item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
             task_ = item.widget()  # Get the widget from the item
             if task_:  # Ensure it's a valid widget
@@ -408,7 +416,8 @@ class mainApp(QMainWindow, FORM_CLASS):
                         reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
                         self.reminderTimers.append(reminderTimer)
 
-                elif  not task_.task["repeat"]=="":        
+                else : 
+                    print(task_.task["title"])       
                     target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
                     remainTime =target_time-current_time
                     if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
@@ -421,6 +430,19 @@ class mainApp(QMainWindow, FORM_CLASS):
                         self.taskTimers.append(taskTimer)
                     elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
                         print(task_.task["title"],remainTime.seconds//3600)
+                        if task_.task["repeat"]=="No Repeating" and  task_.task["complete"] and self.settingsOptions["deleteCompleted"]:
+                                for i in range(len(self.tasksList)):
+                                    if (self.tasksList[i]["id"] == task_.task["id"]):
+                                        del self.tasksList[i]
+                                        break
+
+                                self.tasksLayout.removeWidget(task_)
+                                task_.setParent(None)
+                                self.tasksLayout.update()
+
+                                self.saveApp()
+                                self.appTimer_event() 
+                                break
                         self.taskTimer_event(task_)
         
 
@@ -812,7 +834,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         settingChoice = self.settingsOptions["confirmDelete"] # Confirm before deletion
 
-        if (settingChoice):
+        if (settingChoice ):
             reply = QMessageBox.question(self, 'Confirm Deletion', 'Are you sure you want to delete this task?',
                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         
@@ -1366,6 +1388,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
     def Handle_change_high_priority_incomplete_tasks(self, checked):
         self.settingsOptions["highPrioritise"] = checked
         self.mainWindow.update_settings(self.settingsOptions)
+        self.mainWindow.appTimer_event()
 
     def Handle_change_confirm_before_delete(self, checked):
         self.settingsOptions["confirmDelete"] = checked
@@ -1374,6 +1397,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
     def Handle_change_delete_after_complete(self, checked):
         self.settingsOptions["deleteCompleted"] = checked
         self.mainWindow.update_settings(self.settingsOptions)
+        self.mainWindow.appTimer_event()
 
     def Handle_change_due_today_notification(self, checked):
         self.settingsOptions["dueTodayNotif"] = checked
@@ -1558,6 +1582,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
             self.update_task_info() # To update the color
 
         self.mainWindow.saveApp()
+        self.mainWindow.appTimer_event()
 
     # Should be called only when creating a new task
     def add_new_task_info(self, task):
