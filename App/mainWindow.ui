@@ -176,17 +176,17 @@ rgb(241, 255, 231)</string>
              </property>
              <item>
               <property name="text">
-               <string>Sort by Title</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
                <string>Sort by Due Date</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>Sort by Priority</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sort by Title</string>
               </property>
              </item>
             </widget>

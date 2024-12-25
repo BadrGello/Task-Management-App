@@ -2,40 +2,161 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-18 16:33:40",
-            "title": "CO lab",
-            "desc": "",
-            "date": "2024-12-25 16:33:21",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "tags": [],
-            "steps": [
-                {
-                    "desc": "revise",
-                    "complete": true
-                }
-            ],
-            "complete": false
-        },
-        {
-            "type": "task",
             "id": "2024-12-23 23:46:11",
             "title": "repeatNow",
-            "desc": "",
-            "date": "2024-12-24 23:47:58",
+            "desc": "yeah babyyyyy\n\n\n\n01212",
+            "date": "2024-12-25 23:47:58",
             "repeat": "Daily",
             "priority": 1,
             "realPriority": 1,
             "tags": [],
             "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:43:51",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:43:45",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:44:05",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-27 16:43:58",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:44:14",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:44:08",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:44:29",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:44:24",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "realPriority": 1,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:46:52",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:46:43",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:47:12",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:47:05",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:47:30",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-26 16:47:26",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-25 16:48:37",
+            "title": "",
+            "desc": "",
+            "date": "2024-12-27 16:48:33",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
             "complete": false
         }
     ],
+    "events": [
+        {
+            "type": "event",
+            "id": "2024-12-25 17:20:07",
+            "title": "First event",
+            "desc": "Hmmmmmmmm",
+            "date": "2024-10-08 00:00:00",
+            "repeat": "Daily"
+        },
+        {
+            "type": "event",
+            "id": "2024-12-25 17:20:33",
+            "title": "",
+            "desc": "",
+            "date": "2024-10-16 00:00:00",
+            "repeat": "No Repeating"
+        },
+        {
+            "type": "event",
+            "id": "2024-12-25 17:39:57",
+            "title": "Event babyyyyy",
+            "desc": "So, this is an event\nYeah\nYeahhh",
+            "date": "2024-12-26 17:39:29",
+            "repeat": "No Repeating"
+        },
+        {
+            "type": "event",
+            "id": "2024-12-25 17:49:47",
+            "title": "Old Event",
+            "desc": "",
+            "date": "2024-12-20 17:49:37",
+            "repeat": "No Repeating"
+        }
+    ],
     "settings": {
-        "highPrioritise": true,
+        "highPrioritise": false,
         "confirmDelete": true,
         "deleteCompleted": true,
-        "theme": "Light theme",
+        "theme": "Dark theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": true,
         "dueTodayNotifTime": "22:16",

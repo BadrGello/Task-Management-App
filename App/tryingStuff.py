@@ -1,67 +1,36 @@
-import sys
-from PyQt5.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QHBoxLayout,
-    QLineEdit, QPushButton, QLabel
-)
+from PyQt5.QtWidgets import QApplication, QCalendarWidget, QMenu, QAction
+from PyQt5.QtCore import QDate
 
-class DynamicRow(QWidget):
-    def __init__(self, delete_callback):
-        super().__init__()
-        self.layout = QHBoxLayout()
-        
-        self.line_edit = QLineEdit(self)
-        self.layout.addWidget(self.line_edit)
-        
-        self.delete_button = QPushButton("Delete", self)
-        self.delete_button.clicked.connect(delete_callback)
-        self.layout.addWidget(self.delete_button)
-        
-        self.setLayout(self.layout)
+class CustomCalendar(QCalendarWidget):
+    def contextMenuEvent(self, event):
+        # Create context menu
+        menu = QMenu(self)
 
-    def get_text(self):
-        return self.line_edit.text()
+        # Add actions
+        edit_action = QAction("Edit", self)
+        delete_action = QAction("Delete", self)
 
-    def set_text(self, text):
-        self.line_edit.setText(text)
+        # Connect actions
+        edit_action.triggered.connect(self.edit_date)
+        delete_action.triggered.connect(self.delete_date)
 
-class MainWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Dynamic Row Example")
-        
-        self.layout = QVBoxLayout()
-        self.setLayout(self.layout)
-        
-        self.add_button = QPushButton("Add Row", self)
-        self.add_button.clicked.connect(self.add_row)
-        self.layout.addWidget(self.add_button)
-        
-        self.rows = []  # List to keep track of rows
+        menu.addAction(edit_action)
+        menu.addAction(delete_action)
 
-    def add_row(self):
-        # Create a new row and add it to the layout
-        row = DynamicRow(lambda: self.delete_row(row))
-        self.rows.append(row)
-        self.layout.addWidget(row)
+        # Show menu
+        menu.exec_(event.globalPos())
 
-    def delete_row(self, row):
-        # Remove the row from the layout and the list
-        print("1, ", self.layout.count()-1, len(self.rows))
-        
-        self.layout.removeWidget(row)
-        
-        print("2, ", self.layout.count()-1, len(self.rows))
-        
-        row.deleteLater()  # Properly delete the widget
-        
-        print("3, ", self.layout.count()-1, len(self.rows))
-        
-        self.rows.remove(row)  # Remove from the list
-        
-        print("4, ", self.layout.count()-1, len(self.rows))
+    def edit_date(self):
+        date = self.selectedDate()
+        print(f"Editing date: {date.toString()}")
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
+    def delete_date(self):
+        date = self.selectedDate()
+        print(f"Deleting date: {date.toString()}")
+
+app = QApplication([])
+
+calendar = CustomCalendar()
+calendar.show()
+
+app.exec_()

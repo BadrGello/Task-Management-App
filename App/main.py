@@ -132,6 +132,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.tasksLayout = None
         self.tasksGroupBox = None
 
+        self.eventsList = []
+
         self.initialise_tasks_layout()        
 
         refresh()
@@ -191,6 +193,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         self.plainTextEdit_searchTask.textChanged.connect(self.Handle_searchBar)
 
+        # When a calendar cell is clicked
+        self.calendarWidget.clicked.connect(self.show_taskAndEvents_modal)
         
         """""
         Initialize App System Tray
@@ -227,6 +231,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         # For the settings window
         self.settings = None
+        self.Settings = settingWindow(self, self.settingsOptions)
 
         # This fixes a bug caused by loading tasks upon loading
 
@@ -388,7 +393,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
         # for task_ in self.taskWidgetsList:
         for i in range(self.tasksLayout.count()):
-            print("layout count",self.tasksLayout.count())
+            # print("layout count",self.tasksLayout.count())
             item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
             task_ = item.widget()  # Get the widget from the item
             if task_:  # Ensure it's a valid widget
@@ -525,6 +530,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Currently saves tasksList only
         data = {
             "tasks": self.tasksList,
+            "events" : self.eventsList,
             "settings": self.settingsOptions,
         }
         
@@ -536,6 +542,8 @@ class mainApp(QMainWindow, FORM_CLASS):
 
         #For progress bar
         # self.update_progress()
+
+        self.calendar_set_colors()
 
     def loadApp(self):
 
@@ -550,6 +558,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
                 self.tasksList = data.get("tasks", [])
                 self.settingsOptions = data.get("settings", None)
+                self.eventsList = data.get("events", [])
             
             # print(data)
             print("Data loaded from tasks_data.json")
@@ -562,7 +571,9 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.add_task_widget(task)
 
         #For progress bar
-        # self.update_progress()
+        self.update_progress()
+
+        self.calendar_set_colors()
 
         self.loadAppStatus = False
 
@@ -1161,8 +1172,240 @@ class mainApp(QMainWindow, FORM_CLASS):
         chart.legend().setVisible(False)
     
     ##################
+
+    # def calendar_set_colors(self):
+
+    #     # Clear all existing colors and formats
+    #     today = QDate.currentDate()
+    #     start_date = today.addDays(-365)  # Start range (e.g., one year before today)
+    #     end_date = today.addDays(365)    # End range (e.g., one year after today)
+
+    #     empty_format = QTextCharFormat()
+    #     for day_offset in range((start_date.daysTo(end_date)) + 1):
+    #         self.calendarWidget.setDateTextFormat(start_date.addDays(day_offset), empty_format)
+            
+    #     date_status_map = {}
+
+    #     lightBlue = QColor("lightblue")
+    #     red = QColor("red")
+    #     orange = QColor("orange")
+    #     yellow = QColor("yellow")
+    #     black = QColor("black")
+    #     lime = QColor("lime")
+    #     white = QColor("white")
+
+    #     for task in self.tasksList:
+    #         task_datetime = QDateTime.fromString(task["date"], "yyyy-MM-dd HH:mm:ss")
+    #         task_date = task_datetime.date()  # Extract the QDate
+
+    #         task_priority =  task["priority"]
+    #         task_complete = task["complete"]
+            
+    #         if task_date not in date_status_map:
+    #             # Initialize with the first task details
+    #             date_status_map[task_date] = {
+    #                 "highest_priority": task_priority,
+    #                 "all_completed": task_complete  # Start with the completion status of the first task
+    #             }
+    #         else:
+    #             # Update the highest priority if the current task has a higher priority (lower number)
+    #             date_status_map[task_date]["highest_priority"] = min(
+    #                 date_status_map[task_date]["highest_priority"], task_priority
+    #             )
+    #             # Update all_completed to False if any task is incomplete
+    #             date_status_map[task_date]["all_completed"] &= task_complete
     
+    #     # Apply formatting based on the date status
+    #     for task_date, status in date_status_map.items():
+    #         format = QTextCharFormat()
+
+    #         if status["all_completed"]:
+    #             # All tasks completed
+    #             format.setBackground(lime)
+    #             format.setForeground(white)
+    #         else:
+    #             # Format based on the highest-priority task
+    #             if status["highest_priority"] == 0:  # Late
+    #                 format.setBackground(black)
+    #                 format.setForeground(white)
+    #             elif status["highest_priority"] == 1:  # High
+    #                 format.setBackground(red)
+    #                 format.setForeground(white)
+    #             elif status["highest_priority"] == 2:  # Medium
+    #                 format.setBackground(orange)
+    #                 format.setForeground(white)
+    #             elif status["highest_priority"] == 3:  # Low
+    #                 format.setBackground(yellow)
+    #                 format.setForeground(white)
+
+    #         # Set the color for the date
+    #         self.calendarWidget.setDateTextFormat(task_date, format)
+ 
+    def calendar_set_colors(self):
+        """Set colors for events on the calendar."""
+        # Clear all existing colors and formats (shared across tasks and events)
+        today = QDate.currentDate()
+        start_date = today.addDays(-365)
+        end_date = today.addDays(365)
+
+        empty_format = QTextCharFormat()
+        for day_offset in range((start_date.daysTo(end_date)) + 1):
+            self.calendarWidget.setDateTextFormat(start_date.addDays(day_offset), empty_format)
+
+        # Colors
+        lightBlue = QColor("lightblue")
+        lime = QColor("lime")
+        black = QColor("black")
+        red = QColor("red")
+        orange = QColor("orange")
+        yellow = QColor("yellow")
+        white = QColor("white")
+
+        # Map to hold the combined status for each date
+        date_status_map = {}
+
+        # Process tasks
+        for task in self.tasksList:
+            task_datetime = QDateTime.fromString(task["date"], "yyyy-MM-dd HH:mm:ss")
+            task_date = task_datetime.date()
+
+            task_priority = task["priority"]
+            task_complete = task["complete"]
+
+            if task_date not in date_status_map:
+                date_status_map[task_date] = {"highest_priority": task_priority, "all_completed": task_complete, "has_event": False}
+            else:
+                date_status_map[task_date]["highest_priority"] = min(date_status_map[task_date]["highest_priority"], task_priority)
+                date_status_map[task_date]["all_completed"] &= task_complete
+
+        # Process events
+        for event in self.eventsList:
+            event_datetime = QDateTime.fromString(event["date"], "yyyy-MM-dd HH:mm:ss")
+            event_date = event_datetime.date()
+
+            if event_date not in date_status_map:
+                date_status_map[event_date] = {"highest_priority": None, "all_completed": None, "has_event": True}
+            else:
+                date_status_map[event_date]["has_event"] = True
+
+        # Apply colors to the calendar
+        for date, status in date_status_map.items():
+            format = QTextCharFormat()
+
+            if status["all_completed"]:
+                # All tasks completed
+                format.setBackground(lime)
+                format.setForeground(white)
+            elif status["highest_priority"] is not None:
+                # Tasks exist: color based on highest priority
+                if status["highest_priority"] == 0:  # Late
+                    task_color = black
+                elif status["highest_priority"] == 1:  # High
+                    task_color = red
+                elif status["highest_priority"] == 2:  # Medium
+                    task_color = orange
+                elif status["highest_priority"] == 3:  # Low
+                    task_color = yellow
+                format.setBackground(task_color)
+                format.setForeground(white)
+
+            if status["has_event"]:
+                # Events exist: add light blue or gradient
+                if status["highest_priority"] is not None:
+                    # Combine task color and event color
+                    gradient = QLinearGradient(0, 0, 1, 1)
+                    gradient.setCoordinateMode(QGradient.ObjectBoundingMode)
+                    gradient.setColorAt(0.5, task_color)  # Task color
+                    gradient.setColorAt(1.0, lightBlue)   # Event color
+                    format.setBackground(QBrush(gradient))
+                else:
+                    # Only events: light blue
+                    format.setBackground(lightBlue)
+                    format.setForeground(white)
+
+            # Set the color for the date
+            self.calendarWidget.setDateTextFormat(date, format)
+
+    
+    def show_taskAndEvents_modal(self, date):
+        priority_map = {
+            0: "Late",
+            1: "High",
+            2: "Moderate",
+            3: "Low",
+        }
+
+        # Get tasks and events for the clicked date
+        tasks_on_date = [task for task in self.tasksList if QDateTime.fromString(task["date"], "yyyy-MM-dd HH:mm:ss").date() == date]
+        events_on_date = [event for event in self.eventsList if QDateTime.fromString(event["date"], "yyyy-MM-dd HH:mm:ss").date() == date]
+
+        dialog = QDialog(self)
+        dialog.setMinimumSize(400, 0)
+        dialog.setWindowTitle(f"Details for {date.toString('yyyy-MM-dd')}")
+
+        layout = QVBoxLayout(dialog)
+
+        not_show_flag = 0
+
+        # Add tasks section
+        if tasks_on_date:
+            layout.addWidget(QLabel("<b>Tasks:</b>"))
+            for task in tasks_on_date:
+                task_datetime = QDateTime.fromString(task["date"], "yyyy-MM-dd HH:mm:ss")
+                time_str = task_datetime.toString("hh:mm AP")
+
+                task_label = QLabel(f"- {task['title']}: (Priority: {priority_map[task['priority']]}, Due at {time_str})\n{task['desc']}")
+                layout.addWidget(task_label)
+        else:
+            not_show_flag += 1
+
+        # Add events section
+        if events_on_date:
+            layout.addWidget(QLabel("<b>Events:</b>"))
+            for event in events_on_date:
+                event_datetime = QDateTime.fromString(event["date"], "yyyy-MM-dd HH:mm:ss")
+                time_str = event_datetime.toString("hh:mm AP")
+                
+                # Create event label
+                event_label = QLabel(f"- {event['title']} ({time_str})\n{event['desc']}")
+                
+                # Store the event ID in the label's property
+                event_label.setProperty("event_id", event["id"])
+                
+                # Right-click context menu
+                event_label.setContextMenuPolicy(Qt.CustomContextMenu)
+                event_label.customContextMenuRequested.connect(self.show_event_context_menu)
+                
+                layout.addWidget(event_label)
+        else:
+            not_show_flag += 1
+
+        dialog.setLayout(layout)
+        if (not_show_flag < 2 ): dialog.exec()
+
+    def show_event_context_menu(self, pos):
+        # Get the widget that was right-clicked
+        event_label = self.sender()
+
+        # Create context menu
+        context_menu = QMenu(self)
         
+        # Create "Delete Event" action
+        delete_action = QAction("Mark Event for Deletion", self)
+        delete_action.triggered.connect(lambda: self.delete_event(event_label))
+        context_menu.addAction(delete_action)
+        
+        # Show the context menu
+        context_menu.exec_(event_label.mapToGlobal(pos))
+
+    def delete_event(self, event_label):
+
+        event_id = event_label.property("event_id")
+
+        self.eventsList = [event for event in self.eventsList if event["id"] != event_id]
+        print(f"Event with ID {event_id} has been deleted.")
+
+
 class addWindow(QDialog, ADD_TASK_CLASS):
     #Constructor
     def __init__(self, parent=None, editTask=None):
@@ -1200,6 +1443,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         """""
         # Set the date of QDateTimeEdit to current time to be easier for user
         self.TaskDate.setDateTime(QDateTime.currentDateTime())
+        self.EventDate.setDateTime(QDateTime.currentDateTime())
 
         """""
         Edit Mode
@@ -1306,12 +1550,11 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         event["desc"] = event_description
         event["date"] = event_date
         event["repeat"] = event_repeat
-        # self.events.append(event)
-        
 
         #####################
         # Handle adding event
-        # self.mainWindow.add_event(event)
+        self.mainWindow.eventsList.append(event)
+        self.mainWindow.saveApp()
         self.close()
 
     def Handle_cancel_clicked(self):
