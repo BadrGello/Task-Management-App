@@ -402,11 +402,15 @@ class mainApp(QMainWindow, FORM_CLASS):
         tray_icon.showMessage(
             "today's Tasks:",
             message,
+            QSystemTrayIcon.Information,  # Message type
+            5000  # Duration in milliseconds
+        )  
+        tray_icon.showMessage(
             "today's Tasks:",
             message2,
             QSystemTrayIcon.Information,  # Message type
             5000  # Duration in milliseconds
-        )    
+        )     
 
     def appTimer_event(self):
         self.notifyTimer.stop()
