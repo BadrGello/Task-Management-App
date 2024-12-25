@@ -100,6 +100,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         Initialize Variables
         """""
         self.taskTimers = []
+        self.eventTimers = []
         self.reminderTimers = []
         self.notifyTimer=QTimer(self)
         self.player = QMediaPlayer()
@@ -272,7 +273,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         dialog.setWindowFlag(Qt.FramelessWindowHint)  
         dialog.resize(400, 300)
 
-        label = QLabel('This is your reminder for '+Task.task["title"], dialog)
+        label = QLabel('This is your reminder for '+Task["title"], dialog)
         label.setAlignment(Qt.AlignCenter)
         
         dismiss_button = QPushButton("Dismiss", dialog)
@@ -329,6 +330,36 @@ class mainApp(QMainWindow, FORM_CLASS):
             Task.task["complete"]=False  
             Task.update_task_info()      
 
+
+    def eventTimer_event(self,event):
+
+        if event["repeat"]=="Daily":
+            print("repeat done")
+            target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(days=1)
+            event["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+ 
+                      
+        elif event["repeat"]=="Weekly":
+            target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(weeks=1)
+            event["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+
+        elif event["repeat"]=="Monthly":
+            target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(months=1)
+            event["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+
+
+
+        elif event["repeat"]=="Yearly":
+            target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+            new_time = target_time + timedelta(years=1)
+            event["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
+ 
+
+       
+
               
                     
 
@@ -348,35 +379,45 @@ class mainApp(QMainWindow, FORM_CLASS):
                     remainTime =target_time-current_time
                     if remainTime.days==0:
                         todaysTasks.append(task_.task["title"])
-                    
+        todaysEvents = []
+        for event in self.eventsList:
+            current_time = datetime.now()
+            target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+            remainTime =target_time-current_time
+            if remainTime.days==0 and remainTime.seconds>=0:
+                todaysEvents.append(event["title"])
         # Show the tray icon
         tray_icon.setVisible(True)
 
         # Send a notification
         if len(todaysTasks)==0:
-            tray_icon.showMessage(
-                "todays Tasks",
-                "   there is no tasks today",
-                QSystemTrayIcon.Information,  # Message type
-                5000  # Duration in milliseconds
-            )
+            todaysTasks.append("   there is no tasks today")
 
-        else:
-            message = "\n".join(todaysTasks)
-            tray_icon.showMessage(
-                "today's Tasks:",
-                message,
-                QSystemTrayIcon.Information,  # Message type
-                5000  # Duration in milliseconds
-            )    
+        if len(todaysEvents)==0:
+            todaysEvents.append("   there is no events today")            
+
+        
+        message = "\n".join(todaysTasks)
+        message2="\n".join(todaysEvents)
+        tray_icon.showMessage(
+            "today's Tasks:",
+            message,
+            "today's Tasks:",
+            message2,
+            QSystemTrayIcon.Information,  # Message type
+            5000  # Duration in milliseconds
+        )    
 
     def appTimer_event(self):
         self.notifyTimer.stop()
         for timer in self.taskTimers :
             timer.stop()
         for timer in self.reminderTimers :
-            timer.stop()    
+            timer.stop() 
+        for timer in self.eventTimers :
+            timer.stop()       
         self.taskTimers = []
+        self.eventTimers = []
         self.reminderTimers = []
         current_time = datetime.now()
         current_minutes = current_time.minute
@@ -418,7 +459,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                     if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
                         reminderTimer=QTimer(self)
                         reminderTimer.setSingleShot(True)
-                        reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_))
+                        reminderTimer.timeout.connect(lambda: self.reminderTimer_event(task_.task))
                         reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
                         self.reminderTimers.append(reminderTimer)
 
@@ -449,7 +490,28 @@ class mainApp(QMainWindow, FORM_CLASS):
                                 self.saveApp()
                                 self.appTimer_event() 
                                 break
-                        self.taskTimer_event(task_)
+                        self.taskTimer_event(task_)          
+        for  event in self.eventsList:
+                target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
+                remainTime =target_time-current_time
+                if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
+                    realRemainTime = remainTime.seconds 
+                    print(remainTime.days )
+                    eventTimer=QTimer(self)
+                    eventTimer.setSingleShot(True)
+                    eventTimer.timeout.connect(lambda: self.eventTimer_event(event))
+                    eventTimer.start(realRemainTime*1000)
+                    self.eventTimers.append(eventTimer)
+                elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
+                    print(event["title"],remainTime.seconds//3600)
+                    self.eventTimer_event(event)    
+                if self.settingsOptions["eventReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
+                    print("ding ding")
+                    reminderTimer=QTimer(self)
+                    reminderTimer.setSingleShot(True)
+                    reminderTimer.timeout.connect(lambda: self.reminderTimer_event(event))
+                    reminderTimer.start(realRemainTime*1000-self.settingsOptions["reminderTime"]*3600*1000)
+                    self.reminderTimers.append(reminderTimer)    
         
 
     def restoreApp(self):
@@ -544,6 +606,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         # self.update_progress()
 
         self.calendar_set_colors()
+        self.appTimer_event()
 
     def loadApp(self):
 

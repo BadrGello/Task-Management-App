@@ -2,60 +2,8 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-23 23:46:11",
-            "title": "repeatNow",
-            "desc": "yeah babyyyyy\n\n\n\n01212",
-            "date": "2024-12-25 23:47:58",
-            "repeat": "Daily",
-            "priority": 1,
-            "realPriority": 1,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-25 16:43:51",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-26 16:43:45",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "realPriority": 2,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-25 16:44:05",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-27 16:43:58",
-            "repeat": "No Repeating",
-            "priority": 2,
-            "realPriority": 2,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-25 16:44:14",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-26 16:44:08",
-            "repeat": "No Repeating",
-            "priority": 1,
-            "realPriority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": true
-        },
-        {
-            "type": "task",
             "id": "2024-12-25 16:44:29",
-            "title": "",
+            "title": "hello",
             "desc": "",
             "date": "2024-12-26 16:44:24",
             "repeat": "No Repeating",
@@ -90,32 +38,6 @@
             "tags": [],
             "steps": [],
             "complete": true
-        },
-        {
-            "type": "task",
-            "id": "2024-12-25 16:47:30",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-26 16:47:26",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "realPriority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
-        },
-        {
-            "type": "task",
-            "id": "2024-12-25 16:48:37",
-            "title": "",
-            "desc": "",
-            "date": "2024-12-27 16:48:33",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "realPriority": 3,
-            "tags": [],
-            "steps": [],
-            "complete": false
         }
     ],
     "events": [
@@ -124,7 +46,7 @@
             "id": "2024-12-25 17:20:07",
             "title": "First event",
             "desc": "Hmmmmmmmm",
-            "date": "2024-10-08 00:00:00",
+            "date": "2024-11-17 00:00:00",
             "repeat": "Daily"
         },
         {
