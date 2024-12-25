@@ -225,7 +225,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         if not path.exists(self.db_folder):
             makedirs(self.db_folder)
 
-        self.settingsOptions = None
+        self.settingsOptions = settingsOptionsTemplate.copy()
         self.loadApp()
         self.Handle_sort()
 
@@ -610,7 +610,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         # self.update_progress()
 
         self.calendar_set_colors()
-        self.appTimer_event()
+        # self.appTimer_event()
 
     def loadApp(self):
 
@@ -1240,74 +1240,14 @@ class mainApp(QMainWindow, FORM_CLASS):
     
     ##################
 
-    # def calendar_set_colors(self):
+    def lighten_color(self, color, factor=1.3):
+        """ Lighten a color by multiplying RGB values. """
+        r = min(int(color.red() * factor), 255)
+        g = min(int(color.green() * factor), 255)
+        b = min(int(color.blue() * factor), 255)
 
-    #     # Clear all existing colors and formats
-    #     today = QDate.currentDate()
-    #     start_date = today.addDays(-365)  # Start range (e.g., one year before today)
-    #     end_date = today.addDays(365)    # End range (e.g., one year after today)
+        return QColor(r, g, b)
 
-    #     empty_format = QTextCharFormat()
-    #     for day_offset in range((start_date.daysTo(end_date)) + 1):
-    #         self.calendarWidget.setDateTextFormat(start_date.addDays(day_offset), empty_format)
-            
-    #     date_status_map = {}
-
-    #     lightBlue = QColor("lightblue")
-    #     red = QColor("red")
-    #     orange = QColor("orange")
-    #     yellow = QColor("yellow")
-    #     black = QColor("black")
-    #     lime = QColor("lime")
-    #     white = QColor("white")
-
-    #     for task in self.tasksList:
-    #         task_datetime = QDateTime.fromString(task["date"], "yyyy-MM-dd HH:mm:ss")
-    #         task_date = task_datetime.date()  # Extract the QDate
-
-    #         task_priority =  task["priority"]
-    #         task_complete = task["complete"]
-            
-    #         if task_date not in date_status_map:
-    #             # Initialize with the first task details
-    #             date_status_map[task_date] = {
-    #                 "highest_priority": task_priority,
-    #                 "all_completed": task_complete  # Start with the completion status of the first task
-    #             }
-    #         else:
-    #             # Update the highest priority if the current task has a higher priority (lower number)
-    #             date_status_map[task_date]["highest_priority"] = min(
-    #                 date_status_map[task_date]["highest_priority"], task_priority
-    #             )
-    #             # Update all_completed to False if any task is incomplete
-    #             date_status_map[task_date]["all_completed"] &= task_complete
-    
-    #     # Apply formatting based on the date status
-    #     for task_date, status in date_status_map.items():
-    #         format = QTextCharFormat()
-
-    #         if status["all_completed"]:
-    #             # All tasks completed
-    #             format.setBackground(lime)
-    #             format.setForeground(white)
-    #         else:
-    #             # Format based on the highest-priority task
-    #             if status["highest_priority"] == 0:  # Late
-    #                 format.setBackground(black)
-    #                 format.setForeground(white)
-    #             elif status["highest_priority"] == 1:  # High
-    #                 format.setBackground(red)
-    #                 format.setForeground(white)
-    #             elif status["highest_priority"] == 2:  # Medium
-    #                 format.setBackground(orange)
-    #                 format.setForeground(white)
-    #             elif status["highest_priority"] == 3:  # Low
-    #                 format.setBackground(yellow)
-    #                 format.setForeground(white)
-
-    #         # Set the color for the date
-    #         self.calendarWidget.setDateTextFormat(task_date, format)
- 
     def calendar_set_colors(self):
         """Set colors for events on the calendar."""
         # Clear all existing colors and formats (shared across tasks and events)
@@ -1320,13 +1260,24 @@ class mainApp(QMainWindow, FORM_CLASS):
             self.calendarWidget.setDateTextFormat(start_date.addDays(day_offset), empty_format)
 
         # Colors
-        lightBlue = QColor("lightblue")
+        lightBlue = QColor("cyan")
+
         lime = QColor("lime")
         black = QColor("black")
         red = QColor("red")
         orange = QColor("orange")
         yellow = QColor("yellow")
+
+        lime2 = QColor(144, 238, 144)
+        black2 = QColor(169, 169, 169)
+        red2 = QColor(255, 182, 193)
+        orange2 = QColor(255, 204, 128)
+        yellow2 = QColor(255, 255, 153)
+
+
         white = QColor("white")
+        
+        softer_task_color = white
 
         # Map to hold the combined status for each date
         date_status_map = {}
@@ -1358,39 +1309,46 @@ class mainApp(QMainWindow, FORM_CLASS):
         # Apply colors to the calendar
         for date, status in date_status_map.items():
             format = QTextCharFormat()
-
+            format.setForeground(black) 
+            task_color = white
             if status["all_completed"]:
                 # All tasks completed
                 format.setBackground(lime)
-                format.setForeground(white)
+                softer_task_color = lime2
+                
             elif status["highest_priority"] is not None:
                 # Tasks exist: color based on highest priority
                 if status["highest_priority"] == 0:  # Late
                     task_color = black
+                    softer_task_color = black2
+                    format.setForeground(white)
                 elif status["highest_priority"] == 1:  # High
                     task_color = red
+                    softer_task_color = red2
                 elif status["highest_priority"] == 2:  # Medium
                     task_color = orange
+                    softer_task_color = orange2
                 elif status["highest_priority"] == 3:  # Low
                     task_color = yellow
+                    softer_task_color = yellow2
+                    
                 format.setBackground(task_color)
-                format.setForeground(white)
 
             if status["has_event"]:
-                # Events exist: add light blue or gradient
+                # Events exist: add light blue
                 if status["highest_priority"] is not None:
                     # Combine task color and event color
-                    gradient = QLinearGradient(0, 0, 1, 1)
-                    gradient.setCoordinateMode(QGradient.ObjectBoundingMode)
-                    gradient.setColorAt(0.5, task_color)  # Task color
-                    gradient.setColorAt(1.0, lightBlue)   # Event color
-                    format.setBackground(QBrush(gradient))
+                    format.setBackground(softer_task_color)
+
                 else:
                     # Only events: light blue
                     format.setBackground(lightBlue)
-                    format.setForeground(white)
 
-            # Set the color for the date
+                   
+            font = QFont()
+            font.setBold(True)  # Set the font weight to bold
+            format.setFont(font)
+
             self.calendarWidget.setDateTextFormat(date, format)
 
     
@@ -1468,9 +1426,11 @@ class mainApp(QMainWindow, FORM_CLASS):
     def delete_event(self, event_label):
 
         event_id = event_label.property("event_id")
-
+        print(self.eventsList)
         self.eventsList = [event for event in self.eventsList if event["id"] != event_id]
         print(f"Event with ID {event_id} has been deleted.")
+        print(self.eventsList)
+        self.saveApp()
 
 
 class addWindow(QDialog, ADD_TASK_CLASS):

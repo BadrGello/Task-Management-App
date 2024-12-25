@@ -23,6 +23,11 @@
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
      <widget class="QTabWidget" name="tabWidget_mainTabs">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
@@ -73,7 +78,7 @@ rgb(241, 255, 231)</string>
              <x>0</x>
              <y>0</y>
              <width>1269</width>
-             <height>517</height>
+             <height>515</height>
             </rect>
            </property>
           </widget>
@@ -112,6 +117,11 @@ rgb(241, 255, 231)</string>
                <width>150</width>
                <height>30</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="styleSheet">
               <string notr="true">/*#pushButton_addTask {
@@ -174,6 +184,11 @@ rgb(241, 255, 231)</string>
                <height>30</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <item>
               <property name="text">
                <string>Sort by Due Date</string>
@@ -204,6 +219,11 @@ rgb(241, 255, 231)</string>
                <width>150</width>
                <height>30</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Ascendingly</string>
@@ -248,6 +268,7 @@ rgb(241, 255, 231)</string>
             </property>
             <property name="font">
              <font>
+              <pointsize>12</pointsize>
               <weight>50</weight>
               <bold>false</bold>
               <stylestrategy>PreferDefault</stylestrategy>
@@ -360,6 +381,11 @@ rgb(241, 255, 231)</string>
                 <height>30</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>Choose your technique:</string>
               </property>
@@ -384,6 +410,11 @@ rgb(241, 255, 231)</string>
                 <width>180</width>
                 <height>30</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
               </property>
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
@@ -438,6 +469,11 @@ rgb(241, 255, 231)</string>
                 <width>150</width>
                 <height>30</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">/*#pushButton_study {
@@ -661,6 +697,11 @@ p, li { white-space: pre-wrap; }
           </item>
           <item row="3" column="1" alignment="Qt::AlignRight">
            <widget class="QLabel" name="copmletion_label_6">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Status:</string>
             </property>
@@ -701,6 +742,11 @@ p, li { white-space: pre-wrap; }
                 <height>30</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">/*#pushButton_study_2 {
     background-color: #3498db;
@@ -740,6 +786,11 @@ p, li { white-space: pre-wrap; }
                 <height>30</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">/*#pushButton_study_3 {
     background-color: #3498db;
@@ -778,6 +829,11 @@ p, li { white-space: pre-wrap; }
           </item>
           <item row="5" column="1" alignment="Qt::AlignRight">
            <widget class="QLabel" name="copmletion_label_4">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Your Progress:</string>
             </property>
@@ -785,6 +841,11 @@ p, li { white-space: pre-wrap; }
           </item>
           <item row="1" column="1" alignment="Qt::AlignRight">
            <widget class="QLabel" name="copmletion_label_5">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>TIMER:</string>
             </property>
@@ -927,6 +988,11 @@ p, li { white-space: pre-wrap; }
            </item>
            <item row="4" column="0">
             <widget class="QLabel" name="done">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Total Tasks Done:</string>
              </property>
@@ -934,6 +1000,11 @@ p, li { white-space: pre-wrap; }
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="copmletion_label">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Completion Percentage:</string>
              </property>
@@ -941,6 +1012,11 @@ p, li { white-space: pre-wrap; }
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="left">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Tasks Left:</string>
              </property>
@@ -1040,6 +1116,11 @@ p, li { white-space: pre-wrap; }
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="4" column="0">
             <widget class="QLabel" name="done_2">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Total Tasks Done:</string>
              </property>
@@ -1063,6 +1144,11 @@ p, li { white-space: pre-wrap; }
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="copmletion_label_2">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Completion Percentage:</string>
              </property>
@@ -1071,12 +1157,17 @@ p, li { white-space: pre-wrap; }
            <item row="2" column="1">
             <widget class="QProgressBar" name="completion_bar_month">
              <property name="value">
-              <number>100</number>
+              <number>0</number>
              </property>
             </widget>
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="left_2">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Tasks Left:</string>
              </property>
