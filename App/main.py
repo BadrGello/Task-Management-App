@@ -1426,11 +1426,12 @@ class mainApp(QMainWindow, FORM_CLASS):
     def delete_event(self, event_label):
 
         event_id = event_label.property("event_id")
-        print(self.eventsList)
+        # print(self.eventsList)
         self.eventsList = [event for event in self.eventsList if event["id"] != event_id]
         print(f"Event with ID {event_id} has been deleted.")
-        print(self.eventsList)
+        # print(self.eventsList)
         self.saveApp()
+        self.appTimer_event()
 
 
 class addWindow(QDialog, ADD_TASK_CLASS):
@@ -1582,6 +1583,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         # Handle adding event
         self.mainWindow.eventsList.append(event)
         self.mainWindow.saveApp()
+        self.mainWindow.appTimer_event()
         self.close()
 
     def Handle_cancel_clicked(self):
