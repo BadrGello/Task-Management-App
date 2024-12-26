@@ -413,7 +413,10 @@ class mainApp(QMainWindow, FORM_CLASS):
         )     
 
     def appTimer_event(self):
-        self.notifyTimer.stop()
+        if self.notifyTimer.isActive():
+            print("activated")
+            self.notifyTimer.timeout.disconnect()
+            self.notifyTimer.stop()
         for timer in self.taskTimers :
             timer.stop()
         for timer in self.reminderTimers :
@@ -429,6 +432,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         if self.settingsOptions["dueTodayNotif"]==True:
             notify_time = datetime.strptime(self.settingsOptions["dueTodayNotifTime"], "%H:%M")
             notifiRemainTime =notify_time-current_time
+            print(notifiRemainTime," this notify printed in : ", current_time)
             if (notifiRemainTime.seconds//3600) <= 1 and (notifiRemainTime.seconds//3600) >= 0:
                 
                 self.notifyTimer.setSingleShot(True)
