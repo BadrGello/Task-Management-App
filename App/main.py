@@ -406,7 +406,7 @@ class mainApp(QMainWindow, FORM_CLASS):
             5000  # Duration in milliseconds
         )  
         tray_icon.showMessage(
-            "today's Tasks:",
+            "today's Events:",
             message2,
             QSystemTrayIcon.Information,  # Message type
             5000  # Duration in milliseconds
