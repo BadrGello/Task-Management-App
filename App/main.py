@@ -115,12 +115,6 @@ class mainApp(QMainWindow, FORM_CLASS):
 
 
         #Progress Tab
-        self.completion_bar_month = QProgressBar()
-        self.completion_bar_week = QProgressBar()
-        self.doneNum_month = QLCDNumber()
-        self.leftNum_month = QLCDNumber()
-        self.doneNum_week = QLCDNumber()
-        self.leftNum_week = QLCDNumber()
         self.chart_week = QWidget()
         self.chart_month = QWidget()
 
@@ -1103,7 +1097,7 @@ class mainApp(QMainWindow, FORM_CLASS):
             datetime.strptime(task["date"], "%Y-%m-%d %H:%M:%S").year == current_year
         ]
 
-       
+        
 
         #Calculate number of current month tasks
         total_tasks_this_month = len(current_month_tasks)
@@ -1114,7 +1108,6 @@ class mainApp(QMainWindow, FORM_CLASS):
         else:
             completion_percentage = 0
 
-            
         #Progress bar and LCDs    
         self.completion_bar_month.setValue(int(completion_percentage))
         self.doneNum_month.display(completed_tasks_this_month)
@@ -1179,7 +1172,6 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.doneNum_week.display(completed_tasks_this_week)
         self.leftNum_week.display(total_tasks_this_week - completed_tasks_this_week)
 
-        
 
 
     #Generating Charts
