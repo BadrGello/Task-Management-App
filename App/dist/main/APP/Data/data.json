@@ -1,15 +1,245 @@
 {
-    "tasks": [],
-    "events": [],
+    "tasks": [
+        {
+            "type": "task",
+            "id": "2024-12-26 00:15:23",
+            "title": "Low Task",
+            "desc": "Desc...",
+            "date": "2025-01-04 00:14:40",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:15:39",
+            "title": "Moderate Task",
+            "desc": "Decs...",
+            "date": "2025-01-05 00:15:24",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:16:01",
+            "title": "High Task",
+            "desc": "Desc...",
+            "date": "2025-01-06 00:15:40",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "realPriority": 1,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:21:04",
+            "title": "Low Task and Event",
+            "desc": "",
+            "date": "2025-01-11 00:20:46",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:21:23",
+            "title": "Moderate Task and Event",
+            "desc": "",
+            "date": "2025-01-12 00:21:11",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:21:37",
+            "title": "High Task and Event",
+            "desc": "",
+            "date": "2025-01-13 00:21:24",
+            "repeat": "No Repeating",
+            "priority": 1,
+            "realPriority": 1,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 00:21:52",
+            "title": "Completed Task",
+            "desc": "Desc...",
+            "date": "2025-01-14 00:21:41",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 00:54:13",
+            "title": "Maths Sheet",
+            "desc": "Done",
+            "date": "2025-01-01 00:53:51",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [
+                "college"
+            ],
+            "steps": [
+                {
+                    "desc": "Study",
+                    "complete": true
+                },
+                {
+                    "desc": "Solve Sheet",
+                    "complete": true
+                },
+                {
+                    "desc": "Upload",
+                    "complete": true
+                }
+            ],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:04:43",
+            "title": "Maths Sheet ",
+            "desc": "Done",
+            "date": "2024-12-30 01:04:29",
+            "repeat": "No Repeating",
+            "priority": 3,
+            "realPriority": 3,
+            "tags": [],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:05:53",
+            "title": "Groceries",
+            "desc": "Buy eggs and milk",
+            "date": "2024-12-29 01:05:00",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [
+                "chore"
+            ],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:07:08",
+            "title": "Numerical Sheet",
+            "desc": "",
+            "date": "2025-01-01 01:06:37",
+            "repeat": "Daily",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:09:34",
+            "title": "Study Something",
+            "desc": "",
+            "date": "2024-12-28 22:09:16",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [
+                "college"
+            ],
+            "steps": [],
+            "complete": true
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:17:01",
+            "title": "Study Maths",
+            "desc": "",
+            "date": "2025-01-02 01:16:43",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-28 01:22:29",
+            "title": "New Task",
+            "desc": "Desc...",
+            "date": "2024-12-30 01:22:09",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
+            "tags": [
+                "college",
+                "work"
+            ],
+            "steps": [],
+            "complete": false
+        }
+    ],
+    "events": [
+        {
+            "type": "event",
+            "id": "2024-12-26 00:23:22",
+            "title": "Event and Low Task",
+            "desc": "Desc...",
+            "date": "2025-01-11 00:22:52",
+            "repeat": "No Repeating"
+        },
+        {
+            "type": "event",
+            "id": "2024-12-26 00:23:51",
+            "title": "Event and High Task",
+            "desc": "Desc...",
+            "date": "2025-01-13 00:23:35",
+            "repeat": "No Repeating"
+        },
+        {
+            "type": "event",
+            "id": "2024-12-28 01:23:19",
+            "title": "Ahmed's Birthday",
+            "desc": "",
+            "date": "2025-01-21 01:23:09",
+            "repeat": "No Repeating"
+        }
+    ],
     "settings": {
-        "highPrioritise": true,
+        "highPrioritise": false,
         "confirmDelete": true,
         "deleteCompleted": false,
-        "theme": "Light theme",
+        "theme": "Dark theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": true,
         "dueTodayNotifTime": "04:00",
-        "reminderTime": 2,
+        "reminderTime": 0,
         "taskReminder": true,
         "eventReminder": true,
         "studyReminder": true
