@@ -2,86 +2,73 @@
     "tasks": [
         {
             "type": "task",
-            "id": "2024-12-26 21:32:50",
-            "title": "my task",
-            "desc": "",
-            "date": "2024-12-26 23:32:35",
+            "id": "2024-12-26 23:42:41",
+            "title": "Sheet 1",
+            "desc": "solve sheet 1 math",
+            "date": "2024-12-27 23:42:00",
             "repeat": "No Repeating",
             "priority": 3,
             "realPriority": 3,
+            "tags": [
+                "study"
+            ],
+            "steps": [],
+            "complete": false
+        },
+        {
+            "type": "task",
+            "id": "2024-12-26 23:44:09",
+            "title": "lab 3",
+            "desc": "finish lab 3 prgramming",
+            "date": "2024-12-29 23:43:28",
+            "repeat": "No Repeating",
+            "priority": 2,
+            "realPriority": 2,
             "tags": [],
             "steps": [],
             "complete": false
         },
         {
             "type": "task",
-            "id": "2024-12-26 21:40:36",
-            "title": "yess",
-            "desc": "",
-            "date": "2024-12-26 23:40:28",
-            "repeat": "No Repeating",
-            "priority": 3,
-            "realPriority": 3,
-            "tags": [],
-            "steps": [],
+            "id": "2024-12-27 00:32:18",
+            "title": "Go to the gym ",
+            "desc": "Do the Push excercise (chest, triceps, shoulders).",
+            "date": "2024-12-28 15:00:24",
+            "repeat": "Weekly",
+            "priority": 1,
+            "realPriority": 1,
+            "tags": [
+                "sport",
+                "fitness"
+            ],
+            "steps": [
+                {
+                    "desc": "train on machine 1",
+                    "complete": false
+                },
+                {
+                    "desc": "train on machine 2",
+                    "complete": false
+                }
+            ],
             "complete": false
         }
     ],
     "events": [
         {
             "type": "event",
-            "id": "2024-12-25 17:20:07",
-            "title": "First event",
-            "desc": "Hmmmmmmmm",
-            "date": "2024-12-27 00:00:00",
-            "repeat": "Daily"
-        },
-        {
-            "type": "event",
-            "id": "2024-12-25 17:20:33",
-            "title": "",
-            "desc": "",
-            "date": "2024-10-16 00:00:00",
-            "repeat": "No Repeating"
-        },
-        {
-            "type": "event",
-            "id": "2024-12-25 17:39:57",
-            "title": "Event babyyyyy",
-            "desc": "So, this is an event\nYeah\nYeahhh",
-            "date": "2024-12-26 17:39:29",
-            "repeat": "No Repeating"
-        },
-        {
-            "type": "event",
-            "id": "2024-12-25 17:49:47",
-            "title": "Old Event",
-            "desc": "",
-            "date": "2024-12-20 17:49:37",
-            "repeat": "No Repeating"
-        },
-        {
-            "type": "event",
-            "id": "2024-12-26 20:46:42",
-            "title": "my event",
-            "desc": "",
-            "date": "2024-12-26 23:53:31",
-            "repeat": "No Repeating"
-        },
-        {
-            "type": "event",
-            "id": "2024-12-26 21:26:34",
-            "title": "my 2 event",
-            "desc": "",
-            "date": "2024-12-26 23:29:22",
+            "id": "2024-12-27 02:08:11",
+            "title": "Techni summit",
+            "desc": "event for technology",
+            "date": "2025-01-01 13:00:10",
             "repeat": "No Repeating"
         }
     ],
     "settings": {
         "highPrioritise": false,
-        "confirmDelete": true,
-        "deleteCompleted": true,
-        "theme": "Dark theme",
+        "confirmDelete": false,
+        "deleteCompleted": false,
+        "theme": "Light theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": true,
         "dueTodayNotifTime": "21:51",
