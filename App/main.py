@@ -328,7 +328,7 @@ class mainApp(QMainWindow, FORM_CLASS):
     def eventTimer_event(self,event):
 
         if event["repeat"]=="Daily":
-            print("repeat done")
+            ##print("repeat done")
             target_time = datetime.strptime(event["date"], "%Y-%m-%d %H:%M:%S")
             new_time = target_time + timedelta(days=1)
             event["date"] = new_time.strftime("%Y-%m-%d %H:%M:%S")
@@ -358,7 +358,7 @@ class mainApp(QMainWindow, FORM_CLASS):
                     
 
     def notifEvent(self):
-        print("notfication")
+        #print("notfication")
         tray_icon = QSystemTrayIcon()
         tray_icon.setIcon(QIcon('App/Icons/appIcon (1).svg'))  # Set an icon file
         todaysTasks=[]
@@ -408,7 +408,7 @@ class mainApp(QMainWindow, FORM_CLASS):
 
     def appTimer_event(self):
         if self.notifyTimer.isActive():
-            print("activated")
+            #print("activated")
             self.notifyTimer.timeout.disconnect()
             self.notifyTimer.stop()
         for timer in self.taskTimers :
@@ -426,7 +426,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         if self.settingsOptions["dueTodayNotif"]==True:
             notify_time = datetime.strptime(self.settingsOptions["dueTodayNotifTime"], "%H:%M")
             notifiRemainTime =notify_time-current_time
-            print(notifiRemainTime," this notify printed in : ", current_time)
+            #print(notifiRemainTime," this notify #printed in : ", current_time)
             if (notifiRemainTime.seconds//3600) <= 1 and (notifiRemainTime.seconds//3600) >= 0:
                 
                 self.notifyTimer.setSingleShot(True)
@@ -436,7 +436,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.timer_interval = (60 - current_minutes) * 60 * 1000 - current_seconds * 1000
         # for task_ in self.taskWidgetsList:
         for i in range(self.tasksLayout.count()):
-            # print("layout count",self.tasksLayout.count())
+            # #print("layout count",self.tasksLayout.count())
             item = self.tasksLayout.itemAt(i)  # Get the item at index `i`
             task_ = item.widget()  # Get the widget from the item
             if task_:  # Ensure it's a valid widget
@@ -449,14 +449,14 @@ class mainApp(QMainWindow, FORM_CLASS):
                         task_.update_task_info()
                     if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                         realRemainTime = remainTime.seconds 
-                        print(remainTime.days )
+                        #print(remainTime.days )
                         taskTimer=QTimer(self)
                         taskTimer.setSingleShot(True)
                         taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
                         taskTimer.start(realRemainTime*1000)
                         self.taskTimers.append(taskTimer)
                     elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
-                        print(task_.task["title"],remainTime.seconds//3600)
+                        #print(task_.task["title"],remainTime.seconds//3600)
                         self.taskTimer_event(task_)
                     if self.settingsOptions["taskReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
                         reminderTimer=QTimer(self)
@@ -466,19 +466,19 @@ class mainApp(QMainWindow, FORM_CLASS):
                         self.reminderTimers.append(reminderTimer)
 
                 else : 
-                    print(task_.task["title"])       
+                    #print(task_.task["title"])       
                     target_time = datetime.strptime(task_.task["date"], "%Y-%m-%d %H:%M:%S")
                     remainTime =target_time-current_time
                     if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                         realRemainTime = remainTime.seconds 
-                        print(remainTime.days )
+                        #print(remainTime.days )
                         taskTimer=QTimer(self)
                         taskTimer.setSingleShot(True)
                         taskTimer.timeout.connect(lambda: self.taskTimer_event(task_))
                         taskTimer.start(realRemainTime*1000)
                         self.taskTimers.append(taskTimer)
                     elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
-                        print(task_.task["title"],remainTime.seconds//3600)
+                        #print(task_.task["title"],remainTime.seconds//3600)
                         if task_.task["repeat"]=="No Repeating" and  task_.task["complete"] and self.settingsOptions["deleteCompleted"]:
                                 for i in range(len(self.tasksList)):
                                     if (self.tasksList[i]["id"] == task_.task["id"]):
@@ -498,17 +498,17 @@ class mainApp(QMainWindow, FORM_CLASS):
                 remainTime =target_time-current_time
                 if remainTime.days==0 and (remainTime.seconds//3600) <= 1 and (remainTime.seconds//3600) >= 0 :
                     realRemainTime = remainTime.seconds 
-                    print(remainTime.days )
+                    #print(remainTime.days )
                     eventTimer=QTimer(self)
                     eventTimer.setSingleShot(True)
                     eventTimer.timeout.connect(lambda: self.eventTimer_event(event))
                     eventTimer.start(realRemainTime*1000)
                     self.eventTimers.append(eventTimer)
                 elif remainTime.days<0 or (remainTime.seconds//3600) < 0:
-                    print(event["title"],remainTime.seconds//3600)
+                    #print(event["title"],remainTime.seconds//3600)
                     self.eventTimer_event(event)    
                 if self.settingsOptions["eventReminder"] and remainTime.days==0 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"]) <= 1 and (remainTime.seconds//3600 - self.settingsOptions["reminderTime"])>=0:
-                    print("ding ding")
+                    #print("ding ding")
                     reminderTimer=QTimer(self)
                     reminderTimer.setSingleShot(True)
                     reminderTimer.timeout.connect(lambda: self.reminderTimer_event(event))
@@ -576,7 +576,7 @@ class mainApp(QMainWindow, FORM_CLASS):
         if (newTask):
             self.tasksList.append(task)
 
-        # print(self.tasksList)
+        # #print(self.tasksList)
     
 
     def update_settings(self, settingsOptions):
@@ -601,8 +601,8 @@ class mainApp(QMainWindow, FORM_CLASS):
         with open(file_path, "w") as json_file:
             json.dump(data, json_file, indent=4)
 
-        # print(data)
-        print("Data saved to data.json")
+        # #print(data)
+        #print("Data saved to data.json")
 
         #For progress bar
         # self.update_progress()
@@ -625,11 +625,11 @@ class mainApp(QMainWindow, FORM_CLASS):
                 self.settingsOptions = data.get("settings", None)
                 self.eventsList = data.get("events", [])
             
-            # print(data)
-            print("Data loaded from tasks_data.json")
+            # #print(data)
+            #print("Data loaded from tasks_data.json")
         
-        else:
-            print("No data found to load.")
+        #else:
+            #print("No data found to load.")
 
         # Add task widgets with the data loaded from JSON file
         for task in self.tasksList:
@@ -891,17 +891,17 @@ class mainApp(QMainWindow, FORM_CLASS):
 
                 if (widget.task["id"] == task["id"]):
                     # Update the widget with the new task data
-                    print("Edit began", task)
+                    #print("Edit began", task)
                     widget.task = task
                     widget.update_task_info()
-                    print(self.tasksLayout.count())
+                    #print(self.tasksLayout.count())
                     # self.delete_task(widget)
                     # self.add_task_widget(task)
                     break
                 else:
                     pass
                     # If no matching widget found, add a new one (shouldn't happen)
-                    # print("ERROR, Didn't find the task to be edited")
+                    # #print("ERROR, Didn't find the task to be edited")
                     # self.add_task_widget(task)
 
         self.Handle_sort()
@@ -943,10 +943,10 @@ class mainApp(QMainWindow, FORM_CLASS):
         self.plainTextEdit_searchTask.clear()
 
         newTaskWidget = addTask(parent=self, delete_callback=lambda: self.delete_task(newTaskWidget))
-        # print("1) New Task Widget", task)
+        # #print("1) New Task Widget", task)
         newTaskWidget.add_new_task_info(task)
         self.update_tasksList(task)
-        # print("Final) New Task Widget", newTaskWidget.task)
+        # #print("Final) New Task Widget", newTaskWidget.task)
         self.tasksLayout.addWidget(newTaskWidget)
         
         self.Handle_sort()
@@ -1422,10 +1422,10 @@ class mainApp(QMainWindow, FORM_CLASS):
     def delete_event(self, event_label):
 
         event_id = event_label.property("event_id")
-        # print(self.eventsList)
+        # #print(self.eventsList)
         self.eventsList = [event for event in self.eventsList if event["id"] != event_id]
-        print(f"Event with ID {event_id} has been deleted.")
-        # print(self.eventsList)
+        #print(f"Event with ID {event_id} has been deleted.")
+        # #print(self.eventsList)
         self.saveApp()
         self.appTimer_event()
 
@@ -1547,7 +1547,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
         
         # Edit existing task
         if self.editTask:
-            print("Editing a task")
+            #print("Editing a task")
             task["id"] = self.editTask["id"]
             task["steps"] = self.editTask["steps"]
             # task["priority"] = self.editTask["priority"]
@@ -1556,7 +1556,7 @@ class addWindow(QDialog, ADD_TASK_CLASS):
 
         # Add new task to list
         else:
-            # print(task)
+            # #print(task)
             task["steps"] = []
             self.mainWindow.add_task_widget(task)
         self.close()
@@ -1634,7 +1634,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
         # Set initial values if settingsOptions is not None
         if self.settingsOptions:
             # Theme
-            print("Initialise Settings ", self.settingsOptions)
+            #print("Initialise Settings ", self.settingsOptions)
             theme = self.settingsOptions.get("theme", "Light theme")
             if theme in ["Light theme", "Dark theme"]:
                 self.ThemeComboBox.setCurrentText(theme)
@@ -1726,7 +1726,7 @@ class settingWindow(QMainWindow, SETTING_CLASS):
             stream.open(QIODevice.ReadOnly)
             app.setStyleSheet(QTextStream(stream).readAll())
         else:
-            #print(f"Unknown theme selected: {self.settingsOptions["theme"]}")
+            ##print(f"Unknown theme selected: {self.settingsOptions["theme"]}")
             return
     
     def Handle_change_font(self, font):
@@ -1793,7 +1793,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
 
         # Add steps in loading app phase
         else:
-            # print("add_step step!=None")
+            # #print("add_step step!=None")
             item = QListWidgetItem(step["desc"])
             item.setFlags(item.flags() | Qt.ItemIsUserCheckable) #Creates a checkbox related to the item (step)
             if (step["complete"]):
@@ -1902,7 +1902,7 @@ class addTask(QWidget, TASK_WIDGET_CLASS):
         
         # Update the task steps
         self.stepsListWidget.clear()
-        # print(f'Steps of {self.task["title"]},  {self.task["steps"]}')
+        # #print(f'Steps of {self.task["title"]},  {self.task["steps"]}')
         for step in self.task["steps"]:
             self.add_step(step)
         
@@ -1921,8 +1921,8 @@ def main():
         window.show()
         sys.exit(app.exec_())#Infinite loop
     except Exception as e:
-        print("An error occurred:", e)
-        traceback.print_exc()
+        #print("An error occurred:", e)
+        #traceback.#print_exc()
         sys.exit(1)
 
 if __name__ == '__main__':

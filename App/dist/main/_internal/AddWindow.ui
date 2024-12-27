@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddWindow</class>
+ <widget class="QDialog" name="AddWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::TabFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Add Window</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <widget class="QTabWidget" name="AddTabs">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>800</width>
+     <height>400</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="accessibleName">
+    <string>task</string>
+   </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="taskTab">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <attribute name="title">
+     <string>Task</string>
+    </attribute>
+    <widget class="QTextEdit" name="TaskTitleInput">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>241</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+     <property name="placeholderText">
+      <string>Title</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="TaskDescInput">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>391</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+     <property name="placeholderText">
+      <string>Description</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="TaskDateLabel">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>170</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Due Date</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="TaskRepeat">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>230</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Repeating due date</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>No Repeating</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Daily</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Weekly</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Monthly</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Yearly</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="TaskPriorityValue">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>20</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Priority is useful for filtering</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Low Priority</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Moderate Priority</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>High Priority</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QDateTimeEdit" name="TaskDate">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>160</y>
+       <width>211</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="dateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2024</year>
+       <month>10</month>
+       <day>1</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>d/M/yyyy h:mm AP</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="TaskTagInput">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>20</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A tag should have no spaces. &lt;/p&gt;&lt;p&gt;Press enter to add tag&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tags are optional feature for categorizing events/tasks&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Insert a Tag</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="TaskTags">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>60</y>
+       <width>171</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="TaskDialogButtonBox">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>310</y>
+       <width>193</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="AddTag">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>20</y>
+       <width>41</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Add</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="eventTab">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <attribute name="title">
+     <string>Event</string>
+    </attribute>
+    <widget class="QLabel" name="EventDateLabel">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>120</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </widget>
+    <widget class="QDateTimeEdit" name="EventDate">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>110</y>
+       <width>211</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="dateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2024</year>
+       <month>10</month>
+       <day>1</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>d/M/yyyy h:mm AP</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="EventRepeatValue">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>190</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Repeating due date</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>No Repeating</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Daily</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Weekly</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Monthly</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Yearly</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QTextEdit" name="EventTitleInput">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>241</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+     <property name="placeholderText">
+      <string>Title</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="EventDescInput">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>391</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="placeholderText">
+      <string>Description</string>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="EventDialogButtonBox">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>310</y>
+       <width>193</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

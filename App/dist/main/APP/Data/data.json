@@ -1,0 +1,17 @@
+{
+    "tasks": [],
+    "events": [],
+    "settings": {
+        "highPrioritise": true,
+        "confirmDelete": true,
+        "deleteCompleted": false,
+        "theme": "Light theme",
+        "font": "MS Shell Dlg 2",
+        "dueTodayNotif": true,
+        "dueTodayNotifTime": "04:00",
+        "reminderTime": 2,
+        "taskReminder": true,
+        "eventReminder": true,
+        "studyReminder": true
+    }
+}

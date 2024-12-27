@@ -1,0 +1,444 @@
+QMainWindow {
+	background-color:rgb(46,46,58);
+    color:rgb(241,246,252);
+}
+
+QDialog{
+    background-color:rgb(46,46,58);
+}
+
+/*___________________________________________________TABS___________________________________________________*/
+QTabWidget {
+	color:rgb(0,0,0);
+	background-color:rgb(255,255,255);
+}
+QTabWidget::pane {
+	background-color:rgb(33,34,65);
+    border-width: 0;
+  	border-radius: 25px;
+	border-top-left-radius:0;
+}
+QTabBar::tab {
+    height: 20px;
+    width:125px;
+    font-size: 13px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+	padding-top:5px;
+	color:rgba(241,246,252,0.6);
+  	background-color: rgb(46,46,58);
+	border:0;
+    margin-top: 4px;
+	margin-right: 4px;
+    margin-bottom:0;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+QTabBar::tab:selected, QTabBar::tab:last:selected {
+	background-color:rgb(33,34,65);
+	border-left: 2px solid rgb(255,187,13);
+    color:rgb(241,246,252);
+}
+
+QTabBar::tab:hover{
+    background: qlineargradient(
+            x1: 0, y1: 0, 
+            x2: 1, y2: 0, 
+            stop: 0 rgb(46,46,58), 
+            stop: 1 rgb(33,34,65)
+    );
+    color:rgb(241,246,252);
+}
+/*___________________________________________________PROGRESSBAR___________________________________________________*/
+
+QProgressBar {
+	text-align: center;
+	color: rgb(0,0,0);
+	border: 1px inset rgb(150,150,150);
+	border-radius: 10px;
+	background-color:rgb(250,223,159);
+}
+QProgressBar::chunk:horizontal {
+	background: qlineargradient(
+            x1: 0, y1: 0, 
+            x2: 1, y2: 0,
+            stop:0 #188524, 
+            stop:1 #29e367);
+	border-radius:8px;
+    border-width:0;
+}
+
+/*___________________________________________________PUSHBUTTON___________________________________________________*/
+
+QPushButton,QToolButton{
+    width:100px;
+    height:20px;
+    font-size: 15px;
+	color: rgb(0,0,0);
+	padding: 4px;
+	border-radius: 10px;
+	background-color: rgb(253,186,18);
+}
+QPushButton:hover{
+	background-color:rgba(253,186,18,0.6);
+	border:0;
+}
+QPushButton:pressed{
+	background-color: rgba(253,186,18,0.8);
+    color: rgb(0,0,0);
+}
+QPushButton:disabled{
+	color:rgb(174,167,159);
+	border-width: 1px;
+	border-radius: 6px;
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(230, 230, 230, 255));
+}
+
+
+
+/*___________________________________________________SCROLLAREA___________________________________________________*/
+
+
+QScrollArea {
+    border-radius: 15px;
+    padding-left:5px;
+    margin:20px;
+    /*background-color: rgb(57,58,106);*/
+}
+
+
+
+/*___________________________________________________ComboBox/QDATEEDIT/QTIMEEDIT___________________________________________________*/
+
+QComboBox,QDateTimeEdit {
+    background-color:rgb(79,81,130);
+    border-radius: 7px;
+	font-size: 13px;                    
+    color: rgb(255,255,255);                       
+    height: 50px;                       
+    margin-left: 5px; 
+	padding-left:20px;
+	width:150px;
+	border:1px solid rgb(57,57,57);
+}
+QDateTimeEdit{
+	font-size: 16px;  
+}
+QTimeEdit {
+	height: 25px;
+}
+
+QComboBox:hover ,QDateEdit:hover ,QTimeEdit:hover{
+    background-color: rgb(109,111,171);
+}
+
+
+QComboBox::drop-down {
+	min-height:25px;
+	min-width:30px;
+	padding-left: 5px;
+	padding-right:0px;
+	image: url("App/Images/comboboxdown");
+	border-radius: 8px;
+}
+
+QComboBox QAbstractItemView ,QDateEdit QAbstractItemView ,QTimeEdit QAbstractItemView{
+	padding:10px;
+    background-color: rgb(243,217,133);
+    color: black;
+    selection-background-color: rgb(251,190,16);
+    selection-color:black;
+    font-size: 13px;
+    border:0;
+}
+
+/*___________________________________________________MENUBAR___________________________________________________*/
+
+
+
+
+QMenuBar {
+	background-color:rgb(46,46,58);
+}
+QMenuBar::item {
+	padding:5px 14px;
+	background-color:rgb(46,46,58);
+    color:rgba(241,246,252,0.6);
+	font-size:13px;
+	font-weight:bold;
+}
+QMenuBar::item:selected {
+	background-color:rgb(33,34,65);
+    color:rgb(241,246,252);
+}
+
+
+
+
+
+QMenu {
+	background-color:rgb(33,34,65);
+    color:rgb(241,246,252);
+	padding:0;
+}
+QMenu::item {
+	padding:10px;
+}
+QMenu::item:selected {
+	color:rgb(255,255,255);
+	background-color: rgb(57,58,106);
+	border-radius:5px;
+}
+
+/*___________________________________________________PLAINTEXTEDIT/TEXTBROWSER___________________________________________________*/
+
+
+
+QPlainTextEdit , QTextEdit , QListWidget , QLineEdit {
+	border-radius:7px;
+	border:1px solid rgb(87,87,87);
+	padding-top:3px;
+	padding-left:5px;
+	color:rgb(255,255,255);
+	selection-background-color:rgb(236,116,64);
+    background-color: rgb(54,54,94);
+	text-align:left;
+    vertical-align: middle;
+	font-size:18px;
+	font-weight:normal;
+}
+
+QTextBrowser {
+    background-color: rgb(255,255,255);
+    border-radius: 5px;
+    border: 1px solid rgb(220,220,220);
+}
+
+
+
+/*___________________________________________________CALENDAR___________________________________________________*/
+
+
+#calendarWidget QWidget{
+	alternate-background-color:rgb(33,34,65);
+    color: #ffffff;
+    font-size:15px;
+}
+/*
+QCalendarWidget QWidget{
+background-color:rgb(255,255,255);
+color: black;
+margin:0;
+
+}
+*/
+QCalendarWidget QToolButton{
+    background-color:rgb(33,34,65);
+}
+
+QCalendarWidget QToolButton:hover,
+QCalendarWidget QToolButton#qt_calendar_prevmonth:hover,
+QCalendarWidget QToolButton#qt_calendar_nextmonth:hover {
+	border:0;
+	background-color: rgb(57,58,106);
+}
+
+#qt_calendar_navigationbar{
+	background-color:rgb(33,34,65);
+    min-height:60px;
+    max-height:60px;
+}
+
+#qt_calendar_prevmonth,
+#qt_calendar_nextmonth{
+	border:none;
+	qproperty-icon:none;
+    min-height:35px;
+    max-height:35px;
+	min-width:35px;
+    max-width:35px;
+    background:rgb(33,34,65);
+}
+
+
+#qt_calendar_prevmonth{
+    image: url(App/Images/calleft.svg);  
+}
+
+#qt_calendar_nextmonth{
+    image: url(App/Images/calright.svg); 
+}
+
+
+
+QCalendarWidget QSpinBox{
+    background-color: rgb(57,58,106);
+	height:50px;
+    padding:5px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size:15px;
+	max-width:70px;
+    margin-left:20px;
+}
+
+QCalendarWidget QSpinBox::up-button{
+	image:url("App/Images/calup.svg");
+}
+
+QCalendarWidget QSpinBox::down-button{
+	image:url("App/Images/caldown.svg");
+}
+
+
+QCalendarWidget QSpinBox::up-button:hover ,QCalendarWidget QSpinBox::down-button:hover{
+	background-color: rgb(57,58,106);
+    color: rgb(50, 50, 50);
+    border: 1px solid rgb(57,57,57);
+    border-radius: 6px;
+}
+
+
+
+#qt_calendar_yearedit{
+	min-width:53px;
+	color:#000;
+	background:rgb(33,34,65);
+	font-size: 13px;
+}
+
+
+
+#calendarWidget QToolButton QMenu{
+	/*background-color:rgb(33,34,65);
+    color:rgb(241,246,252);*/
+	min-width:70px;
+    background-color: rgb(243,217,133);
+    color: black;
+}
+
+
+    
+
+#calendarWidget QToolButton QMenu::item{
+	padding:10px 30px;
+	font-size:13px;
+}
+
+#calendarWidget QToolButton QMenu::item:selected:enabled{
+	/*color:rgb(255,255,255);
+	background-color: rgb(57,58,106);*/
+	border-radius:5px;
+    background-color: rgb(251,190,16);
+    color:black;
+}
+
+#qt_calendar_calendarview{
+	border:none;
+    background-color:rgb(33,34,65);
+}
+
+
+#qt_calendar_calendarview::item:hover {
+	border-radius:5px;
+	background-color:rgba(253,186,18,0.6);
+    color: rgb(50, 50, 50);
+}
+
+#qt_calendar_calendarview::item:selected {
+	border-radius:5px;
+	background-color:rgba(253,186,18,0.6);
+    color: rgb(50, 50, 50);
+}
+
+#calendarWidget QToolButton::menu-indicator{
+	qproperty-icon:none;
+	image: url("App/Images/comboboxdown.svg");
+}
+
+/*___________________________________________________CHECKBOX___________________________________________________*/
+
+
+QCheckBox {
+	min-width:450px;
+	padding:7px 5px;
+	font-size:13px;
+    color:rgb(255,255,255);
+}
+
+#DueTodayNotif {
+	min-width:435px;
+}
+#EnableRepeatedTasksRem, #EnableStdTechRem, #EnableEventRem{
+	min-width:240px;
+}
+
+QCheckBox:hover {
+	background-color:rgba(253,186,18,0.2);
+	border-radius:15px;
+    color:rgb(255,255,255);
+}
+QCheckBox::indicator:checked {
+	border-radius:6px;
+	background-color: rgb(253,186,18);
+}
+QCheckBox::indicator:unchecked {
+	border-radius:6px;
+  	background-color:rgba(253,186,18,0.3);
+}
+
+/*___________________________________________________LABEL___________________________________________________*/
+
+
+QLabel,QLineEdit {
+	font-size: 15px;
+    color:rgb(255,255,255);
+}
+
+
+/*___________________________________________________GROUPBOX___________________________________________________*/
+
+
+QGroupBox {
+	margin-top:20px;
+	font-size:17px;
+	border:0;
+	background-color: rgb(57,58,106);
+	border-radius:20px;
+}
+
+QGroupBox::title {
+	margin-bottom:20px;
+	subcontrol-position: top left;
+	padding:15px 10px; 
+    color:rgb(255,255,255);
+}
+
+
+
+
+/*___________________________________________________TEXTBROWSER___________________________________________________*/
+
+
+QTextBrowser {
+	border:none;
+	border-radius:20px;
+	background-color: rgb(73,74,115);
+	margin-left: 15px;
+}
+
+
+/*___________________________________________________LCDNUMBER___________________________________________________*/
+
+
+QLCDNumber {
+    background-color: rgb(250,223,159);  
+    color: rgb(57,57,57);            
+    border-radius:7px;      
+    padding: 5px;      
+	text-align:center;        
+    font-size: 20px;           
+    font-family: "Courier New", monospace; 
+}
+
