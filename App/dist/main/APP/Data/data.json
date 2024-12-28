@@ -235,7 +235,7 @@
         "highPrioritise": false,
         "confirmDelete": true,
         "deleteCompleted": false,
-        "theme": "Dark theme",
+        "theme": "Light theme",
         "font": "MS Shell Dlg 2",
         "dueTodayNotif": true,
         "dueTodayNotifTime": "04:00",
